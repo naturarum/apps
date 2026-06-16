@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synth — a polyphonic synthesizer for iPad (coming soon)</title>
+    <meta name="description" content="A new polyphonic synthesizer for iPad, coming soon. Part of the naturarum family of music apps.">
+    <meta name="theme-color" content="#0d0d11" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
+    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Synth — coming soon">
+    <meta property="og:description" content="A polyphonic synthesizer for iPad. Part of the naturarum family.">
+    <meta property="og:url" content="https://naturarum.github.io/apps/synth/">
+
+    <link rel="stylesheet" href="../assets/base.css">
+    <style>
+        /* Synth theme: lavender primary */
+        :root { --accent: #cfa9ff; --accent-glow: rgba(207, 169, 255, 0.22); }
+        @media (prefers-color-scheme: light) { :root { --accent: #8a3ff0; --accent-glow: rgba(138, 63, 240, 0.2); } }
+
+        .app-hero-icon { width: 120px; height: 84px; margin: 0 auto 28px; display: flex; align-items: center; justify-content: center; }
+        .wave-path { stroke: var(--accent3); fill: none; stroke-width: 3; stroke-linecap: round; animation: wavemove 5s ease-in-out infinite; }
+        @keyframes wavemove { 0%, 100% { opacity: 0.7; } 50% { opacity: 1; } }
+        @media (prefers-reduced-motion: reduce) { .wave-path { animation: none; } }
+    </style>
+</head>
+<body>
+    <div class="bg-shapes" aria-hidden="true">
+        <div class="bg-blob"></div>
+        <div class="bg-blob"></div>
+        <div class="bg-blob"></div>
+        <div class="bg-blob"></div>
+    </div>
+
+    <nav>
+        <div class="nav-inner">
+            <div style="display: flex; align-items: center; gap: 9px; min-width: 0;">
+                <a href="../" class="nav-brand">
+                    <span class="nav-mark" aria-hidden="true"></span>
+                    naturarum
+                </a>
+                <span class="nav-crumb">/&nbsp;<b>Synth</b></span>
+            </div>
+            <a href="../#contact" class="nav-cta">Contact</a>
+        </div>
+    </nav>
+
+    <main>
+        <!-- ████ PLACEHOLDER COPY — give the synth its real name, pitch and
+                  screenshots when it's ready; flip the badge to Available on the hub. ████ -->
+        <section class="hero container">
+            <div class="app-hero-icon">
+                <svg width="120" height="84" viewBox="0 0 120 84" aria-hidden="true">
+                    <defs>
+                        <linearGradient id="wg" x1="0" x2="1">
+                            <stop offset="0" stop-color="#ffbd82"/>
+                            <stop offset="0.5" stop-color="#cfa9ff"/>
+                            <stop offset="1" stop-color="#8cb8ff"/>
+                        </linearGradient>
+                    </defs>
+                    <path class="wave-path" style="stroke: url(#wg)" d="M4 42 Q 19 6 34 42 T 64 42 T 94 42 T 124 42"/>
+                </svg>
+            </div>
+            <p class="eyebrow">Coming soon</p>
+            <h1><span class="accent">Synth</span></h1>
+            <p class="tagline">
+                A polyphonic synthesizer for iPad, in the same family — a sound of its own,
+                in tune in any tuning, and made to be played with your hands. Name and details soon.
+            </p>
+            <div class="cta-group">
+                <a href="../#contact" class="btn-primary">Get notified</a>
+                <a href="../" class="btn-secondary">&larr; All apps</a>
+            </div>
+        </section>
+
+        <section class="features container reveal">
+            <p class="section-title">What to expect</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="card-label">Sound</span>
+                    <h3>A voice of its own</h3>
+                    <p>An expressive synth engine designed to sound good before you touch a single knob.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="card-label">In tune</span>
+                    <h3>Microtonal at heart</h3>
+                    <p>Per-note pitch and MPE so it plays every scale and temperament in tune, alongside Hexatone.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="card-label">Connected</span>
+                    <h3>Standalone &amp; AUv3</h3>
+                    <p>Use it on its own or as a plugin inside your favourite host. <em>(Planned.)</em></p>
+                </div>
+                <div class="feature-card">
+                    <span class="card-label">Design</span>
+                    <h3>Glassy and readable</h3>
+                    <p>The same soft, glowing look the rest of the family shares, built for touch.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact container reveal" id="contact">
+            <div class="contact-card">
+                <h3>Want to know when it's out?</h3>
+                <p>Send me a note and I'll keep you posted.</p>
+                <a href="mailto:nrrrm@icloud.com" class="contact-email">nrrrm@icloud.com</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="container">
+        <div class="footer-links">
+            <a href="../">All apps</a>
+            <a href="../hexatone/">Hexatone</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <p>&copy; <span id="current-year">2026</span> naturarum</p>
+    </footer>
+
+    <script src="../assets/site.js"></script>
+</body>
+</html>

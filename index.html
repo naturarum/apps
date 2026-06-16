@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>naturarum — music apps & instruments for iPad</title>
+    <meta name="description" content="A growing collection of music-making apps and instruments for iPad, by naturarum. Hexatone is available now, with more on the way.">
+    <meta name="theme-color" content="#0d0d11" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="apple-touch-icon" href="hexatone/img/icon.png">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="naturarum — music apps for iPad">
+    <meta property="og:description" content="A growing collection of music-making apps and instruments for iPad. Hexatone is out now; more on the way.">
+    <meta property="og:url" content="https://naturarum.github.io/apps/">
+    <meta name="twitter:card" content="summary">
+
+    <link rel="stylesheet" href="assets/base.css">
+    <!-- Hub-specific accent for links/hover: keep the neutral pink default. -->
+</head>
+<body>
+    <div class="bg-shapes" aria-hidden="true">
+        <div class="bg-blob"></div>
+        <div class="bg-blob"></div>
+        <div class="bg-blob"></div>
+        <div class="bg-blob"></div>
+    </div>
+
+    <nav>
+        <div class="nav-inner">
+            <a href="./" class="nav-brand">
+                <span class="nav-mark" aria-hidden="true"></span>
+                naturarum
+            </a>
+            <a href="#contact" class="nav-cta">Contact</a>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero left container">
+            <p class="eyebrow">Music apps</p>
+            <h1>Instruments &amp; tools<br>for <span class="accent">iPad</span></h1>
+            <p class="tagline">
+                A small, growing collection of music-making apps. Each one is its own
+                instrument, built and maintained by one person. Hexatone is out now —
+                more are on the way.
+            </p>
+        </section>
+
+        <!-- ════════════════════════════════════════════════════════════════
+             APP LIST — to add an app: copy one <a class="app-card">…</a> block,
+             point href at its folder (or external site), set --card-accent, swap
+             the icon/motif, name, description, and the status badge. That's it.
+             ════════════════════════════════════════════════════════════════ -->
+        <section class="apps container reveal" id="apps">
+            <p class="section-title">The apps</p>
+            <div class="app-grid">
+
+                <!-- Hexatone — available -->
+                <a class="app-card" href="hexatone/" style="--card-accent: var(--accent); --card-glow: var(--accent-glow);">
+                    <div class="app-card-head">
+                        <div class="app-icon"><img src="hexatone/img/icon.png" alt="Hexatone app icon"></div>
+                        <span class="badge badge-available">Available</span>
+                    </div>
+                    <div class="app-name">Hexatone</div>
+                    <div class="app-desc">An isomorphic hexagonal keyboard and microtonal instrument. Any tuning, a built-in sampler, beautiful layouts.</div>
+                    <div class="app-foot">
+                        <span class="app-link">Open &rarr;</span>
+                        <span class="pill">App Store</span>
+                    </div>
+                </a>
+
+                <!-- Pond — coming soon (the ripple sequencer) -->
+                <a class="app-card" href="pond/" style="--card-accent: var(--accent5); --card-glow: var(--accent2-glow);">
+                    <div class="app-card-head">
+                        <div class="app-icon" aria-hidden="true" style="position: relative; background: rgba(158, 230, 230, 0.06);">
+                            <span style="position: absolute; width: 38px; height: 38px; border: 2px solid var(--accent5); border-radius: 50%; opacity: 0.85;"></span>
+                            <span style="position: absolute; width: 23px; height: 23px; border: 2px solid var(--accent2); border-radius: 50%; opacity: 0.7;"></span>
+                            <span style="width: 9px; height: 9px; border-radius: 50%; background: var(--accent3);"></span>
+                        </div>
+                        <span class="badge badge-soon">Coming soon</span>
+                    </div>
+                    <div class="app-name">Pond</div>
+                    <div class="app-desc">A generative ripple sequencer for iPad. Drop notes, watch them spread and interact.</div>
+                    <div class="app-foot">
+                        <span class="app-link">Learn more &rarr;</span>
+                    </div>
+                </a>
+
+                <!-- Synth — coming soon -->
+                <a class="app-card" href="synth/" style="--card-accent: var(--accent3); --card-glow: rgba(207, 169, 255, 0.2);">
+                    <div class="app-card-head">
+                        <div class="app-icon" style="background: rgba(207, 169, 255, 0.06);">
+                            <svg width="30" height="28" viewBox="0 0 30 28" aria-hidden="true">
+                                <defs><linearGradient id="wv" x1="0" x2="1"><stop offset="0" stop-color="#cfa9ff"/><stop offset="1" stop-color="#8cb8ff"/></linearGradient></defs>
+                                <path d="M1 14 Q6 2 11 14 T21 14 T31 14" fill="none" stroke="url(#wv)" stroke-width="2.4" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <span class="badge badge-soon">Coming soon</span>
+                    </div>
+                    <div class="app-name">Synth</div>
+                    <div class="app-desc">A polyphonic synthesizer for iPad, in the same family. Details soon.</div>
+                    <div class="app-foot">
+                        <span class="app-link">Learn more &rarr;</span>
+                    </div>
+                </a>
+
+                <!-- Re-deemer — a different product (desktop plug-in), links to its own site -->
+                <a class="app-card alt" href="https://naturarum.github.io/re-deemer" target="_blank" rel="noopener" style="--card-accent: var(--accent4); --card-glow: rgba(255, 189, 130, 0.18);">
+                    <div class="app-card-head">
+                        <div class="app-icon" aria-hidden="true" style="background: rgba(255, 189, 130, 0.06); gap: 5px;">
+                            <span style="width: 19px; height: 19px; border-radius: 50%; border: 3px solid var(--accent4); display: flex; align-items: center; justify-content: center;"><span style="width: 4px; height: 4px; border-radius: 50%; background: var(--accent4);"></span></span>
+                            <span style="width: 19px; height: 19px; border-radius: 50%; border: 3px solid #e8a85f; display: flex; align-items: center; justify-content: center;"><span style="width: 4px; height: 4px; border-radius: 50%; background: #e8a85f;"></span></span>
+                        </div>
+                        <span class="badge badge-plugin">Plug-in</span>
+                    </div>
+                    <div class="app-name">Re-deemer</div>
+                    <div class="app-desc">A cassette tape echo — a faithful build of the TE-2 that never shipped. VST · CLAP · VCV Rack.</div>
+                    <div class="app-foot">
+                        <span class="app-link">Visit site &#8599;</span>
+                        <span class="pill">re-deemer</span>
+                    </div>
+                </a>
+
+            </div>
+        </section>
+
+        <section class="contact container reveal" id="contact">
+            <div class="contact-card">
+                <h3>Get in touch</h3>
+                <p>Questions, feedback, or press — about any of these apps.</p>
+                <a href="mailto:nrrrm@icloud.com" class="contact-email">nrrrm@icloud.com</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="container">
+        <div class="footer-links">
+            <a href="hexatone/">Hexatone</a>
+            <a href="https://naturarum.github.io/re-deemer" target="_blank" rel="noopener">Re-deemer</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <p>&copy; <span id="current-year">2026</span> naturarum</p>
+    </footer>
+
+    <script src="assets/site.js"></script>
+</body>
+</html>

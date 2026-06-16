@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hexatone: Isomorphic Hexagonal Keyboard and Microtonal Instrument for iPad</title>
+    <meta name="description" content="Hexatone is an isomorphic hexagonal keyboard and microtonal instrument for iPad. Play any tuning, use the built-in sampler, and explore beautiful isomorphic layouts.">
+    <meta name="theme-color" content="#0d0d11" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
+    <link rel="icon" type="image/png" href="img/icon.png">
+    <link rel="apple-touch-icon" href="img/icon.png">
+
+    <!-- Social sharing -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Hexatone: Microtonal Hexagonal Instrument for iPad">
+    <meta property="og:description" content="An isomorphic hexagonal keyboard and microtonal instrument for iPad. Any tuning, a built-in sampler, beautiful layouts.">
+    <meta property="og:image" content="https://naturarum.github.io/apps/hexatone/img/icon.png">
+    <meta property="og:url" content="https://naturarum.github.io/apps/hexatone/">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Hexatone: Microtonal Hexagonal Instrument for iPad">
+    <meta name="twitter:description" content="Any tuning, a built-in sampler, beautiful isomorphic layouts. For iPad.">
+    <meta name="twitter:image" content="https://naturarum.github.io/apps/hexatone/img/icon.png">
+
+    <link rel="stylesheet" href="../assets/base.css">
+    <style>
+        /* ─── Hexatone-specific styling (shared styles come from base.css) ── */
+        .hero .app-icon-placeholder {
+            width: 96px;
+            height: 96px;
+            border-radius: 22px;
+            margin: 0 auto 28px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 16px 44px rgba(140, 184, 255, 0.18),
+                        0 8px 24px rgba(0, 0, 0, 0.55),
+                        0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+        }
+        .hero .app-icon-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .hero-images {
+            position: relative;
+            width: 100%;
+            max-width: 660px;
+            margin: 50px auto 0;
+            height: 360px;
+            display: flex; justify-content: center; align-items: center;
+        }
+        .hero-images img {
+            position: absolute;
+            width: 36%;
+            border-radius: 8px;
+            box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+            transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.5s ease;
+            top: 50%;
+        }
+        .hero-images img:nth-child(1) { left: 4%; transform: translateY(-50%) scale(0.85) rotate(-5deg); z-index: 1; opacity: 0.6; }
+        .hero-images img:nth-child(2) { left: 32%; z-index: 3; transform: translateY(-50%) scale(1.02); }
+        .hero-images img:nth-child(3) { right: 4%; transform: translateY(-50%) scale(0.85) rotate(5deg); z-index: 2; opacity: 0.6; }
+        .hero-images:hover img:nth-child(1) { transform: translateY(-50%) scale(0.88) rotate(-7deg) translateX(-15px); opacity: 0.85; }
+        .hero-images:hover img:nth-child(3) { transform: translateY(-50%) scale(0.88) rotate(7deg) translateX(15px); opacity: 0.85; }
+        .hero-images:hover img:nth-child(2) { transform: translateY(-50%) scale(1.05) translateY(-8px); }
+        @media (max-width: 768px) {
+            .hero-images { height: auto; position: static; display: grid; gap: 24px; justify-items: center; margin-top: 40px; margin-bottom: 0; }
+            .hero-images img { position: static; width: 75%; transform: none !important; opacity: 1 !important; margin: 0; }
+        }
+
+        /* Hexatone's signature hexagon background (overrides base bg-shapes) */
+        .bg-hexagons {
+            position: fixed;
+            pointer-events: none;
+            z-index: 0;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            overflow: hidden;
+        }
+        @keyframes breathe {
+            0%, 100% { transform: rotate(var(--rot)) translateY(0) scale(1); opacity: 0.03; }
+            50% { transform: rotate(var(--rot)) translateY(-15px) scale(1.02); opacity: 0.06; }
+        }
+        .bg-hex {
+            position: absolute;
+            clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+            animation: breathe 12s ease-in-out infinite;
+        }
+        .bg-hex:nth-child(1) { --rot: 15deg; width: 200px; height: 173.2px; background: var(--accent); top: 8%; left: -4%; }
+        .bg-hex:nth-child(2) { --rot: -10deg; width: 140px; height: 121.2px; background: var(--accent2); top: 55%; right: -3%; animation-delay: -3s; }
+        .bg-hex:nth-child(3) { --rot: 22deg; width: 100px; height: 86.6px; background: var(--accent3); bottom: 15%; left: 10%; animation-delay: -6s; }
+        .bg-hex:nth-child(4) { --rot: 8deg; width: 160px; height: 138.6px; background: var(--accent4); top: 30%; right: 12%; animation-delay: -9s; }
+
+        /* feature-card hexagon corner accents */
+        .feature-card .card-hex {
+            position: absolute;
+            top: -30px;
+            right: -30px;
+            width: 80px;
+            height: 69.3px;
+            clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+            opacity: 0.05;
+            pointer-events: none;
+            transition: transform 0.4s ease, opacity 0.4s ease;
+        }
+        .feature-card:hover .card-hex { transform: scale(1.1) rotate(5deg); opacity: 0.15; }
+        .feature-card:nth-child(1) .card-hex { background: var(--accent4); }
+        .feature-card:nth-child(2) .card-hex { background: var(--accent); }
+        .feature-card:nth-child(3) .card-hex { background: var(--accent3); }
+        .feature-card:nth-child(4) .card-hex { background: var(--accent2); }
+        .feature-card:nth-child(5) .card-hex { background: var(--accent5); }
+
+        @media (prefers-reduced-motion: reduce) { .bg-hex { animation: none; } }
+
+        /* ─── SFZ Builder (scoped to #sfzb) ─────────────────────────────── */
+        .sfzb-section { padding: 20px 0 50px; }
+        .sfzb-section .builder-intro {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            max-width: 620px;
+            margin: 0 0 22px;
+            line-height: 1.55;
+        }
+        .sfzb-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+        #sfzb { --warn: #ffbd82; --err: #ff8a9b; --mono: ui-monospace, 'SF Mono', 'JetBrains Mono', Menlo, monospace; }
+        #sfzb .stats-bar {
+            display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+            padding: 14px 18px; border-bottom: 1px solid var(--border);
+        }
+        #sfzb .pill {
+            padding: 4px 11px; border: 1px solid var(--border-light); background: rgba(255,255,255,0.02);
+            border-radius: 14px; font-size: 0.7rem; letter-spacing: 0.02em; font-weight: 600;
+        }
+        #sfzb .body { padding: 18px; }
+        #sfzb .tabs { display: flex; border-bottom: 1px solid var(--border); margin-bottom: 18px; align-items: center; gap: 4px; }
+        #sfzb .tab {
+            background: none; border: none; cursor: pointer; padding: 9px 16px;
+            font-size: 0.78rem; letter-spacing: 0.03em; font-family: inherit; font-weight: 600;
+            color: var(--text-dim); border-bottom: 2px solid transparent; margin-bottom: -1px; transition: all .15s;
+        }
+        #sfzb .tab.on { color: var(--accent); border-bottom-color: var(--accent); }
+        #sfzb .tab-right { margin-left: auto; display: flex; gap: 8px; }
+        #sfzb .drop-zone {
+            border: 2px dashed var(--border-light); border-radius: var(--radius); padding: 52px 32px;
+            text-align: center; background: rgba(255,255,255,0.015); transition: all .2s;
+        }
+        #sfzb .drop-zone.over { border-color: var(--accent); background: var(--bg-card-hover); }
+        #sfzb .di {
+            width: 56px; height: 48.5px; margin: 0 auto 18px;
+            clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+            background: var(--border-light); transition: background .2s;
+        }
+        #sfzb .drop-zone.over .di { background: linear-gradient(120deg, var(--accent4), var(--accent), var(--accent2)); }
+        #sfzb .dt { font-size: 1.05rem; color: #eaeaef; font-weight: 650; letter-spacing: -0.01em; margin-bottom: 8px; }
+        #sfzb .ds { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 24px; }
+        #sfzb .dbtns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+        #sfzb .fmt-note { font-size: 0.78rem; color: var(--text-dim); margin-top: 22px; line-height: 1.6; }
+        #sfzb .fmt-note b { color: var(--accent5); font-weight: 600; }
+        #sfzb .btn {
+            background: rgba(255,255,255,0.03); border: 1px solid var(--border-light); color: var(--text);
+            padding: 9px 20px; font-size: 0.85rem; font-weight: 600; letter-spacing: -0.01em;
+            border-radius: 22px; cursor: pointer; font-family: inherit; transition: all .15s;
+        }
+        #sfzb .btn:hover { background: var(--bg-card-hover); border-color: #3a3a48; }
+        #sfzb .btn.sm { padding: 6px 14px; font-size: 0.78rem; }
+        #sfzb .btn.gst { background: none; }
+        #sfzb .btn.pri {
+            background: linear-gradient(120deg, var(--accent), var(--accent3));
+            border: none; color: #1a1020; font-weight: 700;
+        }
+        #sfzb .btn.pri:hover { filter: brightness(1.06); }
+        #sfzb .btn.pri:disabled { background: var(--border); color: var(--text-dim); cursor: not-allowed; filter: none; }
+        #sfzb .drop-mini {
+            border: 1px dashed var(--border-light); border-radius: var(--radius-sm);
+            padding: 11px 16px; text-align: center; margin-bottom: 16px;
+            font-size: 0.78rem; color: var(--text-dim); letter-spacing: 0.02em; transition: all .15s;
+        }
+        #sfzb .drop-mini.over { border-color: var(--accent); background: var(--bg-card-hover); color: var(--accent); }
+        #sfzb table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+        #sfzb th { padding: 8px 10px; font-size: 0.68rem; letter-spacing: 0.05em; font-weight: 600; color: var(--text-dim); border-bottom: 1px solid var(--border); }
+        #sfzb th.l { text-align: left; } #sfzb th.c { text-align: center; }
+        #sfzb td { padding: 6px 10px; border-bottom: 1px solid rgba(34,34,43,0.5); }
+        #sfzb tr:not(.hdr):hover td { background: rgba(255,255,255,0.02); }
+        #sfzb tr.excl td { opacity: .4; }
+        #sfzb .note-tag {
+            display: inline-block; padding: 3px 10px; border-radius: 12px; border: 1px solid transparent;
+            cursor: pointer; min-width: 46px; text-align: center; font-weight: 600; transition: border-color .15s;
+        }
+        #sfzb .note-tag.kn { color: var(--accent5); background: rgba(158,230,230,0.10); }
+        #sfzb .note-tag.unk { color: var(--warn); background: rgba(255,189,130,0.10); }
+        #sfzb .note-tag:hover { border-color: var(--accent); }
+        #sfzb .edit-in {
+            width: 70px; padding: 3px 6px; text-align: center; background: var(--bg-card);
+            border: 1px solid var(--accent); color: var(--text); font-size: 0.85rem; font-family: inherit;
+            border-radius: 8px; outline: none;
+        }
+        #sfzb .edit-in.err { border-color: var(--err); }
+        #sfzb .xbtn {
+            background: none; border: 1px solid var(--border-light); color: var(--text-dim);
+            padding: 3px 10px; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.02em;
+            border-radius: 12px; cursor: pointer; font-family: inherit; transition: all .15s;
+        }
+        #sfzb .xbtn:hover, #sfzb .xbtn.on { border-color: var(--accent); color: var(--accent); }
+        #sfzb .rbtn { background: none; border: none; color: var(--text-dim); cursor: pointer; font-size: 1.1rem; transition: color .15s; }
+        #sfzb .rbtn:hover { color: var(--err); }
+        #sfzb .opt-bar { display: flex; gap: 16px; flex-wrap: wrap; align-items: flex-end; padding-top: 18px; margin-top: 4px; border-top: 1px solid var(--border); }
+        #sfzb .opt-g { display: flex; flex-direction: column; gap: 6px; }
+        #sfzb .opt-l { font-size: 0.68rem; letter-spacing: 0.05em; color: var(--text-dim); font-weight: 600; }
+        #sfzb select, #sfzb input[type=number] {
+            background: var(--bg-card); border: 1px solid var(--border-light); color: var(--text);
+            padding: 7px 11px; font-size: 0.85rem; font-family: inherit; border-radius: 8px; outline: none;
+        }
+        #sfzb select:focus, #sfzb input:focus { border-color: var(--accent); }
+        #sfzb select { min-width: 140px; }
+        #sfzb input[type=number] { width: 84px; }
+        #sfzb .gen-area { margin-left: auto; text-align: right; }
+        #sfzb .wmsg { font-size: 0.78rem; color: var(--warn); margin-bottom: 8px; max-width: 360px; margin-left: auto; }
+        #sfzb .prev-hdr {
+            display: flex; align-items: center; margin-bottom: 0; flex-wrap: wrap; gap: 10px;
+            background: #18181f; padding: 12px 18px; border-radius: var(--radius) var(--radius) 0 0;
+            border: 1px solid var(--border); border-bottom: none;
+        }
+        #sfzb .mac-dots { display: flex; gap: 6px; margin-right: 14px; }
+        #sfzb .mac-dots span { width: 11px; height: 11px; border-radius: 50%; background: #444; }
+        #sfzb .mac-dots span:nth-child(1) { background: #ff5f56; }
+        #sfzb .mac-dots span:nth-child(2) { background: #ffbd2e; }
+        #sfzb .mac-dots span:nth-child(3) { background: #27c93f; }
+        #sfzb .prev-meta { font-size: 0.78rem; color: var(--text-dim); letter-spacing: 0.02em; }
+        #sfzb .prev-btns { display: flex; gap: 8px; margin-left: auto; }
+        #sfzb pre.sfz {
+            background: rgba(0,0,0,0.4); border: 1px solid var(--border); border-radius: 0 0 var(--radius) var(--radius);
+            padding: 22px; font-size: 0.82rem; line-height: 1.85; overflow: auto; max-height: 56vh;
+            white-space: pre; font-family: var(--mono); margin-top: 0;
+        }
+        #sfzb .sc { color: var(--text-dim); }
+        #sfzb .st { color: var(--accent); font-weight: 700; }
+        #sfzb .sk { color: var(--accent2); }
+        #sfzb .sv { color: var(--accent5); }
+        #sfzb .se { color: var(--text-dim); }
+
+        /* SFZ Builder spotlight */
+        .sfzb-title { font-size: 1.6rem; font-weight: 700; letter-spacing: -0.02em; color: #f0f0f4; margin-bottom: 8px; }
+        .sfzb-how { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 22px 0 4px; }
+        @media (max-width: 600px) { .sfzb-how { grid-template-columns: 1fr; } }
+        .sfzb-step { display: flex; gap: 12px; align-items: flex-start; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 16px; }
+        .sfzb-step-n { flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; font-size: 0.8rem; font-weight: 700; color: var(--accent); background: rgba(255, 169, 201, 0.15); border: 1px solid var(--accent); }
+        .sfzb-step b { display: block; font-size: 0.92rem; color: #eaeaef; margin-bottom: 2px; letter-spacing: -0.01em; }
+        .sfzb-step span { font-size: 0.82rem; color: var(--text-muted); line-height: 1.45; }
+        .sfzb-explain { margin-top: 16px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 2px 18px; }
+        .sfzb-explain summary { cursor: pointer; padding: 14px 0; font-size: 0.9rem; font-weight: 600; color: #eaeaef; letter-spacing: -0.01em; list-style-position: inside; }
+        .sfzb-explain summary::marker { color: var(--accent); }
+        .sfzb-explain > div { padding-bottom: 8px; }
+        .sfzb-explain p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.55; margin-bottom: 10px; }
+        .sfzb-explain code { color: var(--accent5); font-family: ui-monospace, 'SF Mono', Menlo, monospace; font-size: 0.85em; }
+        .sfzb-card { margin-top: 18px; }
+        #sfzb .pbtn { background: none; border: 1px solid var(--border-light); color: var(--text-dim); width: 24px; height: 24px; border-radius: 50%; cursor: pointer; font-size: 0.66rem; line-height: 1; padding: 0; transition: all .15s; }
+        #sfzb .pbtn:hover:not(:disabled) { border-color: var(--accent5); color: var(--accent5); }
+        #sfzb .pbtn:disabled { opacity: .3; cursor: default; }
+        #sfzb .srcdot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; margin-left: 6px; vertical-align: middle; }
+        #sfzb .lohi { cursor: pointer; border-bottom: 1px dashed transparent; }
+        #sfzb .lohi:hover { border-bottom-color: var(--border-light); color: var(--text); }
+        #sfzb .lohi.ov { color: var(--accent3); }
+        #sfzb .mini-in { width: 52px; padding: 2px 5px; text-align: center; background: var(--bg-card); border: 1px solid var(--accent); color: var(--text); font-size: 0.82rem; font-family: inherit; border-radius: 6px; outline: none; }
+        #sfzb .pnrow { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
+        #sfzb .pnrow label { font-size: 0.68rem; letter-spacing: 0.05em; color: var(--text-dim); font-weight: 600; }
+        #sfzb .pn-in { flex: 1; min-width: 160px; max-width: 280px; background: var(--bg-card); border: 1px solid var(--border-light); color: var(--text); padding: 7px 11px; font-size: 0.85rem; font-family: inherit; border-radius: 8px; outline: none; }
+        #sfzb .pn-in:focus { border-color: var(--accent); }
+
+        /* Hexatone-specific light-mode tweaks */
+        @media (prefers-color-scheme: light) {
+            .hero .app-icon-placeholder {
+                box-shadow: 0 16px 44px rgba(74, 140, 255, 0.18),
+                            0 8px 24px rgba(0, 0, 0, 0.15),
+                            0 0 0 1px rgba(0, 0, 0, 0.06) inset;
+            }
+            .sfzb-title { color: #111; }
+            .sfzb-step b, .sfzb-explain summary, #sfzb .dt { color: #111; }
+            .sfzb-step-n { color: #fff; background: var(--accent); }
+            #sfzb .btn.pri { color: #fff; }
+            #sfzb .prev-hdr { background: #e5e5ea; }
+            #sfzb pre.sfz { background: rgba(255,255,255,0.8); }
+            #sfzb .drop-zone { background: rgba(255,255,255,0.5); }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-hexagons" aria-hidden="true">
+        <div class="bg-hex"></div>
+        <div class="bg-hex"></div>
+        <div class="bg-hex"></div>
+        <div class="bg-hex"></div>
+    </div>
+
+    <nav>
+        <div class="nav-inner">
+            <div style="display: flex; align-items: center; gap: 9px; min-width: 0;">
+                <a href="../" class="nav-brand">
+                    <span class="nav-mark" aria-hidden="true"></span>
+                    naturarum
+                </a>
+                <span class="nav-crumb">/&nbsp;<b>Hexatone</b></span>
+            </div>
+            <a href="https://apps.apple.com/app/id6775283069" class="nav-cta" target="_blank" rel="noopener">Download</a>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero container">
+            <!-- App icon -->
+            <div class="app-icon-placeholder">
+                <img src="img/icon.png" alt="Hexatone app icon">
+            </div>
+
+            <h1><span class="accent">Hexatone</span></h1>
+            <p class="tagline">
+                An isomorphic hexagonal keyboard and microtonal instrument for iPad.
+                Every interval keeps the same shape anywhere on the grid, so scales and chords
+                are easy to learn and transpose, in any tuning. It makes its own sound, in tune,
+                with built-in voices and a sampler, and no extra apps required.
+            </p>
+            <div class="cta-group">
+                <a href="https://apps.apple.com/app/id6775283069" class="btn-appstore" target="_blank" rel="noopener" aria-label="Download Hexatone on the App Store">
+                    <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" height="44" loading="eager">
+                </a>
+                <a href="https://www.youtube.com/shorts/nB9aX6HUDzI" class="btn-secondary" target="_blank" rel="noopener">Watch Promo</a>
+                <a href="#contact" class="btn-secondary">Get in Touch</a>
+            </div>
+
+            <!-- Hero Images -->
+            <div class="hero-images">
+                <img src="img/v12-01-microtonal.jpg" alt="Hexatone Microtonal Interface">
+                <img src="img/v12-02-sampler.jpg" alt="Hexatone Built-in Sampler">
+                <img src="img/v12-03-midi.jpg" alt="Hexatone MIDI MPE Output">
+            </div>
+        </section>
+
+        <section class="features container reveal" id="features">
+            <p class="section-title">Key Features</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="card-hex" aria-hidden="true"></div>
+                    <span class="card-label">Tuning</span>
+                    <h3>Play Any Tuning</h3>
+                    <p>
+                        Any equal temperament (N-EDO): 12, 19, 22, 24, 31, 53 and beyond.
+                        Import your own scales as Scala (.scl) files, and keys show their ratios.
+                        Adjustable octave, concert pitch (A4), and key density.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="card-hex" aria-hidden="true"></div>
+                    <span class="card-label">Sound</span>
+                    <h3>A Sound of Its Own</h3>
+                    <p>
+                        Two built-in voices play in tune out of the box: a struck bell and a
+                        sustaining glass tone. Or load a single sample, or a full multisample
+                        instrument (SFZ) as a folder or a .zip. Name, rename, and manage your
+                        library right in the app.
+                    </p>
+                    <ul>
+                        <li>No external synth needed</li>
+                        <li>Send MIDI at the same time</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <div class="card-hex" aria-hidden="true"></div>
+                    <span class="card-label">Playing</span>
+                    <h3>Play Hands-Free</h3>
+                    <p>
+                        Hold mode sustains a chord after you lift your fingers, so you can layer
+                        notes and let them ring. Tap a held key to drop it, and choose how many
+                        voices play at once.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="card-hex" aria-hidden="true"></div>
+                    <span class="card-label">Layout</span>
+                    <h3>Isomorphic Layouts</h3>
+                    <p>
+                        Bosanquet, Wicki-Hayden, Harmonic Table, Fourths, Accordion, or a fully
+                        Custom layout. Every interval keeps its shape across the entire grid.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="card-hex" aria-hidden="true"></div>
+                    <span class="card-label">Design</span>
+                    <h3>Beautiful, Readable Keys</h3>
+                    <p>
+                        Glassy, glowing keys that light up as you play. Four colour palettes
+                        (Pastel, Inferno, Turquoise, Campfire). Hue shows pitch class,
+                        brightness shows octave, so you can read the keyboard at a glance.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="details container reveal" id="details">
+            <p class="section-title">Works Everywhere</p>
+            <div class="details-card">
+                <h3>Standalone & AUv3 Plugin</h3>
+                <p>
+                    Use Hexatone on its own, or as an AUv3 plugin inside
+                    AUM, Logic Pro, GarageBand, Cubasis, Loopy Pro, Drambo, and more.
+                </p>
+                <div class="tags">
+                    <span class="tag">AUv3</span>
+                    <span class="tag">Standalone</span>
+                    <span class="tag">iPad</span>
+                </div>
+            </div>
+            <div class="details-card">
+                <h3>MPE Pitch Output</h3>
+                <p>
+                    Hexatone uses MPE for per-note microtonal pitch: each note plays on its own
+                    channel with its own pitch bend, so MPE-capable synths sound every microtonal
+                    interval in tune. Note velocity, a velocity curve, and an adjustable pitch-bend
+                    range round out the control.
+                </p>
+                <p style="margin-top: 10px; color: var(--text-dim); font-size: 0.85rem;">
+                    A note on MPE: Hexatone sends the per-note pitch (X) dimension. The continuous
+                    Y (timbre / CC74) and Z (pressure) expression of touch controllers like the
+                    Seaboard isn't sent yet, because a flat screen can't natively sense those. Richer touch
+                    expression is on the roadmap.
+                </p>
+                <div class="tags">
+                    <span class="tag">MPE Pitch</span>
+                    <span class="tag">Per-note Pitch Bend</span>
+                    <span class="tag">Velocity Curve</span>
+                </div>
+            </div>
+            <div class="details-card">
+                <h3>Plays Well With</h3>
+                <p>
+                    Hexatone's per-note microtonal pitch works in any MPE-capable synth. A few
+                    iPad synths it sounds great with:
+                </p>
+                <div class="tags">
+                    <span class="tag">Audio Damage Continua</span>
+                    <span class="tag">Audio Damage Phosphor 3</span>
+                    <span class="tag">Moog Animoog Z</span>
+                    <span class="tag">Moog Model 15</span>
+                    <span class="tag">Zeeon by BeepStreet</span>
+                </div>
+                <p style="margin-top: 10px; color: var(--text-dim); font-size: 0.85rem;">
+                    Many more work too. If a synth offers an MPE or per-note pitch-bend mode,
+                    Hexatone can drive it in tune.
+                </p>
+            </div>
+        </section>
+
+        <section class="sfzb-section container reveal" id="sfz-builder">
+            <p class="section-title">Free Companion Tool</p>
+            <h2 class="sfzb-title">SFZ Builder</h2>
+            <p class="builder-intro">
+                Turn a folder of samples into a Hexatone instrument in seconds. The Builder decodes
+                each sample right in your browser, detects its pitch (from the filename, or by
+                listening to the audio when the name has no note), maps the keyboard automatically,
+                and packs everything into one ready-to-import file. Nothing is uploaded. It all runs
+                on your own device.
+            </p>
+
+            <div class="sfzb-how">
+                <div class="sfzb-step">
+                    <span class="sfzb-step-n">1</span>
+                    <div><b>Drop your samples</b><span>One file or a whole folder. WAV and AIFF work best.</span></div>
+                </div>
+                <div class="sfzb-step">
+                    <span class="sfzb-step-n">2</span>
+                    <div><b>Review the map</b><span>Pitch is detected for you. Audition or fix any sample.</span></div>
+                </div>
+                <div class="sfzb-step">
+                    <span class="sfzb-step-n">3</span>
+                    <div><b>Download the pack</b><span>Get a ready-to-import .zip, then open it in Hexatone.</span></div>
+                </div>
+            </div>
+
+            <div class="sfzb-card">
+                <div id="sfzb"></div>
+            </div>
+
+            <details class="sfzb-explain">
+                <summary>What is an SFZ instrument, and how does the naming work?</summary>
+                <div>
+                    <p>
+                        An SFZ instrument is a small text file (<code>.sfz</code>) that tells a sampler
+                        which recording to play for each key, bundled together with its audio samples.
+                        Hexatone plays each sample back at the exact frequency of every microtonal note,
+                        so the instrument stays in tune in any tuning.
+                    </p>
+                    <p>
+                        The Builder works out each sample's pitch from its filename. It understands names
+                        like <code>Piano_A3.wav</code>, <code>Cello-C4.aif</code>, <code>pad_Gb2.wav</code>,
+                        or a bare MIDI number like <code>kalimba_60.wav</code>. When a name has no note, it
+                        listens to the audio and detects the pitch for you. You can always correct a note,
+                        or a key range, by tapping it.
+                    </p>
+                    <p>
+                        Tip: if a library names notes an octave off (a file called <code>A3</code> that is
+                        really concert A 440), use the Octave shift control to move everything at once.
+                    </p>
+                </div>
+            </details>
+
+            <input id="sfz-fi"  type="file" multiple accept=".wav,.flac,.aif,.aiff,.caf,.m4a,.mp3,.ogg" style="display:none">
+            <input id="sfz-foi" type="file" multiple accept=".wav,.flac,.aif,.aiff,.caf,.m4a,.mp3,.ogg" style="display:none">
+        </section>
+
+        <section class="contact container reveal" id="contact">
+            <p class="section-title">Contact</p>
+            <div class="contact-card">
+                <h3>Get in Touch</h3>
+                <p>Questions, feedback, or press inquiries. I'd love to hear from you.</p>
+                <a href="mailto:nrrrm@icloud.com" class="contact-email">nrrrm@icloud.com</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="container">
+        <div class="footer-links">
+            <a href="../">All apps</a>
+            <a href="https://apps.apple.com/app/id6775283069" target="_blank" rel="noopener">App Store</a>
+            <a href="#sfz-builder">SFZ Builder</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <p>&copy; <span id="current-year">2026</span> naturarum &middot; Hexatone. All rights reserved.</p>
+    </footer>
+
+    <!-- ─── SFZ Builder ─────────────────────────────────────────────────── -->
+    <script>
+    (function () {
+      // ── Music utils ──────────────────────────────────────────────────────
+      const SEM = { C:0,'C#':1,Db:1,D:2,'D#':3,Eb:3,E:4,F:5,'F#':6,Gb:6,G:7,'G#':8,Ab:8,A:9,'A#':10,Bb:10,B:11 };
+      const MN = ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
+      const m2n = m => m == null ? '-' : MN[((m%12)+12)%12] + (Math.floor(m/12)-1);
+      const rid = () => Math.random().toString(36).slice(2);
+      const clampMidi = m => Math.min(127, Math.max(0, m));
+      const hzToMidi = hz => Math.round(69 + 12 * Math.log2(hz / 440));
+
+      function n2m(str) {
+        const m = str.trim().match(/^([A-G][#b]?)(-?\d+)$/i);
+        if (!m) return null;
+        const n = m[1][0].toUpperCase() + m[1].slice(1).toLowerCase();
+        if (SEM[n] == null) return null;
+        const midi = (parseInt(m[2])+1)*12 + SEM[n];
+        return (midi>=0 && midi<=127) ? midi : null;
+      }
+
+      function detect(filename) {
+        const base = filename.replace(/\.[^/.]+$/,'');
+        const re = /(?:^|[_\-.\s])([A-G][#b]?)(-?\d)(?=[_\-.\s]|$)/gi;
+        let m;
+        while ((m=re.exec(base))!==null) {
+          const n = m[1][0].toUpperCase()+m[1].slice(1).toLowerCase();
+          if (SEM[n]!=null) { const midi=(parseInt(m[2])+1)*12+SEM[n]; if (midi>=0&&midi<=127) return midi; }
+        }
+        const end = base.match(/([A-G][#b]?)(-?\d)$/i);
+        if (end) {
+          const n = end[1][0].toUpperCase()+end[1].slice(1).toLowerCase();
+          if (SEM[n]!=null) { const midi=(parseInt(end[2])+1)*12+SEM[n]; if (midi>=0&&midi<=127) return midi; }
+        }
+        const num = base.match(/(?:^|[_\-.\s])(\d{2,3})(?=[_\-.\s]|$)/);
+        if (num) { const midi=parseInt(num[1]); if (midi>=21&&midi<=108) return midi; }
+        return null;
+      }
+
+      const DYN_ORDER = ['ppp','pp','p','mp','mf','f','ff','fff'];
+      function detectDyn(filename) {
+        const base = filename.replace(/\.[^/.]+$/,'').toLowerCase();
+        for (const d of [...DYN_ORDER].sort((a,b)=>b.length-a.length)) {
+          if (new RegExp(`(?:^|[_\\-.\\s])${d}(?=[_\\-.\\s]|$)`).test(base)) return d;
+        }
+        return null;
+      }
+
+      const EXT     = /\.(wav|flac|aif|aiff|caf|m4a|mp3|ogg)$/i;
+      const BAD_EXT = /\.(ogg)$/i;  // not supported by Hexatone
+
+      // ── Audio: decode + pitch detection (all client-side) ────────────────
+      let actx = null;
+      function ctx() {
+        if (!actx) { const AC = window.AudioContext || window.webkitAudioContext; actx = AC ? new AC() : null; }
+        return actx;
+      }
+      function monoMix(audio) {
+        const n = audio.length, chs = audio.numberOfChannels;
+        const out = new Float32Array(n);
+        for (let c=0;c<chs;c++){ const d=audio.getChannelData(c); for (let i=0;i<n;i++) out[i]+=d[i]; }
+        if (chs>1) for (let i=0;i<n;i++) out[i]/=chs;
+        return out;
+      }
+      // Autocorrelation pitch detector on a decimated window. Returns {hz, clarity} or null.
+      function detectPitchHz(ch, sr) {
+        const targetSr = 11025;
+        const factor = Math.max(1, Math.floor(sr / targetSr));
+        const dsr = sr / factor;
+        const dlen = Math.floor(ch.length / factor);
+        if (dlen < 1024) return null;
+        const win = Math.min(dlen, Math.floor(dsr * 0.3));
+        const startD = Math.floor((dlen - win) / 2);
+        const x = new Float32Array(win);
+        for (let i=0;i<win;i++){ let s=0; const b=(startD+i)*factor; for (let k=0;k<factor;k++) s+=ch[b+k]||0; x[i]=s/factor; }
+        let mean=0; for (let i=0;i<win;i++) mean+=x[i]; mean/=win;
+        let energy=0; for (let i=0;i<win;i++){ x[i]-=mean; energy+=x[i]*x[i]; }
+        if (Math.sqrt(energy/win) < 0.003) return null;   // too quiet to be reliable
+        const minLag = Math.floor(dsr/2000), maxLag = Math.min(win-1, Math.floor(dsr/40));
+        const ac = lag => { let c=0; for (let i=0;i<win-lag;i++) c+=x[i]*x[i+lag]; return c; };
+        let bestLag=-1, best=0;
+        for (let lag=minLag; lag<=maxLag; lag++){ const c=ac(lag); if (c>best){ best=c; bestLag=lag; } }
+        if (bestLag<1) return null;
+        const clarity = best / energy;
+        if (clarity < 0.1) return null;
+        // Parabolic interpolation for sub-sample accuracy.
+        const a=ac(bestLag-1), b=best, c=ac(bestLag+1);
+        const denom = (a - 2*b + c);
+        const shift = denom !== 0 ? 0.5*(a - c)/denom : 0;
+        const hz = dsr / (bestLag + shift);
+        return (hz>=20 && hz<=5000) ? { hz, clarity } : null;
+      }
+
+      // ── Pitch + range maths ──────────────────────────────────────────────
+      function effMidi(f, opts) {
+        if (f.midi == null) return null;
+        return clampMidi(f.midi + opts.octave*12 + opts.semi);
+      }
+      function isIncluded(f, opts) {
+        if (f.excl || f.midi==null) return false;
+        if (f.decode==='fail') return false;
+        if (opts.dyn!=='all' && f.dyn!==opts.dyn) return false;
+        return true;
+      }
+      function includedSorted(opts) {
+        return S.files.filter(f=>isIncluded(f,opts))
+          .map(f=>({ f, eff: effMidi(f,opts) }))
+          .filter(o=>o.eff!=null)
+          .sort((a,b)=>a.eff-b.eff);
+      }
+      function computeRegions(opts) {
+        const s = includedSorted(opts);
+        return s.map((o,i)=>{
+          let lo = s[i-1] ? Math.floor((s[i-1].eff+o.eff)/2)+1 : 0;
+          let hi = s[i+1] ? Math.floor((o.eff+s[i+1].eff)/2) : 127;
+          if (o.f.loOv!=null) lo = o.f.loOv;
+          if (o.f.hiOv!=null) hi = o.f.hiOv;
+          return { f:o.f, eff:o.eff, lo, hi };
+        });
+      }
+      function zipNameMap(regions) {
+        const used = new Set(), map = {};
+        for (const r of regions) {
+          let base = r.f.path.split('/').pop();
+          let name = base, k = 1;
+          while (used.has(name.toLowerCase())) {
+            const dot = base.lastIndexOf('.');
+            name = dot>0 ? base.slice(0,dot)+'_'+(++k)+base.slice(dot) : base+'_'+(++k);
+          }
+          used.add(name.toLowerCase()); map[r.f.id] = name;
+        }
+        return map;
+      }
+      function makeSFZ(opts, regions) {
+        regions = regions || computeRegions(opts);
+        if (!regions.length) return '// No mappable samples.';
+        const names = zipNameMap(regions);
+        const lines = [
+          `// Hexatone instrument`,
+          `// Generated ${new Date().toLocaleDateString('en-CA')}, ${regions.length} region${regions.length!==1?'s':''}`,
+        ];
+        if (opts.octave || opts.semi) lines.push(`// Pitch shifted by ${opts.octave} oct ${opts.semi>=0?'+':''}${opts.semi} st`);
+        lines.push('');
+        if (opts.loop!=='no_loop' || opts.vol!==0) {
+          lines.push('<global>');
+          if (opts.loop!=='no_loop') lines.push(`loop_mode=${opts.loop}`);
+          if (opts.vol!==0) lines.push(`volume=${opts.vol}`);
+          lines.push('');
+        }
+        for (const r of regions) {
+          lines.push('<region>');
+          lines.push(`sample=${names[r.f.id]}`);
+          lines.push(`pitch_keycenter=${r.eff}`);
+          lines.push(`lokey=${r.lo}`);
+          lines.push(`hikey=${r.hi}`);
+          lines.push('');
+        }
+        return lines.join('\n');
+      }
+
+      // ── ZIP writer (store, no compression, fully in-browser) ─────────────
+      const CRC_TAB = (() => {
+        const t = new Uint32Array(256);
+        for (let n=0;n<256;n++){ let c=n; for (let k=0;k<8;k++) c = (c&1) ? (0xEDB88320 ^ (c>>>1)) : (c>>>1); t[n]=c>>>0; }
+        return t;
+      })();
+      function crc32(u8) { let c=~0; for (let i=0;i<u8.length;i++) c = (c>>>8) ^ CRC_TAB[(c ^ u8[i]) & 0xFF]; return (~c)>>>0; }
+      function buildZip(entries) {
+        const enc = new TextEncoder();
+        const u16 = v => new Uint8Array([v&255,(v>>8)&255]);
+        const u32 = v => new Uint8Array([v&255,(v>>8)&255,(v>>16)&255,(v>>24)&255]);
+        const cat = arrs => { let n=0; arrs.forEach(a=>n+=a.length); const o=new Uint8Array(n); let p=0; arrs.forEach(a=>{o.set(a,p);p+=a.length;}); return o; };
+        const DATE = 0x21; // 1980-01-01, a valid placeholder
+        const parts = [], central = []; let offset = 0;
+        for (const e of entries) {
+          const name = enc.encode(e.name), crc = crc32(e.data), sz = e.data.length;
+          const lh = cat([u32(0x04034b50),u16(20),u16(0x0800),u16(0),u16(0),u16(DATE),u32(crc),u32(sz),u32(sz),u16(name.length),u16(0),name]);
+          parts.push(lh, e.data);
+          central.push(cat([u32(0x02014b50),u16(20),u16(20),u16(0x0800),u16(0),u16(0),u16(DATE),u32(crc),u32(sz),u32(sz),u16(name.length),u16(0),u16(0),u16(0),u16(0),u32(0),u32(offset),name]));
+          offset += lh.length + e.data.length;
+        }
+        let cdSize=0; central.forEach(c=>cdSize+=c.length);
+        const eocd = cat([u32(0x06054b50),u16(0),u16(0),u16(entries.length),u16(entries.length),u32(cdSize),u32(offset),u16(0)]);
+        return new Blob([...parts, ...central, eocd], { type:'application/zip' });
+      }
+      const sanitizeName = s => (s||'').trim().replace(/[^A-Za-z0-9 _-]/g,'_').replace(/\s+/g,' ').trim();
+
+      // ── State ────────────────────────────────────────────────────────────
+      const S = {
+        files: [],
+        opts: { loop:'no_loop', vol:0, octave:0, semi:0, dyn:'all', packName:'' },
+        view: 'drop',
+        sfz: '',
+      };
+
+      let _raf = null;
+      function scheduleRender() { if (_raf) return; _raf = requestAnimationFrame(()=>{ _raf=null; render(); }); }
+
+      async function ingest(f) {
+        try {
+          const ab = await f.file.arrayBuffer();
+          f.bytes = new Uint8Array(ab.slice(0));     // keep a copy for the zip
+          const c = ctx();
+          if (c) {
+            try {
+              const audio = await c.decodeAudioData(ab.slice(0));
+              f.audio = audio; f.dur = audio.duration; f.decode = 'ok';
+              if (f.midi == null) {
+                const p = detectPitchHz(monoMix(audio), audio.sampleRate);
+                if (p) { f.midi = clampMidi(hzToMidi(p.hz)); f.source = 'audio'; f.clarity = p.clarity; }
+              }
+            } catch (e) { f.decode = 'fail'; }
+          } else { f.decode = 'nodecode'; }
+        } catch (e) { f.decode = 'fail'; }
+        f.file = null;   // release the File handle, keep bytes
+      }
+
+      async function addFiles(list) {
+        const incoming = Array.from(list).filter(file=>EXT.test(file.name));
+        const seen = new Set(S.files.map(f=>f.path));
+        const fresh = [];
+        for (const file of incoming) {
+          const path = file.webkitRelativePath ? (file.webkitRelativePath.split('/').slice(1).join('/')||file.name) : file.name;
+          if (seen.has(path)) continue;
+          seen.add(path);
+          const midi = detect(file.name);
+          fresh.push({ id:rid(), file, filename:file.name, path, midi, source: midi!=null?'name':null,
+            dyn:detectDyn(file.name), bad:BAD_EXT.test(file.name), decode:'pending', audio:null, dur:0,
+            bytes:null, loOv:null, hiOv:null, excl:false, demo:false, clarity:0 });
+        }
+        if (!fresh.length) return;
+        S.files = [...S.files, ...fresh];
+        S.view = 'files';
+        render();
+        for (const f of fresh) { await ingest(f); scheduleRender(); }
+      }
+
+      function loadDemo() {
+        const names = ['GrandPiano_A1.wav','GrandPiano_A2.wav','GrandPiano_C4.wav','GrandPiano_A5.wav','GrandPiano_C7.wav'];
+        S.files = names.map(n=>({ id:rid(), filename:n, path:n, midi:detect(n), source:'name', dyn:null,
+          bad:false, decode:'demo', audio:null, dur:0, bytes:null, loOv:null, hiOv:null, excl:false, demo:true, clarity:0 }));
+        S.view = 'files';
+        render();
+      }
+
+      let curSrc = null;
+      function audition(id) {
+        const f = S.files.find(x=>x.id===id); const c = ctx();
+        if (!f || !f.audio || !c) return;
+        if (c.resume) c.resume();
+        if (curSrc) { try { curSrc.stop(); } catch(e){} curSrc=null; }
+        const s = c.createBufferSource(); s.buffer=f.audio; s.connect(c.destination); s.start(); curSrc=s;
+      }
+
+      const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+      function sfzHL(sfz) {
+        return sfz.split('\n').map(line=>{
+          if (!line.trim()) return ' ';
+          if (line.startsWith('//')) return `<span class="sc">${esc(line)}</span>`;
+          if (/^<\w+>/.test(line.trim())) return `<span class="st">${esc(line)}</span>`;
+          if (line.includes('=')) { const eq=line.indexOf('='); return `<span class="sk">${esc(line.slice(0,eq))}</span><span class="se">=</span><span class="sv">${esc(line.slice(eq+1))}</span>`; }
+          return esc(line);
+        }).join('\n');
+      }
+      const SRC_COLOR = { name:'var(--accent5)', audio:'var(--accent3)', manual:'var(--accent)', demo:'var(--text-dim)' };
+      const SRC_TITLE = { name:'Pitch from filename', audio:'Pitch detected from the audio', manual:'Pitch set by you', demo:'Demo data' };
+
+      // ── Render ───────────────────────────────────────────────────────────
+      let _delListen = null;
+
+      function render() {
+        const app = document.getElementById('sfzb');
+        const o = S.opts;
+        const total = S.files.length;
+        const regions = computeRegions(o);
+        const rmap = Object.fromEntries(regions.map(r=>[r.f.id, r]));
+        const validN = regions.length;
+        const unknN = S.files.filter(f=>!f.excl && f.midi==null && f.decode!=='pending').length;
+        const badN  = S.files.filter(f=>f.bad && !f.excl).length;
+        const failN = S.files.filter(f=>f.decode==='fail' && !f.excl).length;
+        const pendN = S.files.filter(f=>f.decode==='pending').length;
+        const demoN = S.files.filter(f=>f.demo).length;
+        const dyns  = [...new Set(S.files.map(f=>f.dyn).filter(Boolean))].sort((a,b)=>DYN_ORDER.indexOf(a)-DYN_ORDER.indexOf(b));
+        const hasOv = S.files.some(f=>f.loOv!=null || f.hiOv!=null);
+        const effCounts = {}; regions.forEach(r=>{ effCounts[r.eff]=(effCounts[r.eff]||0)+1; });
+        const dupN = Object.values(effCounts).filter(c=>c>1).reduce((a,c)=>a+c,0);
+        const exportable = regions.filter(r=>r.f.bytes && !r.f.demo).length;
+
+        let html = '';
+        if (total) {
+          html += `<div class="stats-bar">
+            <span class="pill" style="color:var(--text-muted)">${total} files</span>
+            <span class="pill" style="color:var(--accent5)">${validN} mapped</span>
+            ${pendN?`<span class="pill" style="color:var(--accent2)">decoding ${pendN}</span>`:''}
+            ${unknN?`<span class="pill" style="color:var(--warn)">${unknN} unknown</span>`:''}
+            ${failN?`<span class="pill" style="color:var(--err)">${failN} unreadable</span>`:''}
+          </div>`;
+        }
+        html += `<div class="body">`;
+
+        if (total) {
+          html += `<div class="tabs">
+            <button class="tab${S.view==='files'?' on':''}" data-v="files">Samples</button>
+            <button class="tab${S.view==='preview'?' on':''}" data-v="preview">SFZ Output</button>
+            ${S.view==='files'?`<div class="tab-right">
+              <button class="btn gst sm" id="btn-af">+ Files</button>
+              <button class="btn gst sm" id="btn-afd">+ Folder</button>
+            </div>`:''}
+          </div>`;
+        }
+
+        if (S.view==='drop' || total===0) {
+          html += `<div id="dz" class="drop-zone">
+            <div class="di"></div>
+            <div class="dt">Drop your samples or a folder</div>
+            <div class="ds">Each sample is decoded and pitched in your browser. Review and tweak before exporting.</div>
+            <div class="dbtns">
+              <button class="btn pri" id="btn-sf">Select Files</button>
+              <button class="btn" id="btn-sfd">Select Folder</button>
+              <button class="btn gst" id="btn-demo">Load a demo</button>
+            </div>
+            <div class="fmt-note">
+              <b>Best:</b> WAV &amp; AIFF. Also works: CAF, M4A/AAC, MP3.
+              <b style="color:var(--warn)">Not supported:</b> OGG.<br>
+              The Builder bundles your samples and the .sfz into one .zip, ready to import in Hexatone.
+            </div>
+          </div>`;
+
+        } else if (S.view==='files') {
+          html += `<div id="dm" class="drop-mini">Drop more files / a folder to add</div>
+          <div class="pnrow">
+            <label for="opt-pn">PACK NAME</label>
+            <input class="pn-in" id="opt-pn" type="text" placeholder="My Instrument" value="${esc(o.packName)}">
+          </div>
+          <div style="overflow-x:auto;margin-bottom:20px">
+          <table>
+            <thead><tr class="hdr">
+              <th class="l" style="width:30px">#</th>
+              <th class="c" style="width:34px"></th>
+              <th class="l">Filename</th>
+              <th class="c" style="width:90px">Note</th>
+              <th class="c" style="width:52px">MIDI</th>
+              <th class="c" style="width:52px">Lo</th>
+              <th class="c" style="width:52px">Hi</th>
+              <th class="c" style="width:64px"></th>
+              <th class="c" style="width:34px"></th>
+            </tr></thead>
+            <tbody>`;
+          S.files.forEach((f,i)=>{
+            const r = rmap[f.id];
+            const inc = isIncluded(f,o);
+            const nameColor = f.excl?'var(--text-dim)':f.decode==='fail'?'var(--err)':f.bad?'var(--err)':f.midi==null?'var(--warn)':'var(--text)';
+            const flag = f.bad?'⚠ ':f.decode==='fail'?'⚠ ':'';
+            const dot = f.midi!=null ? `<span class="srcdot" style="background:${SRC_COLOR[f.source]||'var(--text-dim)'}" title="${SRC_TITLE[f.source]||''}"></span>` : '';
+            const statusTitle = f.decode==='pending'?'decoding…':f.decode==='fail'?'could not decode in browser':f.decode==='ok'?(f.dur?f.dur.toFixed(2)+'s':''):'';
+            html += `<tr class="${f.excl?'excl':''}" data-id="${f.id}">
+              <td style="color:var(--text-dim)">${i+1}</td>
+              <td style="text-align:center"><button class="pbtn" data-act="play" data-id="${f.id}" ${f.audio?'':'disabled'} title="Audition">▶</button></td>
+              <td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:${nameColor}" title="${esc(f.path)}${statusTitle?' · '+statusTitle:''}">${flag}${esc(f.path)}${f.decode==='pending'?' <span style="color:var(--accent2);font-size:0.75em">decoding…</span>':''}</td>
+              <td style="text-align:center" id="nc-${f.id}">
+                <span class="note-tag ${f.midi!=null?'kn':'unk'}" data-act="edit" data-id="${f.id}">${f.midi!=null?m2n(effMidi(f,o)):'?'}</span>${dot}
+              </td>
+              <td style="text-align:center;color:var(--text-muted)">${f.midi!=null?effMidi(f,o):'-'}</td>
+              <td style="text-align:center" id="lc-${f.id}"><span class="lohi${f.loOv!=null?' ov':''}" data-act="lo" data-id="${f.id}">${r&&inc?r.lo:'-'}</span></td>
+              <td style="text-align:center" id="hc-${f.id}"><span class="lohi${f.hiOv!=null?' ov':''}" data-act="hi" data-id="${f.id}">${r&&inc?r.hi:'-'}</span></td>
+              <td style="text-align:center"><button class="xbtn${f.excl?' on':''}" data-act="excl" data-id="${f.id}">${f.excl?'Incl':'Excl'}</button></td>
+              <td style="text-align:center"><button class="rbtn" data-act="rm" data-id="${f.id}">×</button></td>
+            </tr>`;
+          });
+          html += `</tbody></table></div>
+          <div class="opt-bar">
+            <div class="opt-g">
+              <span class="opt-l">OCTAVE SHIFT</span>
+              <select id="opt-oct">
+                ${[-2,-1,0,1,2].map(v=>`<option value="${v}"${o.octave===v?' selected':''}>${v>0?'+':''}${v} oct</option>`).join('')}
+              </select>
+            </div>
+            <div class="opt-g">
+              <span class="opt-l">SEMITONE</span>
+              <input type="number" id="opt-semi" value="${o.semi}" min="-11" max="11">
+            </div>
+            ${dyns.length ? `<div class="opt-g">
+              <span class="opt-l">VELOCITY LAYER</span>
+              <select id="opt-dyn">
+                <option value="all"${o.dyn==='all'?' selected':''}>All (${dyns.length} found)</option>
+                ${dyns.map(d=>`<option value="${d}"${o.dyn===d?' selected':''}>${d.toUpperCase()} only</option>`).join('')}
+              </select>
+            </div>` : ''}
+            <div class="opt-g">
+              <span class="opt-l">LOOP MODE</span>
+              <select id="opt-loop">
+                ${['no_loop','loop_continuous','loop_sustain','one_shot'].map(v=>`<option value="${v}"${o.loop===v?' selected':''}>${v}</option>`).join('')}
+              </select>
+            </div>
+            <div class="opt-g">
+              <span class="opt-l">VOLUME (dB)</span>
+              <input type="number" id="opt-vol" value="${o.vol}" min="-96" max="24">
+            </div>
+            ${hasOv?`<div class="opt-g"><span class="opt-l">&nbsp;</span><button class="btn gst sm" id="btn-reset">Reset ranges</button></div>`:''}
+            <div class="gen-area">
+              ${dupN?`<div class="wmsg">${dupN} samples share the same pitch and will overlap. Adjust a note or exclude one.</div>`:''}
+              ${dyns.length && o.dyn==='all' ? `<div class="wmsg">${dyns.length} velocity layers detected. Hexatone plays one layer, pick one above to avoid overlaps.</div>` : ''}
+              ${failN?`<div class="wmsg">${failN} file${failN!==1?'s':''} could not be decoded and will be skipped.</div>`:''}
+              ${badN?`<div class="wmsg">${badN} OGG file${badN!==1?'s':''} won't play in Hexatone. Exclude or convert to WAV.</div>`:''}
+              ${unknN?`<div class="wmsg">${unknN} sample${unknN!==1?'s':''} without a note. Click the "?" to assign.</div>`:''}
+              ${demoN?`<div class="wmsg">Demo data loaded. Drop real samples to enable export.</div>`:''}
+              <button class="btn pri" id="btn-gen" ${validN===0?'disabled':''}>Build instrument →</button>
+            </div>
+          </div>`;
+
+        } else if (S.view==='preview') {
+          const rc = (S.sfz.match(/^<region>/mg)||[]).length;
+          html += `<div class="prev-hdr">
+            <div class="mac-dots"><span></span><span></span><span></span></div>
+            <span class="prev-meta">${rc} region${rc!==1?'s':''} · ${S.sfz.length} chars</span>
+            <div class="prev-btns">
+              <button class="btn gst sm" id="btn-back">← Back</button>
+              <button class="btn gst sm" id="btn-copy">Copy SFZ</button>
+              <button class="btn gst sm" id="btn-dlsfz">.sfz only</button>
+              <button class="btn pri sm" id="btn-zip" ${exportable===0?'disabled':''}>↓ Download pack (.zip)</button>
+            </div>
+          </div>
+          ${exportable===0?`<div class="wmsg" style="margin-bottom:12px">No bundled audio yet. Drop real samples (not demo data) to download a pack.</div>`:''}
+          <pre class="sfz">${sfzHL(S.sfz)}</pre>`;
+        }
+
+        html += `</div>`;
+        app.innerHTML = html;
+
+        // ── listeners ──
+        const fi = document.getElementById('sfz-fi'), foi = document.getElementById('sfz-foi');
+        const on = (id, fn) => { const el=document.getElementById(id); if(el) el.onclick=fn; };
+        on('btn-sf', ()=>fi.click());   on('btn-sfd', ()=>foi.click());
+        on('btn-af', ()=>fi.click());   on('btn-afd', ()=>foi.click());
+        on('btn-demo', loadDemo);
+        on('btn-reset', ()=>{ S.files=S.files.map(f=>({...f, loOv:null, hiOv:null})); render(); });
+        on('btn-back', ()=>{ S.view='files'; render(); });
+        on('btn-gen',  ()=>{ S.sfz=makeSFZ(S.opts); S.view='preview'; render(); });
+        on('btn-copy', ()=>{ navigator.clipboard?.writeText(S.sfz).then(()=>{ const b=document.getElementById('btn-copy'); if(b){ b.textContent='✓ Copied'; b.style.color='var(--accent5)'; } }); });
+        on('btn-dlsfz', ()=>{ const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([S.sfz],{type:'text/plain'})); a.download=(sanitizeName(S.opts.packName)||'instrument')+'.sfz'; a.click(); });
+        on('btn-zip', downloadZip);
+
+        const bind = (id, ev, fn) => { const el=document.getElementById(id); if(el) el.addEventListener(ev, fn); };
+        bind('opt-oct',  'change', e=>{ S.opts.octave=parseInt(e.target.value)||0; render(); });
+        bind('opt-semi', 'change', e=>{ S.opts.semi=Math.max(-11,Math.min(11,parseInt(e.target.value)||0)); render(); });
+        bind('opt-dyn',  'change', e=>{ S.opts.dyn=e.target.value; render(); });
+        bind('opt-loop', 'change', e=>{ S.opts.loop=e.target.value; });
+        bind('opt-vol',  'change', e=>{ S.opts.vol=parseFloat(e.target.value)||0; });
+        bind('opt-pn',   'input',  e=>{ S.opts.packName=e.target.value; });
+
+        const dzSetup = (id) => {
+          const el = document.getElementById(id); if(!el) return;
+          el.addEventListener('dragover',  e=>{ e.preventDefault(); el.classList.add('over'); });
+          el.addEventListener('dragleave', ()=>el.classList.remove('over'));
+          el.addEventListener('drop', e=>{ e.preventDefault(); el.classList.remove('over'); addFiles(e.dataTransfer.files); });
+        };
+        dzSetup('dz'); dzSetup('dm');
+
+        if (_delListen) app.removeEventListener('click', _delListen);
+        _delListen = e => {
+          const t = e.target.closest('[data-act]'); if (!t) return;
+          const { act, id } = t.dataset;
+          if (act==='edit') startEdit(id);
+          if (act==='lo')   startRangeEdit(id, 'lo');
+          if (act==='hi')   startRangeEdit(id, 'hi');
+          if (act==='play') audition(id);
+          if (act==='excl') { S.files=S.files.map(f=>f.id===id?{...f,excl:!f.excl}:f); render(); }
+          if (act==='rm')   { S.files=S.files.filter(f=>f.id!==id); if(!S.files.length) S.view='drop'; render(); }
+        };
+        app.addEventListener('click', _delListen);
+
+        app.querySelectorAll('.tab').forEach(t=>t.addEventListener('click', ()=>{ S.view=t.dataset.v; render(); }));
+      }
+
+      function downloadZip() {
+        const o = S.opts;
+        const regions = computeRegions(o).filter(r=>r.f.bytes && !r.f.demo);
+        if (!regions.length) return;
+        const names = zipNameMap(regions);
+        const entries = [{ name:'instrument.sfz', data:new TextEncoder().encode(makeSFZ(o, regions)) }];
+        for (const r of regions) entries.push({ name:names[r.f.id], data:r.f.bytes });
+        const blob = buildZip(entries);
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = (sanitizeName(o.packName)||'instrument')+'.zip';
+        a.click();
+        setTimeout(()=>URL.revokeObjectURL(a.href), 8000);
+      }
+
+      // ── Inline editing ───────────────────────────────────────────────────
+      function startEdit(id) {
+        const cell = document.getElementById('nc-'+id); if (!cell) return;
+        const f = S.files.find(x=>x.id===id);
+        const val = f&&f.midi!=null ? m2n(f.midi) : '';
+        cell.innerHTML = `<input class="edit-in" id="ei-${id}" value="${esc(val)}" placeholder="C3" autocomplete="off">`;
+        const inp = document.getElementById('ei-'+id); if (!inp) return;
+        inp.focus(); inp.select();
+        const commit = () => {
+          const v = inp.value.trim();
+          let midi = v ? n2m(v) : null;
+          if (midi==null && v && /^\d+$/.test(v)) { const n=parseInt(v); if(n>=0&&n<=127) midi=n; }
+          if (v && midi==null) { inp.classList.add('err'); return; }
+          S.files = S.files.map(x=>x.id===id?{...x, midi, source: midi!=null?'manual':x.source}:x);
+          render();
+        };
+        inp.addEventListener('blur', commit);
+        inp.addEventListener('keydown', e=>{
+          if (e.key==='Enter') { e.preventDefault(); inp.removeEventListener('blur',commit); commit(); }
+          if (e.key==='Escape') render();
+        });
+      }
+      function startRangeEdit(id, which) {
+        const cell = document.getElementById((which==='lo'?'lc-':'hc-')+id); if (!cell) return;
+        const f = S.files.find(x=>x.id===id);
+        const cur = (which==='lo'?f.loOv:f.hiOv);
+        const region = computeRegions(S.opts).find(r=>r.f.id===id);
+        const shown = cur!=null ? cur : (region ? (which==='lo'?region.lo:region.hi) : '');
+        cell.innerHTML = `<input class="mini-in" id="ri-${id}" value="${shown}" inputmode="numeric" autocomplete="off">`;
+        const inp = document.getElementById('ri-'+id); if (!inp) return;
+        inp.focus(); inp.select();
+        const commit = () => {
+          const v = inp.value.trim();
+          const n = parseInt(v);
+          const val = (v==='' || isNaN(n)) ? null : Math.min(127, Math.max(0, n));
+          S.files = S.files.map(x=>x.id===id?{...x, [which==='lo'?'loOv':'hiOv']: val}:x);
+          render();
+        };
+        inp.addEventListener('blur', commit);
+        inp.addEventListener('keydown', e=>{
+          if (e.key==='Enter') { e.preventDefault(); inp.removeEventListener('blur',commit); commit(); }
+          if (e.key==='Escape') render();
+        });
+      }
+
+      // ── Init ──────────────────────────────────────────────────────────
+      const fi = document.getElementById('sfz-fi'), foi = document.getElementById('sfz-foi');
+      foi.setAttribute('webkitdirectory',''); foi.setAttribute('directory','');
+      fi.onchange  = e=>{ addFiles(e.target.files); e.target.value=''; };
+      foi.onchange = e=>{ addFiles(e.target.files); e.target.value=''; };
+      render();
+    })();
+    </script>
+    <script src="../assets/site.js"></script>
+</body>
+</html>

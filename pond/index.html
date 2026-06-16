@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pond — generative ripple sequencer for iPad (coming soon)</title>
+    <meta name="description" content="Pond is a generative ripple sequencer for iPad, coming soon. Part of the naturarum family of music apps.">
+    <meta name="theme-color" content="#0d0d11" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
+    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Pond — coming soon">
+    <meta property="og:description" content="A generative ripple sequencer for iPad. Part of the naturarum family.">
+    <meta property="og:url" content="https://naturarum.github.io/apps/pond/">
+
+    <link rel="stylesheet" href="../assets/base.css">
+    <style>
+        /* Pond theme: cyan/blue primary */
+        :root { --accent: #9ee6e6; --accent-glow: rgba(158, 230, 230, 0.22); }
+        @media (prefers-color-scheme: light) { :root { --accent: #0094a6; --accent-glow: rgba(0, 148, 166, 0.2); } }
+
+        .app-hero-icon { position: relative; width: 108px; height: 108px; margin: 0 auto 28px; display: flex; align-items: center; justify-content: center; }
+        .app-hero-icon .ring { position: absolute; border-radius: 50%; border: 2px solid var(--accent5); animation: ripple 4s ease-in-out infinite; }
+        .app-hero-icon .ring:nth-child(1) { width: 104px; height: 104px; opacity: 0.3; }
+        .app-hero-icon .ring:nth-child(2) { width: 68px; height: 68px; opacity: 0.55; border-color: var(--accent2); animation-delay: -1.3s; }
+        .app-hero-icon .ring:nth-child(3) { width: 36px; height: 36px; opacity: 0.85; border-color: var(--accent3); animation-delay: -2.6s; }
+        .app-hero-icon .dot { width: 12px; height: 12px; border-radius: 50%; background: var(--accent3); }
+        @keyframes ripple { 0%, 100% { transform: scale(0.94); opacity: 0.3; } 50% { transform: scale(1.06); opacity: 0.7; } }
+        @media (prefers-reduced-motion: reduce) { .app-hero-icon .ring { animation: none; } }
+    </style>
+</head>
+<body>
+    <div class="bg-shapes" aria-hidden="true">
+        <div class="bg-blob"></div>
+        <div class="bg-blob"></div>
+        <div class="bg-blob"></div>
+        <div class="bg-blob"></div>
+    </div>
+
+    <nav>
+        <div class="nav-inner">
+            <div style="display: flex; align-items: center; gap: 9px; min-width: 0;">
+                <a href="../" class="nav-brand">
+                    <span class="nav-mark" aria-hidden="true"></span>
+                    naturarum
+                </a>
+                <span class="nav-crumb">/&nbsp;<b>Pond</b></span>
+            </div>
+            <a href="../#contact" class="nav-cta">Contact</a>
+        </div>
+    </nav>
+
+    <main>
+        <!-- ████ PLACEHOLDER COPY — swap in the real pitch, screenshots and a
+                  status/App Store link once Pond is closer to release. ████ -->
+        <section class="hero container">
+            <div class="app-hero-icon">
+                <span class="ring"></span>
+                <span class="ring"></span>
+                <span class="ring"></span>
+                <span class="dot"></span>
+            </div>
+            <p class="eyebrow">Coming soon</p>
+            <h1><span class="accent">Pond</span></h1>
+            <p class="tagline">
+                A generative ripple sequencer for iPad. Drop a note and watch it spread —
+                ripples meet, interfere, and turn into evolving, in-tune patterns you can play with.
+            </p>
+            <div class="cta-group">
+                <a href="../#contact" class="btn-primary">Get notified</a>
+                <a href="../" class="btn-secondary">&larr; All apps</a>
+            </div>
+        </section>
+
+        <section class="features container reveal">
+            <p class="section-title">What to expect</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="card-label">Generative</span>
+                    <h3>Ripples that play themselves</h3>
+                    <p>Place sources on the grid; their expanding ripples trigger notes as they cross and collide. Small changes, big evolving results.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="card-label">In tune</span>
+                    <h3>Any tuning, like the family</h3>
+                    <p>The same microtonal heart as Hexatone — choose a scale or temperament and Pond stays in tune.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="card-label">Connected</span>
+                    <h3>Standalone &amp; AUv3</h3>
+                    <p>Play on its own or as a plugin, and send MIDI/MPE to your favourite synths. <em>(Planned.)</em></p>
+                </div>
+                <div class="feature-card">
+                    <span class="card-label">Hands-on</span>
+                    <h3>Made to be touched</h3>
+                    <p>Built for iPad, with the soft, glassy, readable look the other apps share.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact container reveal" id="contact">
+            <div class="contact-card">
+                <h3>Want to know when Pond lands?</h3>
+                <p>Drop me a line and I'll let you know the moment it's out.</p>
+                <a href="mailto:nrrrm@icloud.com" class="contact-email">nrrrm@icloud.com</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="container">
+        <div class="footer-links">
+            <a href="../">All apps</a>
+            <a href="../hexatone/">Hexatone</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <p>&copy; <span id="current-year">2026</span> naturarum</p>
+    </footer>
+
+    <script src="../assets/site.js"></script>
+</body>
+</html>
