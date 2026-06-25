@@ -32,6 +32,9 @@
         #rd-frame { width: 100%; height: 100%; border: 0; display: block; background: #0d0d11; }
         .rd-fallback { padding: 48px 24px; text-align: center; color: var(--text-muted); font-family: var(--font); }
         .rd-fallback a { color: var(--accent); }
+        /* friendlier CTA label; shorten + drop the redundant crumb on small phones so the bar never overflows */
+        .rd-mini { display: none; }
+        @media (max-width: 520px) { .nav-crumb { display: none; } .rd-full { display: none; } .rd-mini { display: inline; } }
     </style>
 </head>
 <body>
@@ -44,7 +47,7 @@
                 </a>
                 <span class="nav-crumb">/&nbsp;<b>Re-deemer</b></span>
             </div>
-            <a href="https://naturarum.github.io/re-deemer/" class="nav-cta" target="_blank" rel="noopener">Open standalone &#8599;</a>
+            <a href="https://naturarum.github.io/re-deemer/" class="nav-cta" target="_blank" rel="noopener"><span class="rd-full">Open Re-deemer homepage</span><span class="rd-mini">Open homepage</span> &#8599;</a>
         </div>
     </nav>
 
