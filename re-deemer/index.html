@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Re-deemer — free cassette tape echo · naturarum</title>
+    <meta name="description" content="Re-deemer is a free cassette tape echo plug-in (VST3 / CLAP / AU) — a faithful build of the TE-2 that never shipped. Part of the naturarum apps.">
+    <meta name="theme-color" content="#0d0d11" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
+    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Re-deemer — free cassette tape echo">
+    <meta property="og:description" content="A faithful build of the TE-2 that never shipped. VST3 / CLAP / AU. Part of the naturarum apps.">
+    <meta property="og:url" content="https://naturarum.github.io/apps/re-deemer/">
+
+    <link rel="stylesheet" href="../assets/base.css">
+    <style>
+        /* Re-deemer frame host: a slim apps bar + a full-bleed iframe of the
+           live, independently-updated Re-deemer site (same origin, so it embeds
+           cleanly and never needs syncing). Warm/amber accent to match the card. */
+        :root { --accent: #ffbd82; --accent-glow: rgba(255, 189, 130, 0.22); }
+        @media (prefers-color-scheme: light) { :root { --accent: #c2691a; --accent-glow: rgba(194, 105, 26, 0.18); } }
+
+        html { height: 100%; }
+        body {
+            min-height: 0; height: 100dvh; margin: 0; overflow: hidden;
+            display: flex; flex-direction: column;
+            background: #0d0d11;
+        }
+        nav { flex: 0 0 auto; }
+        .rd-stage { flex: 1 1 auto; min-height: 0; position: relative; }
+        #rd-frame { width: 100%; height: 100%; border: 0; display: block; background: #0d0d11; }
+        .rd-fallback { padding: 48px 24px; text-align: center; color: var(--text-muted); font-family: var(--font); }
+        .rd-fallback a { color: var(--accent); }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-inner">
+            <div style="display: flex; align-items: center; gap: 9px; min-width: 0;">
+                <a href="../" class="nav-brand">
+                    <span class="nav-mark" aria-hidden="true"></span>
+                    naturarum
+                </a>
+                <span class="nav-crumb">/&nbsp;<b>Re-deemer</b></span>
+            </div>
+            <a href="https://naturarum.github.io/re-deemer/" class="nav-cta" target="_blank" rel="noopener">Open standalone &#8599;</a>
+        </div>
+    </nav>
+
+    <div class="rd-stage">
+        <iframe id="rd-frame"
+                title="Re-deemer — free cassette tape echo (the live site)"
+                src="https://naturarum.github.io/re-deemer/"
+                allow="autoplay; fullscreen; clipboard-write"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <noscript>
+            <div class="rd-fallback">
+                Re-deemer lives at <a href="https://naturarum.github.io/re-deemer/">naturarum.github.io/re-deemer</a>.
+            </div>
+        </noscript>
+    </div>
+
+    <script>
+    /* The embedded site is same-origin (both naturarum.github.io), so we can
+       make any CROSS-domain links inside the frame (downloads, GitHub releases,
+       etc.) open in a new tab — otherwise they'd try to load in the frame and
+       break (many sites block framing). Same-origin links stay in the frame.
+       Re-runs on every in-frame navigation. No-ops harmlessly off-origin
+       (e.g. local dev), where the live remote site still displays fine. */
+    (function () {
+        var frame = document.getElementById('rd-frame');
+        if (!frame) return;
+        function retarget() {
+            try {
+                var doc = frame.contentDocument;
+                if (!doc) return;
+                var host = location.host;
+                doc.querySelectorAll('a[href]').forEach(function (a) {
+                    var h;
+                    try { h = new URL(a.href, doc.baseURI).host; } catch (e) { return; }
+                    if (h && h !== host) { a.target = '_blank'; a.rel = 'noopener noreferrer'; }
+                });
+            } catch (e) { /* cross-origin (e.g. local dev) — ignore */ }
+        }
+        frame.addEventListener('load', retarget);
+    })();
+    </script>
+</body>
+</html>
