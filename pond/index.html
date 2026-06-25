@@ -17,9 +17,21 @@
 
     <link rel="stylesheet" href="../assets/base.css">
     <style>
-        /* Pond theme: cyan/blue primary */
-        :root { --accent: #9ee6e6; --accent-glow: rgba(158, 230, 230, 0.22); }
-        @media (prefers-color-scheme: light) { :root { --accent: #0094a6; --accent-glow: rgba(0, 148, 166, 0.2); } }
+        /* Pond theme: cyan/blue primary. The "Pond" title + brand mark use Pond's
+           own gradient — blue -> pastel pink -> yellow, matching the app/screenshots
+           (scoped to this page; the hub keeps the family pastel mark). */
+        :root {
+            --accent: #9ee6e6; --accent-glow: rgba(158, 230, 230, 0.22);
+            --grad: linear-gradient(100deg, #8fc4f2 0%, #c6a3ee 24%, #f0a3c6 52%, #f6b89c 76%, #f4d089 100%);
+        }
+        @media (prefers-color-scheme: light) {
+            :root {
+                --accent: #0094a6; --accent-glow: rgba(0, 148, 166, 0.2);
+                --grad: linear-gradient(100deg, #3f93e6 0%, #9a5fe0 30%, #e85f97 56%, #ef8a5f 80%, #d99a2e 100%);
+            }
+        }
+        .nav-mark { background: linear-gradient(135deg, #8fc4f2 0%, #f0a3c6 55%, #f4d089 100%); }
+        @media (prefers-color-scheme: light) { .nav-mark { background: linear-gradient(135deg, #3f93e6, #e85f97, #d99a2e); } }
 
         .app-icon-placeholder {
             width: 96px; height: 96px; border-radius: 22px; margin: 0 auto 28px; overflow: hidden;
