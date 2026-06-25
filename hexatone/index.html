@@ -110,10 +110,14 @@
         .feature-card:nth-child(4) .card-hex { background: var(--accent2); }
         .feature-card:nth-child(5) .card-hex { background: var(--accent5); }
 
-        @media (prefers-reduced-motion: reduce) { .bg-hex { animation: none; } }
+        @media (prefers-reduced-motion: reduce) {
+            .bg-hex { animation: none; }
+            .hero-images img, .feature-card .card-hex { transition: none; }
+            .feature-card:hover .card-hex { transform: none; }
+        }
 
         /* ─── SFZ Builder (scoped to #sfzb) ─────────────────────────────── */
-        .sfzb-section { padding: 20px 0 50px; }
+        .sfzb-section { padding-block: var(--section-pt) var(--section-pb); }
         .sfzb-section .builder-intro {
             font-size: 0.95rem;
             color: var(--text-muted);
@@ -156,7 +160,7 @@
             background: var(--border-light); transition: background .2s;
         }
         #sfzb .drop-zone.over .di { background: linear-gradient(120deg, var(--accent4), var(--accent), var(--accent2)); }
-        #sfzb .dt { font-size: 1.05rem; color: #eaeaef; font-weight: 650; letter-spacing: -0.01em; margin-bottom: 8px; }
+        #sfzb .dt { font-size: 1.05rem; color: #eaeaef; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 8px; }
         #sfzb .ds { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 24px; }
         #sfzb .dbtns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
         #sfzb .fmt-note { font-size: 0.78rem; color: var(--text-dim); margin-top: 22px; line-height: 1.6; }
@@ -325,7 +329,7 @@
             </p>
             <div class="cta-group">
                 <a href="https://apps.apple.com/app/id6775283069" class="btn-appstore" target="_blank" rel="noopener" aria-label="Download Hexatone on the App Store">
-                    <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" height="44" loading="eager">
+                    <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="" height="44" loading="eager">
                 </a>
                 <a href="https://www.youtube.com/shorts/nB9aX6HUDzI" class="btn-secondary" target="_blank" rel="noopener">Watch Promo</a>
                 <a href="#contact" class="btn-secondary">Get in Touch</a>
@@ -340,7 +344,7 @@
         </section>
 
         <section class="features container reveal" id="features">
-            <p class="section-title">Key Features</p>
+            <h2 class="section-title">Key Features</h2>
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="card-hex" aria-hidden="true"></div>
@@ -400,7 +404,7 @@
         </section>
 
         <section class="details container reveal" id="details">
-            <p class="section-title">Works Everywhere</p>
+            <h2 class="section-title">Works Everywhere</h2>
             <div class="details-card">
                 <h3>Standalone & AUv3 Plugin</h3>
                 <p>
@@ -454,7 +458,7 @@
         </section>
 
         <section class="sfzb-section container reveal" id="sfz-builder">
-            <p class="section-title">Free Companion Tool</p>
+            <h2 class="section-title">Free Companion Tool</h2>
             <h2 class="sfzb-title">SFZ Builder</h2>
             <p class="builder-intro">
                 Turn a folder of samples into a Hexatone instrument in seconds. The Builder decodes
@@ -511,7 +515,7 @@
         </section>
 
         <section class="contact container reveal" id="contact">
-            <p class="section-title">Contact</p>
+            <h2 class="section-title">Contact</h2>
             <div class="contact-card">
                 <h3>Get in Touch</h3>
                 <p>Questions, feedback, or press inquiries. I'd love to hear from you.</p>

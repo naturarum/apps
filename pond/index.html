@@ -43,13 +43,13 @@
         .shots {
             display: flex; gap: 18px;
             overflow-x: auto; scroll-snap-type: x mandatory;
-            padding: 6px 24px 14px; margin: 46px -24px 0;
+            padding: 6px var(--gutter) 14px; margin: var(--space-xl) calc(-1 * var(--gutter)) 0;
             -webkit-overflow-scrolling: touch; scrollbar-width: thin;
         }
         .shots::-webkit-scrollbar { height: 8px; }
         .shots::-webkit-scrollbar-thumb { background: var(--border-light); border-radius: 8px; }
         .shots img {
-            height: clamp(360px, 54vh, 540px); width: auto; flex: 0 0 auto;
+            height: clamp(320px, 52vh, 540px); width: auto; flex: 0 0 auto;
             border-radius: 20px; scroll-snap-align: center;
             box-shadow: 0 18px 44px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.05);
         }
@@ -91,7 +91,7 @@
             </p>
             <div class="cta-group">
                 <a href="https://apps.apple.com/app/pond-ripple-sequencer/id6779643312" class="btn-appstore" target="_blank" rel="noopener" aria-label="Download Pond on the App Store">
-                    <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" height="44" loading="eager">
+                    <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="" height="44" loading="eager">
                 </a>
                 <a href="../" class="btn-secondary">&larr; All apps</a>
             </div>
@@ -108,7 +108,7 @@
         </section>
 
         <section class="features container reveal">
-            <p class="section-title">What it does</p>
+            <h2 class="section-title">What it does</h2>
             <div class="features-grid">
                 <div class="feature-card">
                     <span class="card-label">The idea</span>
@@ -168,7 +168,7 @@
         </section>
 
         <section class="details container reveal">
-            <p class="section-title">Plays everywhere</p>
+            <h2 class="section-title">Plays everywhere</h2>
             <div class="details-card">
                 <h3>Standalone &amp; AUv3, with MIDI in and out</h3>
                 <p>
