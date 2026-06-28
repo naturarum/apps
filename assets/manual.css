@@ -1,0 +1,123 @@
+/* ============================================================================
+   manual.css — long-form "prose" layer for the manual pages, on top of base.css.
+   Reuses the design tokens. The @media print block at the bottom is what
+   weasyprint turns into the downloadable PDF (light, branded, print-friendly).
+   ========================================================================== */
+
+.manual {
+    max-width: 760px;                 /* tighter reading measure than the 880 default */
+    padding-top: var(--space-xl);
+    padding-bottom: var(--space-2xl);
+}
+
+/* breadcrumb link in the nav */
+.nav-crumb a { color: var(--text-muted); text-decoration: none; }
+.nav-crumb a:hover { color: var(--accent); }
+
+/* top actions bar (Download PDF) */
+.manual-actions { display: flex; justify-content: flex-end; margin-bottom: var(--space-md); }
+
+/* ─── Headings ────────────────────────────────────────────────────────── */
+.manual h1 {
+    font-size: clamp(2rem, 1.5rem + 2vw, 2.8rem); font-weight: 700;
+    letter-spacing: -0.02em; line-height: 1.15; color: #f5f5f8;
+    margin: var(--space-2xs) 0 var(--space-xs);
+}
+.manual h2 {
+    font-size: clamp(1.3rem, 1.1rem + 0.8vw, 1.6rem); font-weight: 700;
+    letter-spacing: -0.01em; color: #eef0f6;
+    margin-top: var(--space-xl); margin-bottom: var(--space-sm);
+    padding-top: var(--space-md); border-top: 1px solid var(--border);
+}
+.manual h3 {
+    font-size: 1.12rem; font-weight: 600; color: #eaeaef;
+    margin-top: var(--space-lg); margin-bottom: var(--space-2xs);
+}
+.manual h1, .manual h2, .manual h3, .manual h4 { text-wrap: balance; }
+.manual h2, .manual h3, .manual h4 { scroll-margin-top: calc(var(--nav-height) + 14px); }
+/* the version line right under the title reads as a subtitle */
+.manual > h1 + p { margin-top: 0; color: var(--text-dim); font-size: 1.05rem; }
+
+/* ─── Body text ───────────────────────────────────────────────────────── */
+.manual p, .manual li { font-size: 1rem; line-height: 1.7; color: var(--text-muted); }
+.manual p { margin: var(--space-sm) 0; }
+.manual strong { color: var(--text); font-weight: 600; }
+.manual a { color: var(--accent); text-decoration: none; }
+.manual a:hover { text-decoration: underline; }
+.manual hr { border: none; border-top: 1px solid var(--border); margin: var(--space-xl) 0; }
+
+/* ─── Lists ───────────────────────────────────────────────────────────── */
+.manual ul, .manual ol { margin: var(--space-sm) 0; padding-left: 1.4em; }
+.manual li { margin: var(--space-3xs) 0; }
+.manual li::marker { color: var(--text-dim); }
+.manual li > ul, .manual li > ol { margin: var(--space-3xs) 0; }
+
+/* ─── Table of contents (the list right after the TOC heading) ─────────── */
+.manual h2#table-of-contents { border-top: none; padding-top: 0; margin-top: var(--space-lg); }
+.manual h2#table-of-contents + ol,
+.manual h2#table-of-contents + ul {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: var(--space-md) var(--space-md) var(--space-md) calc(var(--space-md) + 1.1em);
+}
+.manual h2#table-of-contents + ol a, .manual h2#table-of-contents + ul a { color: var(--text-muted); }
+.manual h2#table-of-contents + ol a:hover, .manual h2#table-of-contents + ul a:hover { color: var(--accent); }
+
+/* ─── Tables (Pond gestures grid) ─────────────────────────────────────── */
+.manual table { width: 100%; border-collapse: collapse; margin: var(--space-md) 0; font-size: 0.95rem; }
+.manual th, .manual td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+.manual thead th { color: var(--text); font-weight: 600; background: rgba(255, 255, 255, 0.025); border-bottom: 1px solid var(--border-light); }
+.manual tbody tr:hover td { background: rgba(255, 255, 255, 0.02); }
+@media (max-width: 600px) { .manual table { display: block; overflow-x: auto; } }
+
+/* ─── Blockquotes → callouts (Pond tips) ──────────────────────────────── */
+.manual blockquote {
+    margin: var(--space-md) 0; padding: var(--space-sm) var(--space-md);
+    border-left: 3px solid var(--accent); background: var(--accent-glow);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+.manual blockquote p { margin: var(--space-3xs) 0; color: var(--text); }
+
+/* ─── Code ────────────────────────────────────────────────────────────── */
+.manual code {
+    font-family: ui-monospace, 'SF Mono', 'JetBrains Mono', Menlo, monospace;
+    font-size: 0.88em; background: rgba(255, 255, 255, 0.06);
+    padding: 1px 6px; border-radius: 6px; color: var(--accent5);
+}
+.manual pre { background: rgba(0, 0, 0, 0.35); border: 1px solid var(--border); border-radius: var(--radius); padding: var(--space-md); overflow-x: auto; margin: var(--space-md) 0; }
+.manual pre code { background: none; padding: 0; color: var(--text); }
+
+/* ─── Figures (Hexatone screenshots) ──────────────────────────────────── */
+.manual figure { margin: var(--space-lg) 0; }
+.manual img { display: block; width: 100%; height: auto; border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow-card); }
+.manual figcaption { margin-top: var(--space-2xs); font-size: 0.85rem; color: var(--text-dim); text-align: center; }
+
+/* ─── Print → the downloadable PDF (weasyprint) ───────────────────────── */
+@media print {
+    @page { size: A4; margin: 18mm 16mm; }
+    nav, footer, .manual-actions { display: none !important; }
+    body { background: #ffffff !important; color: #1b1b1f; }
+    .manual { max-width: 100%; padding: 0; margin: 0; }
+    .manual h1 { color: #111; }
+    .manual h2 { color: #111; border-top-color: #dcdce2; }
+    .manual h3, .manual h4 { color: #1b1b1f; }
+    .manual h2, .manual h3, .manual h4 { break-after: avoid; }
+    .manual > h1 + p { color: #6a6a72; }
+    .manual p, .manual li { color: #2c2c33; }
+    .manual strong { color: #000; }
+    .manual a { color: #a01f4f; }
+    .manual li::marker { color: #9a9aa2; }
+    .manual h2#table-of-contents + ol,
+    .manual h2#table-of-contents + ul { background: #f5f5f8; border-color: #e2e2e8; }
+    .manual th, .manual td { border-bottom-color: #e2e2e8; }
+    .manual thead th { background: #f2f2f6; color: #111; border-bottom-color: #d4d4dc; }
+    .manual blockquote { background: #f5f5f8; border-left-color: #a01f4f; }
+    .manual blockquote p { color: #2c2c33; }
+    .manual code { background: #f0f0f3; color: #a01f4f; }
+    .manual pre { background: #f5f5f8; border-color: #e2e2e8; }
+    .manual pre code { color: #1b1b1f; }
+    .manual img { border-color: #e2e2e8; box-shadow: none; }
+    .manual figure, .manual img, .manual table, .manual blockquote, .manual pre { break-inside: avoid; }
+    .manual figcaption { color: #6a6a72; }
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>$title$</title>
+  <meta name="description" content="$description$">
+  <meta name="theme-color" content="#0d0d11" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
+  <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+  <link rel="stylesheet" href="../../assets/base.css">
+  <link rel="stylesheet" href="../../assets/manual.css">
+  <style>:root { --accent: $accent$; --accent-glow: $accentglow$; }</style>
+</head>
+<body class="manual-body">
+  <nav>
+    <div class="nav-inner">
+      <div style="display: flex; align-items: center; gap: 9px; min-width: 0;">
+        <a href="../../" class="nav-brand"><span class="nav-mark" aria-hidden="true"></span> naturarum</a>
+        <span class="nav-crumb">/&nbsp;<a href="../">$appname$</a>&nbsp;/&nbsp;<b>Manual</b></span>
+      </div>
+      <a href="../" class="nav-cta">&larr; $appname$</a>
+    </div>
+  </nav>
+
+  <main class="container manual">
+    <div class="manual-actions">
+      <a href="$pdf$" class="btn-secondary" download>Download PDF &darr;</a>
+    </div>
+$body$
+  </main>
+
+  <footer class="container">
+    <div class="footer-links">
+      <a href="../../">All apps</a>
+      <a href="../">$appname$</a>
+      <a href="../../#contact">Contact</a>
+    </div>
+    <p>&copy; <span id="current-year">2026</span> naturarum</p>
+  </footer>
+
+  <script src="../../assets/site.js"></script>
+</body>
+</html>

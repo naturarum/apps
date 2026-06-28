@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hexatone — Manual</title>
+  <meta name="description" content="The full user manual for Hexatone, the isomorphic hexagonal keyboard and microtonal instrument for iPad.">
+  <meta name="theme-color" content="#0d0d11" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
+  <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+  <link rel="stylesheet" href="../../assets/base.css">
+  <link rel="stylesheet" href="../../assets/manual.css">
+  <style>:root { --accent: #ffa9c9; --accent-glow: rgba(255,169,201,0.22); }</style>
+</head>
+<body class="manual-body">
+  <nav>
+    <div class="nav-inner">
+      <div style="display: flex; align-items: center; gap: 9px; min-width: 0;">
+        <a href="../../" class="nav-brand"><span class="nav-mark" aria-hidden="true"></span> naturarum</a>
+        <span class="nav-crumb">/&nbsp;<a href="../">Hexatone</a>&nbsp;/&nbsp;<b>Manual</b></span>
+      </div>
+      <a href="../" class="nav-cta">&larr; Hexatone</a>
+    </div>
+  </nav>
+
+  <main class="container manual">
+    <div class="manual-actions">
+      <a href="manual.pdf" class="btn-secondary" download>Download PDF &darr;</a>
+    </div>
+<h1 id="hexatone-user-manual">Hexatone User Manual</h1>
+<p>For version 1.3. Hexatone is an isomorphic hexagonal keyboard and
+microtonal instrument for iPad.</p>
+<hr />
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol type="1">
+<li><a href="#1-welcome">Welcome</a></li>
+<li><a href="#2-quick-start">Quick start</a></li>
+<li><a href="#3-the-main-screen">The main screen</a></li>
+<li><a href="#4-core-ideas-in-one-minute">Core ideas in one
+minute</a></li>
+<li><a href="#5-playing">Playing</a>
+<ul>
+<li><a href="#touch-chords-and-sliding">Touch, chords, and
+sliding</a></li>
+<li><a href="#hold-mode">Hold mode</a></li>
+<li><a href="#velocity">Velocity</a></li>
+</ul></li>
+<li><a href="#6-sound-built-in-voices-and-the-sampler">Sound: built-in
+voices and the sampler</a>
+<ul>
+<li><a href="#built-in-voices">Built-in voices</a></li>
+<li><a href="#voices-polyphony">Voices (polyphony)</a></li>
+<li><a href="#import-a-single-sample">Import a single sample</a></li>
+<li><a href="#build-an-instrument-from-a-folder-of-samples">Build an
+instrument from a folder of samples</a></li>
+<li><a href="#import-a-multisample-instrument-sfz">Import a multisample
+instrument (SFZ)</a></li>
+<li><a href="#the-free-web-sfz-builder">The free web SFZ
+Builder</a></li>
+<li><a href="#how-much-can-i-load">How much can I load?</a></li>
+<li><a href="#managing-instruments">Managing instruments</a></li>
+</ul></li>
+<li><a href="#7-scales-and-tunings">Scales and tunings</a>
+<ul>
+<li><a href="#equal-temperaments-edo">Equal temperaments (EDO)</a></li>
+<li><a href="#scala-scl-scales">Scala (.scl) scales</a></li>
+<li><a href="#managing-scales">Managing scales</a></li>
+<li><a href="#octave-and-concert-pitch">Octave and concert
+pitch</a></li>
+</ul></li>
+<li><a href="#8-layouts">Layouts</a></li>
+<li><a href="#9-appearance-and-key-options">Appearance and key
+options</a></li>
+<li><a href="#10-using-hexatone-with-other-apps-midi-and-mpe">Using
+Hexatone with other apps (MIDI and MPE)</a>
+<ul>
+<li><a href="#as-an-auv3-plugin">As an AUv3 plugin</a></li>
+<li><a
+href="#recording-and-playing-back-in-a-daw-incoming-midi">Recording and
+playing back in a DAW (incoming MIDI)</a></li>
+<li><a href="#driving-an-external-synth-over-mpe">Driving an external
+synth over MPE</a></li>
+</ul></li>
+<li><a href="#11-settings-reference">Settings reference</a></li>
+<li><a href="#12-uninterrupted-playing-ipad-gestures">Uninterrupted
+playing (iPad gestures)</a></li>
+<li><a href="#13-troubleshooting">Troubleshooting</a></li>
+<li><a href="#14-faq">FAQ</a></li>
+<li><a href="#15-privacy">Privacy</a></li>
+<li><a href="#16-support-and-links">Support and links</a></li>
+</ol>
+<hr />
+<h2 id="1-welcome">1. Welcome</h2>
+<p>Hexatone turns your iPad into a microtonal instrument you can
+actually play. The keys form a honeycomb where every interval has the
+same shape no matter where your hand sits, so a chord you learn in one
+place works everywhere, and any scale transposes by sliding the same
+shape around.</p>
+<p>It plays any tuning, from the familiar twelve notes per octave to far
+beyond, and it makes its own sound with built-in voices and a sampler,
+so you do not need any other app to get started. It can also drive
+MPE-capable synths in tune, and run as a plugin inside your favourite
+music app.</p>
+<figure>
+<img loading="lazy" src="img/01-main-screen.jpg"
+alt="the main keyboard with a held chord glowing, Pastel palette" />
+<figcaption aria-hidden="true">the main keyboard with a held chord
+glowing, Pastel palette</figcaption>
+</figure>
+<hr />
+<h2 id="2-quick-start">2. Quick start</h2>
+<ol type="1">
+<li>Open Hexatone. You will see the hexagonal keyboard.</li>
+<li>Tap some keys. By default you will hear the built-in
+<strong>Hexatone Bell</strong> voice.</li>
+<li>Tap the <strong>settings</strong> button (top right, the sliders
+icon) to change the tuning, layout, colours, and sound.</li>
+<li>To hear a sustaining sound, open settings, set <strong>Built-in
+sound</strong> to <strong>Hexatone Glass</strong>, close settings, then
+turn on <strong>Hold</strong> (top right, the hand icon) and play a
+chord. Lift your hands and it keeps ringing.</li>
+</ol>
+<p>That is the whole loop: play, open settings to shape it, use Hold to
+sustain.</p>
+<hr />
+<h2 id="3-the-main-screen">3. The main screen</h2>
+<p>The main screen is almost entirely the keyboard, with two floating
+buttons in the top right corner.</p>
+<figure>
+<img loading="lazy" src="img/02-top-buttons.jpg"
+alt="close-up of the two top-right buttons (Hold and Settings)" />
+<figcaption aria-hidden="true">close-up of the two top-right buttons
+(Hold and Settings)</figcaption>
+</figure>
+<ul>
+<li><strong>Hold button</strong> (hand icon). Turns Hold (latch) mode on
+and off. It lights up when on. See <a href="#hold-mode">Hold
+mode</a>.</li>
+<li><strong>Settings button</strong> (sliders icon). Opens the settings
+menu, where everything else lives.</li>
+</ul>
+<p>The keyboard fills the rest of the screen. Keys light up as you press
+them, and the colour of each key tells you something about its pitch
+(see <a href="#9-appearance-and-key-options">Appearance</a>).</p>
+<hr />
+<h2 id="4-core-ideas-in-one-minute">4. Core ideas in one minute</h2>
+<p>You do not need theory to enjoy Hexatone, but three ideas make it
+click.</p>
+<ul>
+<li><strong>Isomorphic layout.</strong> Every interval is the same
+physical shape anywhere on the grid. Learn a chord once and it works in
+every key. Move it up or sideways to transpose.</li>
+<li><strong>Microtonal tuning.</strong> Western music usually splits the
+octave into 12 equal steps. Hexatone can split it into any number (19,
+24, 31, and so on), or use a custom scale you import. More steps means
+more pitches between the familiar ones.</li>
+<li><strong>MPE for in-tune MIDI.</strong> To play those in-between
+pitches on an external synth, Hexatone sends each note on its own MIDI
+channel with its own pitch bend. This is called MPE. Its own built-in
+sound is always in tune with no setup.</li>
+</ul>
+<hr />
+<h2 id="5-playing">5. Playing</h2>
+<h3 id="touch-chords-and-sliding">Touch, chords, and sliding</h3>
+<p>Press keys with one or more fingers to play notes and chords. You can
+hold many notes at once (see <a href="#voices-polyphony">Voices</a> for
+the limit). Slide a finger across the grid to glide from one note to the
+next, which is a natural way to play runs on an isomorphic layout.</p>
+<h3 id="hold-mode">Hold mode</h3>
+<p>Hold (latch) mode lets you sustain notes without keeping your fingers
+down.</p>
+<figure>
+<img loading="lazy" src="img/03-hold-mode.jpg"
+alt="Hold button lit, with several held keys glowing" />
+<figcaption aria-hidden="true">Hold button lit, with several held keys
+glowing</figcaption>
+</figure>
+<ul>
+<li>Turn it on with the <strong>Hold</strong> button (top right). It
+lights up when active.</li>
+<li>Press keys to build a chord. When you lift your fingers, the notes
+keep sounding.</li>
+<li>Tap a key that is already held to drop just that note.</li>
+<li>Turn Hold off to release everything at once.</li>
+</ul>
+<p>Held keys show a steady glow so you can see what is latched. Hold
+works with the built-in voices and with the MIDI you send to other
+synths.</p>
+<p>Note: the <strong>Hexatone Bell</strong> voice fades away on its own
+(it is a struck sound), so to truly hear Hold sustain, use
+<strong>Hexatone Glass</strong> or a sustaining instrument you
+imported.</p>
+<h3 id="velocity">Velocity</h3>
+<p>Velocity is how hard each note plays. Set how it is decided in
+settings under <strong>Velocity</strong>.</p>
+<ul>
+<li><strong>Fixed.</strong> Every note plays at the same loudness, which
+you set with a slider.</li>
+<li><strong>Accelerometer (experimental).</strong> Estimates loudness
+from how hard you tap the iPad. It is a whole-device signal, not per
+finger, so it is rough.</li>
+<li><strong>Pencil / Force.</strong> Uses Apple Pencil or 3D-Touch force
+where available, and falls back to the fixed value otherwise.</li>
+</ul>
+<p>For the two sensing modes you also get a <strong>velocity
+curve</strong>: a minimum and maximum velocity, and a curve shape (from
+"eases to loud" through "linear" to "more expressive").</p>
+<figure>
+<img loading="lazy" src="img/04-velocity.jpg"
+alt="Velocity settings with the curve graph visible" />
+<figcaption aria-hidden="true">Velocity settings with the curve graph
+visible</figcaption>
+</figure>
+<hr />
+<h2 id="6-sound-built-in-voices-and-the-sampler">6. Sound: built-in
+voices and the sampler</h2>
+<p>Open settings and find the <strong>Instrument</strong> section. This
+is where you choose what Hexatone sounds like. Everything here also
+feeds the MIDI output, so your external synths play along too.</p>
+<figure>
+<img loading="lazy" src="img/05-instrument-section.jpg"
+alt="the Instrument settings section" />
+<figcaption aria-hidden="true">the Instrument settings
+section</figcaption>
+</figure>
+<h3 id="built-in-voices">Built-in voices</h3>
+<p>Under <strong>Built-in sound</strong> you can choose:</p>
+<ul>
+<li><strong>None (MIDI only).</strong> No internal sound. Hexatone only
+sends MIDI. Use this when you are driving another synth and do not want
+the built-in voice.</li>
+<li><strong>Hexatone Bell.</strong> A struck, bell-like tone that rings
+and decays. Great for melodies and plucked chords.</li>
+<li><strong>Hexatone Glass.</strong> A sustaining, glassy tone that
+holds for as long as you play. The right choice for pads and for hearing
+Hold mode sustain.</li>
+<li><strong>Any instrument you imported.</strong> Your single samples
+and multisample packs appear in the same list.</li>
+</ul>
+<p>There is also a <strong>Mute instrument audio</strong> toggle (shown
+when a sound is selected). It silences the built-in instrument while
+still sending MIDI, which is handy when you only want to drive an
+external synth but keep the instrument loaded.</p>
+<p>The <strong>Sine preview tone</strong> toggle at the bottom adds a
+simple sine voice, useful for checking a tuning by ear without loading
+an instrument.</p>
+<h3 id="voices-polyphony">Voices (polyphony)</h3>
+<p>The <strong>Voices</strong> slider (1 to 16) sets how many notes the
+built-in instrument can play at once, and how many notes Hold can
+sustain. If you exceed the limit, the oldest note is released to make
+room. The MIDI output keeps its own limit (see <a
+href="#driving-an-external-synth-over-mpe">MPE</a>).</p>
+<h3 id="import-a-single-sample">Import a single sample</h3>
+<p>Tap <strong>Import a single sample (audio file)</strong>. Pick one
+audio file (WAV and AIFF work best; CAF, M4A, AAC, ALAC, and MP3 usually
+work; OGG is not supported). Hexatone detects the file's pitch and plays
+it across the whole keyboard, in tune.</p>
+<p>This is the quickest way to get a custom sound. It stretches more the
+further you play from the sample's original pitch, so it is best for a
+range around that pitch.</p>
+<h3 id="build-an-instrument-from-a-folder-of-samples">Build an
+instrument from a folder of samples</h3>
+<p>If you have a set of recordings but no <code>.sfz</code> file, you do
+not need one. Tap <strong>Build instrument from folder</strong> and
+choose a folder of audio files. Hexatone detects each sample's pitch,
+splits the keyboard between them, and shows you the detected map.</p>
+<ul>
+<li>Review the map: each sample and the pitch it was placed at. You can
+confirm it as is, or adjust a sample's pitch if a detection looks off,
+before anything is imported.</li>
+<li>When the map looks right, confirm to build the instrument.</li>
+</ul>
+<p>Because the app builds the instrument itself from your folder, it can
+never mismatch its samples the way a hand-written <code>.sfz</code> can.
+There is no <code>.sfz</code> file and no web tool needed.</p>
+<h3 id="import-a-multisample-instrument-sfz">Import a multisample
+instrument (SFZ)</h3>
+<p>For better quality across the whole range, import a multisample
+instrument in SFZ format. Tap <strong>Import multisample (SFZ folder or
+.zip)</strong> and choose either:</p>
+<ul>
+<li>a <strong>folder</strong> that contains one <code>.sfz</code> file
+plus its audio samples (select the folder, not the <code>.sfz</code>
+file, so Hexatone can read the samples too), or</li>
+<li>a <strong>.zip</strong> of the same, which is what the free web SFZ
+Builder gives you.</li>
+</ul>
+<p>Multisample instruments map different recordings to different parts
+of the keyboard, so a piano sounds like a piano high and low, not like
+one note stretched.</p>
+<figure>
+<img loading="lazy" src="img/06-import-multisample.jpg"
+alt="the Files browser, choosing a multisample folder to import" />
+<figcaption aria-hidden="true">the Files browser, choosing a multisample
+folder to import</figcaption>
+</figure>
+<h3 id="the-free-web-sfz-builder">The free web SFZ Builder</h3>
+<p>If you would rather prepare a pack on a computer, or want a saved
+<code>.sfz</code> to reuse, the free SFZ Builder on the Hexatone website
+does the same mapping in your browser. It runs entirely in the browser
+(nothing is uploaded), detects each sample's pitch from its filename or
+by listening to the audio, maps the keyboard automatically, lets you
+audition and adjust, and exports a ready-to-import <code>.zip</code>.
+Save that <code>.zip</code> to Files, then import it with the step
+above.</p>
+<h3 id="how-much-can-i-load">How much can I load?</h3>
+<p>Sample libraries now load up to what your device can actually handle,
+rather than a single fixed limit, so larger packs work on more capable
+iPads. If an instrument is too big for your device to load, Hexatone
+tells you the reason instead of failing quietly, so you know to choose a
+smaller pack.</p>
+<p>Loading is also clearer about problems. A pack that is missing some
+of its samples, or cannot read them, warns you and tells you what is
+wrong rather than playing the wrong sound for the keys it could not
+fill. A single-file import that cannot be decoded now fails with a clear
+message instead of creating a silent instrument.</p>
+<h3 id="managing-instruments">Managing instruments</h3>
+<p>When you have imported instruments, a <strong>Manage
+instruments</strong> row appears. It shows your library and its total
+size. Open it to:</p>
+<ul>
+<li>See each instrument and its size.</li>
+<li><strong>Rename</strong> an instrument (swipe right on a row, then
+Rename).</li>
+<li><strong>Delete</strong> an instrument to reclaim space (swipe left,
+or use Edit). Deleting the one you are playing switches Hexatone back to
+MIDI only.</li>
+</ul>
+<p>Imported instruments take their name from the file or folder you
+imported.</p>
+<figure>
+<img loading="lazy" src="img/07-manage-instruments.jpg"
+alt="the Manage Instruments screen" />
+<figcaption aria-hidden="true">the Manage Instruments
+screen</figcaption>
+</figure>
+<hr />
+<h2 id="7-scales-and-tunings">7. Scales and tunings</h2>
+<p>Open settings and find the <strong>Scale</strong> section. Choose
+between an equal temperament and a Scala file with the
+<strong>Source</strong> switch.</p>
+<figure>
+<img loading="lazy" src="img/08-scale-edo.jpg"
+alt="the Scale section in N-EDO mode, with Tuning and Layout below" />
+<figcaption aria-hidden="true">the Scale section in N-EDO mode, with
+Tuning and Layout below</figcaption>
+</figure>
+<h3 id="equal-temperaments-edo">Equal temperaments (EDO)</h3>
+<p>EDO means "equal divisions of the octave". 12-EDO is standard Western
+tuning. Higher numbers add more pitches between the familiar ones.</p>
+<ul>
+<li>Use the <strong>EDO divisions</strong> stepper to set any value from
+2 to 96.</li>
+<li>Quick buttons offer common choices: 12, 19, 22, 24, 31, and 53.</li>
+</ul>
+<h3 id="scala-scl-scales">Scala (.scl) scales</h3>
+<p>Scala files describe custom scales (just intonation, historical
+temperaments, world tunings, and more). Switch <strong>Source</strong>
+to <strong>Scala file</strong>, then:</p>
+<ul>
+<li>Pick a scale from the list. A few example scales are included.</li>
+<li>The note below the picker shows how many notes the scale has per
+period.</li>
+<li>Tap <strong>Import .scl file</strong> to add your own. Imported
+scales are shared with the plugin automatically.</li>
+<li>With a Scala scale active, the keys show each note's ratio.</li>
+</ul>
+<h3 id="managing-scales">Managing scales</h3>
+<p>When you have imported scales, a <strong>Manage scales</strong> row
+appears. Open it to see your imported scales and swipe to delete ones
+you no longer want. Deleting the selected scale switches to another
+available scale. Bundled example scales are always available and are not
+listed here.</p>
+<h3 id="octave-and-concert-pitch">Octave and concert pitch</h3>
+<p>In the <strong>Tuning</strong> section:</p>
+<ul>
+<li><strong>Octave</strong> shifts the whole keyboard up or down by
+whole octaves. The line underneath shows the resulting root frequency in
+Hz.</li>
+<li><strong>Reference A4</strong> sets concert pitch from 400 to 480 Hz
+(440 is standard; 432 is a common alternative).</li>
+</ul>
+<hr />
+<h2 id="8-layouts">8. Layouts</h2>
+<p>In the <strong>Layout</strong> section, the <strong>Pattern</strong>
+picker chooses how intervals are arranged on the grid. Each is a classic
+isomorphic layout:</p>
+<ul>
+<li><strong>Bosanquet</strong></li>
+<li><strong>Wicki-Hayden</strong></li>
+<li><strong>Harmonic Table</strong></li>
+<li><strong>Fourths</strong></li>
+<li><strong>Accordion (B-system)</strong></li>
+<li><strong>Custom</strong>, where you set the step sizes yourself with
+the <strong>East</strong> and <strong>Up-right</strong> steppers.</li>
+</ul>
+<p>The line under the picker shows the current axis steps. Because the
+layouts are defined in fractions of the period, they adapt to whatever
+tuning you have chosen.</p>
+<figure>
+<img loading="lazy" src="img/09-layouts.jpg" alt="the Layout picker open" />
+<figcaption aria-hidden="true">the Layout picker open</figcaption>
+</figure>
+<hr />
+<h2 id="9-appearance-and-key-options">9. Appearance and key options</h2>
+<p><strong>Appearance</strong> sets the colour palette:</p>
+<ul>
+<li><strong>Hexatone Pastel</strong></li>
+<li><strong>Inferno</strong></li>
+<li><strong>Turquoise</strong></li>
+<li><strong>Campfire</strong></li>
+</ul>
+<p>In every palette, the hue of a key shows its pitch class and the
+brightness shows its octave, so you can read the keyboard at a glance. A
+row of swatches previews the palette.</p>
+<p>The <strong>Keys</strong> section has two options:</p>
+<ul>
+<li><strong>Density (key size)</strong> sets how big the keys are, from
+26 to 64 points. Smaller keys mean more of them on screen.</li>
+<li><strong>Show note labels</strong> turns the text on each key on or
+off.</li>
+</ul>
+<figure>
+<img loading="lazy" src="img/10-palettes.jpg"
+alt="the keyboard in the Pastel palette" />
+<figcaption aria-hidden="true">the keyboard in the Pastel
+palette</figcaption>
+</figure>
+<figure>
+<img loading="lazy" src="img/10-palettes2.jpg"
+alt="the same keyboard in the Turquoise palette" />
+<figcaption aria-hidden="true">the same keyboard in the Turquoise
+palette</figcaption>
+</figure>
+<hr />
+<h2 id="10-using-hexatone-with-other-apps-midi-and-mpe">10. Using
+Hexatone with other apps (MIDI and MPE)</h2>
+<h3 id="as-an-auv3-plugin">As an AUv3 plugin</h3>
+<p>Hexatone is also an Audio Unit (AUv3) instrument, so you can run it
+inside a host app such as AUM, Logic Pro, GarageBand, Cubasis, Loopy
+Pro, or Drambo. As a plugin it makes its own audio and sends MIDI at the
+same time.</p>
+<ul>
+<li>Add Hexatone as an instrument in your host, the same way you add any
+AUv3.</li>
+<li>Open its interface to play and to reach its own settings (the gear
+button), which mirror the app's.</li>
+<li>Scales and instruments you imported in the main Hexatone app appear
+in the plugin automatically.</li>
+</ul>
+<figure>
+<img loading="lazy" src="img/11-auv3-in-host.jpg"
+alt="Hexatone running as a plugin inside a host like AUM" />
+<figcaption aria-hidden="true">Hexatone running as a plugin inside a
+host like AUM</figcaption>
+</figure>
+<h3 id="recording-and-playing-back-in-a-daw-incoming-midi">Recording and
+playing back in a DAW (incoming MIDI)</h3>
+<p>The Audio Unit now responds to incoming MIDI, so Hexatone fits into a
+normal recording workflow.</p>
+<ul>
+<li><strong>Record what you play.</strong> Arm a MIDI track on Hexatone
+in your host (Logic Pro, AUM, Cubasis) and record. The notes you play
+are captured, and you can play them back through Hexatone or bounce them
+to audio.</li>
+<li><strong>Drive it from outside.</strong> Hexatone can be played by an
+external MIDI keyboard or a sequencer routed to it, not only by touching
+the on-screen keys.</li>
+<li><strong>Your tuning survives playback.</strong> Hexatone records
+per-note pitch bend, and it reads that back, so microtonal performances
+play back in tune rather than snapping to twelve notes.</li>
+</ul>
+<h3 id="driving-an-external-synth-over-mpe">Driving an external synth
+over MPE</h3>
+<p>Hexatone sends microtonal pitch using MPE (MIDI Polyphonic
+Expression): each note plays on its own MIDI channel with its own pitch
+bend, which is what places it at its exact microtonal frequency.</p>
+<p>For a synth to play Hexatone in tune:</p>
+<ol type="1">
+<li><strong>Route the MIDI</strong> from Hexatone to the synth (in your
+host, or by enabling Hexatone as a MIDI source).</li>
+<li><strong>Turn on MPE</strong> in the synth. A synth that is not in
+MPE mode cannot voice microtonal chords.</li>
+<li><strong>Match the pitch-bend range.</strong> Hexatone defaults to
+plus or minus 48 semitones. Set the synth's MPE pitch-bend range to 48
+as well. Many MPE synths follow Hexatone's setting automatically; ones
+that do not must be set by hand. In Hexatone you can also choose plus or
+minus 24, 12, or 2 in the <strong>MPE Output</strong> settings to match
+a simpler synth, as long as both numbers are equal.</li>
+</ol>
+<p>If chords sound out of tune on the external synth, it is almost
+always the pitch-bend range not matching, or the synth not being in MPE
+mode. A fuller setup guide and a list of tested synths live on the
+website.</p>
+<hr />
+<h2 id="11-settings-reference">11. Settings reference</h2>
+<p>A quick map of every settings section.</p>
+<ul>
+<li><strong>Scale.</strong> Source (N-EDO or Scala file). For N-EDO:
+divisions (2 to 96) and quick buttons. For Scala: scale picker, import,
+and manage scales.</li>
+<li><strong>Tuning.</strong> Octave (minus 4 to plus 3) and Reference A4
+(400 to 480 Hz).</li>
+<li><strong>Layout.</strong> Pattern (named layouts or Custom). Custom
+sets the East and Up-right steps.</li>
+<li><strong>Keys.</strong> Density (26 to 64 pt) and Show note
+labels.</li>
+<li><strong>Appearance.</strong> Palette, with a swatch preview.</li>
+<li><strong>Velocity.</strong> Source (Fixed, Accelerometer, Pencil /
+Force) and, for the sensing modes, a velocity curve (min, max,
+shape).</li>
+<li><strong>MPE Output.</strong> Pitch-bend range (plus or minus 48, 24,
+12, or 2).</li>
+<li><strong>Instrument.</strong> Built-in sound, Mute, Voices, import
+single sample, build instrument from folder, import multisample, manage
+instruments, and the Sine preview tone.</li>
+<li><strong>About.</strong> App name and version.</li>
+</ul>
+<hr />
+<h2 id="12-uninterrupted-playing-ipad-gestures">12. Uninterrupted
+playing (iPad gestures)</h2>
+<p>When you play with several fingers, iPad's own system gestures can
+sometimes pull you out of the app. Hexatone reduces this where it can
+(it asks iOS to defer the edge swipes and hides the home indicator), but
+two of iPadOS's gestures cannot be disabled by any app:</p>
+<ul>
+<li>the <strong>four and five finger multitasking gestures</strong>
+(swipe to switch apps, pinch to go home).</li>
+</ul>
+<p>For a performance with no interruptions:</p>
+<ul>
+<li>Turn off <strong>Settings, Home Screen and Multitasking,
+Gestures</strong> (the four and five finger gestures), or</li>
+<li>Use <strong>Guided Access</strong> (Settings, Accessibility, Guided
+Access). Triple-click the side or home button to lock into Hexatone, and
+triple-click again to leave.</li>
+</ul>
+<hr />
+<h2 id="13-troubleshooting">13. Troubleshooting</h2>
+<p><strong>An imported instrument fails to load or makes no sound, but
+still shows in the list.</strong> The most common cause is that the
+sample file names in the <code>.sfz</code> do not match the actual files
+(file names are case sensitive). Hexatone now tries to match names
+flexibly and will tell you exactly what is wrong (for example, how many
+samples it could not find). Re-export from the SFZ Builder, or check
+that the <code>.sfz</code> and its samples are in the same folder, then
+import again.</p>
+<p><strong>Microtonal chords sound out of tune on my external
+synth.</strong> The synth's MPE pitch-bend range does not match
+Hexatone's, or the synth is not in MPE mode. Set both to 48 (or any
+equal value), and make sure MPE is on. See <a
+href="#driving-an-external-synth-over-mpe">Driving an external synth
+over MPE</a>.</p>
+<p><strong>A held chord goes silent on its own.</strong> The Hexatone
+Bell voice decays naturally. Use Hexatone Glass or a sustaining
+instrument for notes that ring forever under Hold.</p>
+<p><strong>Only some of my notes sound when I play a big chord.</strong>
+You have reached the Voices limit (or, for external synths, the MPE
+channel limit). Raise the Voices slider, or play fewer notes.</p>
+<p><strong>The app keeps switching away while I jam.</strong> That is an
+iPad multitasking gesture, not Hexatone. See <a
+href="#12-uninterrupted-playing-ipad-gestures">Uninterrupted
+playing</a>.</p>
+<p><strong>An imported instrument is too large.</strong> Hexatone loads
+up to what your device can handle, which is more on capable iPads. If a
+pack is too big for your device, Hexatone tells you the reason instead
+of failing quietly. Use a smaller pack on that device.</p>
+<p><strong>Some keys play the wrong sound or are silent after importing
+a pack.</strong> A pack may be missing some of its samples, or unable to
+read them. Hexatone warns you and says what is wrong rather than playing
+the wrong sound for those keys. Re-export the pack with all its samples,
+or use the folder build, which lets the app map the samples itself.</p>
+<hr />
+<h2 id="14-faq">14. FAQ</h2>
+<p><strong>Do I need any other app to make sound?</strong> No. The
+built-in voices and sampler play in tune on their own. Other apps are
+optional.</p>
+<p><strong>Is there a subscription or in-app purchase?</strong> No. One
+price, every feature included. No accounts, no ads, no data
+collection.</p>
+<p><strong>What audio formats can I import?</strong> WAV and AIFF are
+best. CAF, M4A, AAC, ALAC, and MP3 usually work. OGG is not
+supported.</p>
+<p><strong>Can I use my own scales?</strong> Yes, import Scala
+<code>.scl</code> files. Imported scales are shared with the plugin.</p>
+<p><strong>Does it work on iPhone?</strong> Hexatone is iPad only for
+now. iPhone support is planned.</p>
+<p><strong>Does it support full MPE expression like a Seaboard?</strong>
+Hexatone sends per-note pitch (the microtonal dimension) plus velocity.
+The continuous timbre and pressure dimensions of touch controllers are
+on the roadmap. A flat screen cannot natively sense those, so they need
+careful design.</p>
+<hr />
+<h2 id="15-privacy">15. Privacy</h2>
+<p>Hexatone collects no data, has no tracking, and requires no account.
+Your scales and instruments stay on your device (and in the shared
+container that lets the app and the plugin see the same library).</p>
+<hr />
+<h2 id="16-support-and-links">16. Support and links</h2>
+<ul>
+<li>Website: the Hexatone site (promo page, the free SFZ Builder, and
+the synth setup guide).</li>
+<li>Support and feedback: <a
+href="mailto:nrrrm@icloud.com">nrrrm@icloud.com</a></li>
+</ul>
+<p>Thanks for playing Hexatone. If you make something with it, I would
+love to hear it.</p>
+  </main>
+
+  <footer class="container">
+    <div class="footer-links">
+      <a href="../../">All apps</a>
+      <a href="../">Hexatone</a>
+      <a href="../../#contact">Contact</a>
+    </div>
+    <p>&copy; <span id="current-year">2026</span> naturarum</p>
+  </footer>
+
+  <script src="../../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pond — Manual</title>
+  <meta name="description" content="The full user manual for Pond, the ripple sequencer for iPad.">
+  <meta name="theme-color" content="#0d0d11" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
+  <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+  <link rel="stylesheet" href="../../assets/base.css">
+  <link rel="stylesheet" href="../../assets/manual.css">
+  <style>:root { --accent: #9ee6e6; --accent-glow: rgba(158,230,230,0.22); }</style>
+</head>
+<body class="manual-body">
+  <nav>
+    <div class="nav-inner">
+      <div style="display: flex; align-items: center; gap: 9px; min-width: 0;">
+        <a href="../../" class="nav-brand"><span class="nav-mark" aria-hidden="true"></span> naturarum</a>
+        <span class="nav-crumb">/&nbsp;<a href="../">Pond</a>&nbsp;/&nbsp;<b>Manual</b></span>
+      </div>
+      <a href="../" class="nav-cta">&larr; Pond</a>
+    </div>
+  </nav>
+
+  <main class="container manual">
+    <div class="manual-actions">
+      <a href="manual.pdf" class="btn-secondary" download>Download PDF &darr;</a>
+    </div>
+<h1 id="pond-manual">Pond, Manual</h1>
+<p><em>A pond for making music. Version 1.1.</em></p>
+<p>Pond is a MIDI sequencer built on one idea: <strong>drop a stone in
+the water and let the wave play the notes.</strong> Every cell of the
+pond holds a note. When a ripple's wave front crosses a cell, that note
+sounds. Where you tap, what notes you've planted, and how the waves
+overlap, that's the composition.</p>
+<hr />
+<h2 id="1-thirty-seconds-to-first-sound">1. Thirty seconds to first
+sound</h2>
+<blockquote>
+<p><strong>First launch</strong> runs a short interactive intro: tap
+<strong>Drop some notes</strong> to fill the water, then it walks you,
+one gentle step at a time, through tapping to play, planting an emitter,
+painting, and the drawer. It plays once; the steps below are the same
+thing, any time.</p>
+</blockquote>
+<ol type="1">
+<li>Open Pond. The pond starts <strong>still and empty</strong>, dark
+water, waiting.</li>
+<li>Open the <strong>drawer</strong> (slider button, top-right) and tap
+<strong>Generate</strong>. The pond fills with a sparse scatter of
+notes.</li>
+<li><strong>Tap anywhere.</strong> A wave expands from your finger;
+every cell it crosses plays. Sound comes from the built-in sound, no
+setup needed.</li>
+<li>Tap with <strong>several fingers</strong>. Each finger drops its own
+wave.</li>
+<li><strong>Hold a finger still</strong> for half a second. You've
+planted an <strong>emitter</strong>, a spring that keeps dropping
+ripples on its own, in time. Hold it again to remove it. (Tapping or
+holding <em>on</em> an emitter's ring won't drop a stray ripple, the
+ring is a quiet spot, so removing one is clean.)</li>
+</ol>
+<p>That's the whole instrument. Everything else shapes it.</p>
+<hr />
+<h2 id="2-reading-the-pond">2. Reading the pond</h2>
+<ul>
+<li><strong>Each cell is a note.</strong> Its colour tells you the pitch
+class, the palette runs from warm <strong>peach (C)</strong> through
+pink, orchid, and lavender to <strong>sky blue (B)</strong>. Cells
+brighten as their velocity rises.</li>
+<li><strong>Dark cells are silent</strong> (a faint grey square at
+rest), and they <strong>light up blue</strong> as a wave front passes
+over them, so you can watch the wave travel across the pond.</li>
+<li>A lit cell <strong>flashes</strong> at the moment it plays; the
+moving band of lit cells <em>is</em> the wave, there's no separate
+ripple drawn over the grid.</li>
+<li>The grid is always made of perfect squares and fills the screen. The
+pond itself <strong>stays put when you rotate</strong> the iPad, like
+water in a tray, so every note and emitter keeps its place; only the
+controls swing around to the new orientation.</li>
+<li>The pond is <strong>up to 32×24</strong>. On a 12.9"/13" iPad (and
+in the plugin) you get the full 32×24; a narrower iPad (11"/Air/mini)
+shows a few rows fewer. A note or emitter on a row a given iPad doesn't
+show simply won't play there, so a pond made on a larger iPad may sound
+a little sparser on a smaller one. Generate only ever fills the rows you
+can see.</li>
+</ul>
+<p>The <strong>pill</strong> in the top-left shows tempo · division ·
+key at a glance. It fades while you play and returns when the pond goes
+quiet. Tap it, or the slider button top-right, to open the
+<strong>drawer</strong>, where all the controls live. The
+<strong>paintbrush button</strong> just below the drawer button opens
+the <strong>paint bar</strong>, a floating palette that docks over the
+bottom of the pond. It glows orange while you're editing, and the bar
+itself is your "you're editing now" signal.</p>
+<p>The <strong>pause button</strong> (top of the three top-right
+buttons) freezes the pond like a sequencer's stop: waves halt in place
+and the sound cuts cleanly, with no hung notes. Tap it again to pick up
+exactly where you left off. (Inside an AUv3 host the host's own
+transport runs the show, so the button isn't shown there.)</p>
+<hr />
+<h2 id="3-gestures">3. Gestures</h2>
+<table>
+<thead>
+<tr>
+<th>Gesture</th>
+<th>In <strong>play</strong> mode</th>
+<th>In <strong>edit</strong> mode</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tap</td>
+<td>Drop a ripple</td>
+<td>Paint the selected note</td>
+</tr>
+<tr>
+<td>Drag</td>
+<td>,</td>
+<td>Paint continuously</td>
+</tr>
+<tr>
+<td>Multiple fingers</td>
+<td>One ripple per finger</td>
+<td>Paint with each</td>
+</tr>
+<tr>
+<td>Hold still (½ s)</td>
+<td>Plant / remove an emitter</td>
+<td>Open the cell editor</td>
+</tr>
+</tbody>
+</table>
+<p>Edit mode is summoned by the <strong>paintbrush button</strong>
+(top-right, under the drawer button). The <strong>paint bar</strong>
+slides up over the bottom of the pond. Pick a pitch from the twelve
+chips, set the octave, or tap the <strong>eraser</strong> chip to paint
+silence. The chips for notes <strong>in the current scale</strong> keep
+their colour; out-of-scale notes dim to grey (still pickable), so the
+in-key choices stand out at a glance. Tap <strong>Done</strong> (or the
+paintbrush again) to put it away. The pond keeps playing the whole
+time.</p>
+<p>The bar has a small <strong>grab handle</strong> on top: drag it to
+slide the bar to the top or bottom of the screen (it snaps to whichever
+edge is nearer), so you can always reach the cells it was sitting
+over.</p>
+<p><strong>Misplaced a note?</strong> Tap the same cell again, with the
+same note, within five seconds and it lifts back off, a quick undo
+without reaching for the eraser. For anything bigger, the drawer's
+<strong>Undo</strong> steps back whole edits.</p>
+<hr />
+<h2 id="4-the-drawer-top-to-bottom">4. The drawer, top to bottom</h2>
+<h3 id="undo-and-redo">Undo and Redo</h3>
+<p>(Standalone only.) Two buttons at the very top step backward and
+forward through your edits, up to ten of them. An "edit" is anything
+that changes the pond itself: a paint stroke (a whole drag counts as
+one), Generate, Clear, Transpose, planting or clearing emitters, or
+changing the scale, key, octave range, density, or the Physics toggles.
+Tempo, quantize, MIDI routing, and volume are deliberately left out,
+Undo is for the notes, not the transport. History is per session and
+starts fresh each launch.</p>
+<h3 id="presets">Presets</h3>
+<p>Twenty-four slots across four pages (flip with the ‹ › arrows or a
+swipe across the slots), each with a snapshot picture of its pond.</p>
+<ul>
+<li><strong>Tap an empty slot</strong> → saves the current pond
+there.</li>
+<li><strong>Tap a filled slot</strong> → loads it instantly (waves in
+flight keep rolling over the new notes, lovely for transitions).</li>
+<li><strong>Long-press a filled slot</strong> → overwrite with the
+current pond, rename, or delete.</li>
+</ul>
+<p>Each slot is tagged with the grid it was saved at, e.g.
+<strong><code>Drift (32×24)</code></strong>. If a preset's grid is
+taller than your iPad shows, its bottom rows just won't play here, the
+tag is your heads-up.</p>
+<p>A preset stores the <em>musical</em> state: grid, emitters, scale and
+key, tempo, division, quantize, drip rate, sustain, falloff, density. It
+deliberately does <strong>not</strong> touch your setup, built-in sound
+on/off, volume, and MIDI-clock settings stay as you have them.</p>
+<p>Pond also autosaves everything when you leave the app and restores it
+on return, so you never lose the pond you were just playing.</p>
+<h3 id="tempo">Tempo</h3>
+<ul>
+<li><strong>BPM</strong> (20–300) and <strong>Division</strong>,
+together they set the wave speed: one cell per division step. At 120 BPM
+and 1/16, a wave crosses eight cells per second.</li>
+<li><strong>Quantize</strong>, the pocket switch. Off, notes sound the
+instant the wave touches them (pure water physics, rubato by nature).
+Set to ¼, ⅛, 1/16, 1/32, 1/64 or 1/128, every note instead waits for the
+next beat boundary: the waves stay liquid, the rhythm locks tight. The
+flash waits with the note, so what you see is what you hear.</li>
+</ul>
+<h3 id="midi">MIDI</h3>
+<p>(Standalone only; inside an AUv3 host the host handles routing and
+clock.)</p>
+<ul>
+<li><strong>Send to</strong>, choose which connected destinations
+receive Pond's output: a USB interface or synth, a Bluetooth or network
+device, or another app's input. The always-on "Pond" source still
+reaches other apps; this adds direct routing to the ones you tick.
+Output is on MIDI channel 1. (More in <em>Pond and MIDI</em>
+below.)</li>
+<li><strong>Sync to MIDI clock</strong>, Pond follows external MIDI
+clock (gear, AUM's clock, etc.). While ticks arrive the BPM shows "·
+EXT" and locks; it releases automatically when the clock stops. (Tempo
+matches; bar phase doesn't, for phase-locked sync use the AUv3.)</li>
+<li><strong>Send MIDI clock</strong>, Pond becomes the clock master,
+emitting 24 ppqn from its MIDI output, tracking every BPM change.</li>
+</ul>
+<h3 id="emitters">Emitters</h3>
+<ul>
+<li><strong>Drip rate</strong>, how often every emitter drops its
+ripple: 4 bars, 2 bars, 1 bar, ½, or ¼ (always in time with the BPM, or
+the host's tempo inside a DAW).</li>
+<li>Up to <strong>8 emitters</strong>. The pulsing ring markers show
+where they live, and that ring is a <strong>dead zone</strong>: a tap on
+it makes no ripple, so you can hold to remove an emitter without leaving
+a stray wave behind.</li>
+<li><strong>Clear</strong> removes them all at once. There's also a
+<strong>quick clear-emitters button</strong> (the slashed-circle, just
+under the paintbrush top-right) that appears whenever the pond has
+emitters, one tap clears them without opening the drawer.</li>
+<li>Fast rates with several emitters will use up all 32 simultaneous
+waves, extra taps wait for old waves to fade. That's the pond being
+honest about its physics.</li>
+</ul>
+<h3 id="scale">Scale</h3>
+<ul>
+<li><strong>Scale</strong> (nine to choose from) and
+<strong>Key</strong>, these feed <strong>Generate</strong>.</li>
+<li><strong>Transpose</strong>, shift every note already in the pond up
+or down right now: ±1 semitone or ±12 (an octave). Unlike Key (which
+only colours the next Generate), this re-pitches what's there. Notes
+pushed past the top or bottom of the range clamp and may not come back
+on the way down, but <strong>Undo</strong> has you covered if a shift
+goes too far.</li>
+<li><strong>Octave range</strong>, the Low/High steppers bound every
+note the pond <em>generates</em>: set C3–B5 for a comfortable middle
+register, or go wide for drama. Generate never leaves this range.
+Changing it doesn't touch notes already in the pond, they keep the pitch
+they were given; the range only shapes the <em>next</em> Generate.</li>
+<li><strong>Generate</strong> deals a completely fresh pond: a random
+scatter of in-scale notes within the octave range, independent of what
+was there before. This is how you fill the pond. Tap it again for
+another roll.</li>
+<li><strong>Density</strong> decides how sparse that scatter is. It's a
+smooth, <strong>continuous</strong> control reaching from a
+whisper-sparse <strong>0.1%</strong> up to 40%, with the bulk of the
+travel down in the low single digits, because that's where the music is.
+It reads out to one decimal (e.g. <em>0.4%</em>, <em>3.7%</em>), so you
+can dial in exactly how busy the pond feels; a pond at 3–6% breathes,
+and below 1% you get just a handful of notes. (Each Generate deals a
+fresh ~Density% of the grid, every time, it never compounds.)</li>
+<li><strong>Clear</strong> silences every cell (waves still travel; they
+just find nothing to play).</li>
+</ul>
+<h3 id="sound">Sound</h3>
+<ul>
+<li><strong>Falloff</strong>, how quickly notes get quieter the farther
+they are from the splash point; far enough out, they fade to
+<strong>silence</strong>, so high falloff turns the pond into a
+spotlight around your touch. The control is gentle through most of its
+travel and only tightens near the top.</li>
+<li><strong>Sustain</strong>, note length, 1–1000 ms. Short = plucks and
+rain; long = washes and pads.</li>
+<li><strong>Built-in sound</strong>, Pond's own voice, a soft 32-voice
+pluck, with its own volume. It sits on its own at the very bottom of the
+drawer, set apart from the menus above. Turn it off when an external
+synth or DAW is making the sound.</li>
+</ul>
+<h3 id="physics">Physics</h3>
+<p>Two toggles for how the waves behave. Both default off.</p>
+<ul>
+<li><strong>Wall reflections</strong>, every wave bounces back off the
+pond's edges: drop near a wall and the echo sweeps back across,
+re-playing cells on the return trip, quieter with every extra cell of
+travel (the reflection's path length feeds the falloff). One tap becomes
+a conversation between a wave and its echoes. Costs wave slots: each
+drop uses up to five of the thirty-two, so go easy on emitters while
+it's on.</li>
+<li><strong>Wave interference</strong>, turns ripples into <em>real</em>
+waves. Overlapping waves <strong>add</strong> where their crests meet
+and <strong>cancel</strong> where a crest meets a trough, just like
+rings from two stones in a real pond. A lone wave plays at a comfortable
+mid-level; reinforcing waves push a note <strong>louder</strong> (all
+the way to full velocity when several stack up), and cancelling waves
+push it <strong>softer</strong> (down to a whisper). It takes a lot of
+interference to reach either extreme. The grey ripples show the wave
+itself; on top, <strong>blue</strong> marks where waves reinforce and
+<strong>yellow</strong> where they cancel, so you can see the dynamics
+as well as hear them. Beautiful with two or three emitters, or a flurry
+of taps. <em>(Per-cell velocities you painted aren't used while this is
+on, interference is the dynamic.)</em></li>
+</ul>
+<h3 id="about">About</h3>
+<ul>
+<li>At the very bottom of the drawer: Pond's <strong>version</strong>
+and a <strong>User Manual</strong> button that opens this guide in the
+app, your reference for anything the menus don't explain.</li>
+</ul>
+<blockquote>
+<p><strong>Painting moved out of the drawer.</strong> Editing now lives
+on the pond itself: tap the <strong>paintbrush button</strong>
+(top-right) to bring up the paint bar, pitch chips, octave, and an
+eraser chip for silence (see <em>Gestures</em> above). Long-press any
+cell to open its editor, in place, for exact note / velocity / on-off
+control.</p>
+</blockquote>
+<hr />
+<h2 id="5-pond-and-midi">5. Pond and MIDI</h2>
+<p>Pond speaks MIDI everywhere:</p>
+<ul>
+<li><strong>Standalone</strong>, it publishes a CoreMIDI source named
+<strong>"Pond"</strong> that any app or hardware can subscribe to (it
+stays alive in the background). Notes go out on <strong>MIDI channel
+1</strong> with a computed velocity; note-offs follow after the sustain
+time. (Per-cell channels and multi-channel routing are planned for a
+later version.)</li>
+<li><strong>Send to devices</strong>, open the drawer's MIDI section and
+use the <strong>Send to</strong> dropdown to pick any connected MIDI
+destinations (a USB interface, a class-compliant USB synth like a
+Digitone, a Eurorack bridge like the Shuttle Control, or another app's
+input). Pond sends its notes, and its clock, if "Send MIDI clock" is on,
+straight to the ones you tick. You can pick several at once. The list
+updates as you plug things in, and your choice is remembered. The
+<strong>"Pond"</strong> app port above is always published too, so
+app-to-app routing keeps working alongside any devices you select.</li>
+<li><strong>MIDI clock</strong> flows in or out, see the MIDI
+section.</li>
+</ul>
+<h3 id="pond-as-an-auv3-plugin">Pond as an AUv3 plugin</h3>
+<p>Inside AUM, Logic, Cubasis and friends, Pond loads as an
+<strong>Audio Unit MIDI processor</strong> ("naturarum: Pond"), the full
+pond UI in a plugin window. The plugin window is <strong>freely
+resizable</strong>: the whole pond scales to fit whatever size and shape
+you give it (square cells, centred), so it never crops or spills, resize
+it as small or large as you like.</p>
+<p>In <strong>AUM</strong>: add a <strong>MIDI channel</strong> → load
+Pond in its slot (under <em>Audio Unit MIDI Processor</em>) → on your
+synth's node, open its MIDI input panel and enable <strong>the MIDI
+channel containing Pond</strong> (it's listed by the channel's name, not
+"Pond"). Done, Pond plays your synth.</p>
+<p>In a host, Pond <strong>follows the host tempo</strong> automatically
+(the BPM readout shows "· HOST") and quantize boundaries land on the
+host's actual beats. Your session saves Pond's entire state, and the
+host's own <strong>user-preset menu</strong> works too.</p>
+<hr />
+<h2 id="6-recipes">6. Recipes</h2>
+<ul>
+<li><strong>Generative chill</strong>: Pentatonic Major, Generate at ~4%
+density, one emitter at 1 bar, quantize ⅛, sustain ~400 ms. Walk away.
+It plays better than it has any right to.</li>
+<li><strong>Polyrhythmic web</strong>: two emitters far apart, drip rate
+½, quantize 1/16, high falloff. The interference pattern is the
+rhythm.</li>
+<li><strong>Performance surface</strong>: no emitters, quantize off,
+short sustain, a denser Generate (~15%). Pure hand-drumming on
+water.</li>
+<li><strong>Patch DJ</strong>: fill a page of preset slots with
+contrasting ponds and jump between them live, waves in flight survive
+the swap and rake across the incoming notes.</li>
+<li><strong>Echo chamber</strong>: reflections on, quantize ⅛, ONE tap
+near a corner, high falloff. The wave and its four echoes answer each
+other in decaying phrases, Pond's version of a delay pedal.</li>
+</ul>
+<hr />
+<h2 id="7-if-somethings-quiet">7. If something's quiet</h2>
+<ul>
+<li><strong>Fresh install?</strong> The pond starts empty on purpose,
+Generate or paint some notes first.</li>
+<li><strong>Nothing moving?</strong> Check the <strong>pause</strong>
+button (top-right) isn't showing a ▶ play glyph, tap it to resume.</li>
+<li><strong>No sound, standalone?</strong> Check the Built-in sound
+toggle (bottom of the drawer), then the iPad mute switch / volume.</li>
+<li><strong>No sound from the AU?</strong> It makes no sound by itself,
+it sends MIDI. Check the routing recipe in section 5.</li>
+<li><strong>USB / hardware synth silent?</strong> Pond only sends to
+devices you pick: open the drawer's <strong>Send to</strong> dropdown
+(MIDI section) and tick your device. If it isn't listed, reseat the
+cable, the list refreshes on its own when the connection changes.</li>
+<li><strong>Pond missing from the host's plugin list?</strong>
+Force-quit the host and reopen; after an update, reboot the iPad if
+needed (iOS can be slow to register fresh plugins).</li>
+<li><strong>Clock sync says "Waiting…"?</strong> Pond ignores its own
+clock output by design, make sure another device or app is actually
+sending clock to the iPad.</li>
+<li><strong>Taps not making waves?</strong> If several emitters are
+dripping fast, all 32 wave slots may be busy, clear an emitter or slow
+the drip.</li>
+</ul>
+<hr />
+<p><em>Pond keeps its engine's name, <code>ripple</code>, in its source
+code, because the app is the pond, and ripples are what it
+makes.</em></p>
+  </main>
+
+  <footer class="container">
+    <div class="footer-links">
+      <a href="../../">All apps</a>
+      <a href="../">Pond</a>
+      <a href="../../#contact">Contact</a>
+    </div>
+    <p>&copy; <span id="current-year">2026</span> naturarum</p>
+  </footer>
+
+  <script src="../../assets/site.js"></script>
+</body>
+</html>
