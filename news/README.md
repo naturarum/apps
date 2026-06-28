@@ -1,31 +1,25 @@
 # News feed
 
-One JSON file drives all the news on the site. Add a post here and it shows up
-automatically on the **hub** ("What's new") and on the **app page it concerns**
-("Updates") — no build step, no HTML to touch.
+The news shown on the hub ("What's new") and each app page ("Updates") is driven by
+**`news.json`** here, rendered client-side by `assets/news.js`. No build step is needed
+to *display* it.
 
-## To post
+## Source of truth = the vault, not this JSON
 
-Add an object to the **top** of `news.json` (newest first):
+Posts are written in **`…/Obsidian/Documents/code/News.md`** (in the vault). `news.json`
+is **generated** from it — don't hand-edit `news.json`, it gets overwritten.
 
-```json
-{
-  "date": "2026-07-15",
-  "app": "pond",
-  "tag": "Update",
-  "title": "Pond 1.1 — new scales",
-  "body": "Added three scales and fixed a sync bug.\n\n- Dorian b2\n- Lydian\n- Faster MIDI clock lock",
-  "link": { "href": "https://apps.apple.com/app/pond-ripple-sequencer/id6779643312", "label": "App Store" }
-}
-```
+**To post:** add an entry at the top of `News.md` in Obsidian (the format is documented at
+the top of that file), then either:
 
-| field | notes |
-|---|---|
-| `date` | `YYYY-MM-DD`. Sorted newest-first automatically. |
-| `app`  | `hexatone` · `pond` · `anima` · `re-deemer`, or `""` for a general post (hub only). |
-| `tag`  | short label shown as a pill, e.g. `Update`, `Out now`, `News`. Optional. |
-| `title`| the headline. |
-| `body` | optional. Plain text + light markdown: blank line = new paragraph, `- ` = bullet, `**bold**`, `*italic*`, `[text](url)`. |
-| `link` | optional `{ "href": "...", "label": "..." }`. Internal paths are site-relative (`hexatone/manual/`); external URLs (`https://…`) open in a new tab. |
+- run `python3 apps/tools/build-news.py`, or
+- just tell Claude **"update the news"** —
 
-That's it — commit and push. The hub shows the latest 6 across all apps; each app page shows its latest 5.
+…which regenerates `news.json`. Commit + push and it's live (hub shows the latest 6 across
+all apps; each app page shows that app's latest 5).
+
+## Post fields (in News.md)
+
+`date` (YYYY-MM-DD) · `app` (`hexatone`/`pond`/`anima`/`re-deemer`, or blank = general) ·
+`tag` (short pill) · `title` · `link` + `label` (optional) · then a blank line and the
+markdown body (paragraphs, `- ` bullets, `**bold**`, `*italic*`, `[links](url)`).
