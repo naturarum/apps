@@ -1,5 +1,23 @@
 [
   {
+    "date": "2026-06-30",
+    "app": "pond",
+    "tag": "Update",
+    "title": "Pond 1.1 — a big update to how it plays and feels",
+    "body": "Pond 1.1 is here — the biggest update yet to how the pond plays and feels.\n\n- **Per-emitter rates, and drag to move them.** Each emitter keeps its own drip rate now: tap an emitter to change its rate, drag it to reposition it (even several at once, one per finger), and a few at different rates weave into polyrhythms. Each emitter's marker pulses in time with its own drip, so you can see the rhythm at a glance.\n- **Undo and redo, in the drawer.** Painting, Generate, Clear, Transpose, emitters, scales — it all steps back and forward.\n- **Transpose the whole pond** up or down, right by the scale picker.\n- **Six more scales, fifteen in all** — the full set of modes plus harmonic and melodic minor and the Japanese Hirajoshi.\n- **Velocity for wave interference.** Set the range with Base, Min and Max; the overlapping waves decide where each note lands.\n- **A movable paint bar.** Drag it by the handle to the top or bottom so it never covers the cells you want.\n- **Pond follows your host.** As a plugin in AUM, Logic or Cubasis, it now starts and stops with the host transport, so the emitters sit in time with the rest of your session.",
+    "link": {
+      "href": "https://apps.apple.com/app/pond-ripple-sequencer/id6779643312",
+      "label": "App Store"
+    }
+  },
+  {
+    "date": "2026-06-30",
+    "app": "re-deemer",
+    "tag": "News",
+    "title": "Re-deemer is coming to iOS",
+    "body": "Re-deemer is coming to iPhone and iPad. The cassette tape echo that began as a desktop plug-in is now in development for iOS, with a TestFlight beta on the way."
+  },
+  {
     "date": "2026-06-28",
     "app": "hexatone",
     "tag": "New",
