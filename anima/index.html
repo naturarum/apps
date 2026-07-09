@@ -3,14 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anima — a physical-modeling wind synthesizer for iPad (coming soon)</title>
-    <meta name="description" content="Anima is a physical-modeling wind synthesizer for iPad — air resonating in a pipe, no oscillators. Microtonal to the core, the companion to Hexatone. Standalone + AUv3. Coming soon.">
+    <title>Anima: a physical-modeling synthesizer for iPad</title>
+    <meta name="description" content="Anima is a physical-modeling synthesizer for iPad. No oscillators: energy excites a resonating object that rings into a room. A modal resonator keeps every note in tune. The companion to Hexatone. Standalone and AUv3. Launching July 2026.">
     <meta name="theme-color" content="#0d0d11" media="(prefers-color-scheme: dark)">
     <meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
-    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+    <link rel="icon" type="image/png" href="img/icon.png">
+    <link rel="apple-touch-icon" href="img/icon.png">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Anima — a physical-modeling wind synthesizer for iPad">
-    <meta property="og:description" content="Air resonating in a pipe, no oscillators. Microtonal to the core, the companion to Hexatone. Coming soon.">
+    <meta property="og:title" content="Anima: a physical-modeling synthesizer for iPad">
+    <meta property="og:description" content="No oscillators. A modal resonator that keeps every note in tune. The companion to Hexatone. Launching July 2026.">
+    <meta property="og:image" content="https://naturarum.github.io/apps/anima/img/surface.jpg">
     <meta property="og:url" content="https://naturarum.github.io/apps/anima/">
 
     <link rel="stylesheet" href="../assets/base.css">
@@ -19,33 +21,35 @@
         :root { --accent: #cfa9ff; --accent-glow: rgba(207, 169, 255, 0.22); }
         @media (prefers-color-scheme: light) { :root { --accent: #8a3ff0; --accent-glow: rgba(138, 63, 240, 0.2); } }
 
-        .app-mark {
-            width: 96px; height: 96px; border-radius: 22px; margin: 0 auto 28px;
-            display: flex; align-items: center; justify-content: center;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid var(--border-light);
-            box-shadow: 0 16px 44px var(--accent-glow), 0 8px 24px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        .app-icon-placeholder {
+            width: 96px; height: 96px; border-radius: 22px; margin: 0 auto 28px; overflow: hidden;
+            box-shadow: 0 16px 44px var(--accent-glow), 0 8px 24px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.06) inset;
         }
-        @media (prefers-color-scheme: light) { .app-mark { background: rgba(255, 255, 255, 0.6); } }
-        .app-mark svg { width: 60px; height: 60px; display: block; }
+        .app-icon-placeholder img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-        /* Signature "breathing pipe" — a glass tube with a living standing wave */
-        .pipe-vis {
-            width: 100%; max-width: 560px; margin: 48px auto 0; aspect-ratio: 600 / 170;
-            border-radius: 100px; overflow: hidden;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border-light);
-            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.09), inset 0 0 46px rgba(0, 0, 0, 0.35), 0 18px 44px rgba(0, 0, 0, 0.4);
+        /* Wide hero showcase: the whole control surface in one frame */
+        .hero-shot {
+            width: 100%; max-width: 720px; margin: var(--space-xl) auto 0;
+            border-radius: 18px; overflow: hidden;
+            box-shadow: 0 18px 44px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.05);
         }
-        @media (prefers-color-scheme: light) {
-            .pipe-vis { background: rgba(255, 255, 255, 0.55); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6), inset 0 0 46px rgba(0, 0, 0, 0.06), 0 18px 44px rgba(0, 0, 0, 0.08); }
+        .hero-shot img { width: 100%; height: auto; display: block; }
+
+        /* Screenshot gallery: horizontal, swipeable, App Store style */
+        .shots {
+            display: flex; gap: 18px;
+            overflow-x: auto; scroll-snap-type: x mandatory;
+            padding: 6px var(--gutter) 14px; margin: var(--space-xl) calc(-1 * var(--gutter)) 0;
+            -webkit-overflow-scrolling: touch; scrollbar-width: thin;
         }
-        .pipe-vis svg { width: 100%; height: 100%; display: block; }
-        .pipe-wave { fill: none; stroke-linecap: round; }
-        #pipeMain { stroke: url(#pipeGrad); stroke-width: 3.2; filter: drop-shadow(0 0 7px var(--accent-glow)); }
-        #pipeGhost { stroke: url(#pipeGrad); stroke-width: 2; opacity: 0.34; }
-        #pipeOver { stroke: url(#pipeGrad); stroke-width: 1.5; opacity: 0.18; }
-        .pipe-node { fill: var(--text-dim); opacity: 0.6; }
+        .shots::-webkit-scrollbar { height: 8px; }
+        .shots::-webkit-scrollbar-thumb { background: var(--border-light); border-radius: 8px; }
+        .shots img {
+            height: clamp(320px, 52vh, 540px); width: auto; flex: 0 0 auto;
+            border-radius: 20px; scroll-snap-align: center;
+            box-shadow: 0 18px 44px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.05);
+        }
+        .shots-hint { text-align: center; font-size: 0.8rem; color: var(--text-dim); margin-top: 6px; letter-spacing: 0.01em; }
     </style>
 </head>
 <body>
@@ -71,95 +75,88 @@
 
     <main>
         <section class="hero container">
-            <div class="app-mark" aria-hidden="true">
-                <svg viewBox="0 0 100 100">
-                    <defs>
-                        <linearGradient id="markGrad" x1="0" y1="0" x2="1" y2="1">
-                            <stop offset="0" stop-color="#ffbd82"/>
-                            <stop offset="0.4" stop-color="#ffa9c9"/>
-                            <stop offset="0.7" stop-color="#cfa9ff"/>
-                            <stop offset="1" stop-color="#8cb8ff"/>
-                        </linearGradient>
-                    </defs>
-                    <path d="M50 6 L88 28 L88 72 L50 94 L12 72 L12 28 Z" fill="none" stroke="url(#markGrad)" stroke-width="4.5" stroke-linejoin="round" opacity="0.85"/>
-                    <path d="M24 50 Q34 28 44 50 T64 50 T84 50" fill="none" stroke="url(#markGrad)" stroke-width="5" stroke-linecap="round"/>
-                </svg>
+            <div class="app-icon-placeholder">
+                <img src="img/icon.png" alt="Anima app icon">
             </div>
-            <p class="eyebrow">Coming soon</p>
+            <p class="eyebrow">Launching July 2026</p>
             <h1><span class="accent">Anima</span></h1>
             <p class="tagline">
-                A physical-modeling wind synthesizer for iPad. Anima makes sound the way flutes,
-                clarinets, and pipe organs do — air resonating in a pipe, no oscillators. Microtonal
-                to the core, and built to be played by Hexatone.
+                A physical-modeling synthesizer for iPad. There are no oscillators: a source of energy,
+                a breath or a strike, excites a resonating object, and the sound rings out into a room.
+                Its heart is a modal resonator, so every note lands exactly in tune. Anima is the
+                companion to Hexatone.
             </p>
             <div class="cta-group">
                 <a href="../#contact" class="btn-primary">Get notified</a>
                 <a href="../" class="btn-secondary">&larr; All apps</a>
             </div>
 
-            <div class="pipe-vis">
-                <svg id="pipeSvg" viewBox="0 0 600 170" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-                    <defs>
-                        <linearGradient id="pipeGrad" x1="0" y1="0" x2="1" y2="0">
-                            <stop offset="0" stop-color="#ffbd82"/>
-                            <stop offset="0.3" stop-color="#ffa9c9"/>
-                            <stop offset="0.6" stop-color="#cfa9ff"/>
-                            <stop offset="1" stop-color="#8cb8ff"/>
-                        </linearGradient>
-                    </defs>
-                    <circle class="pipe-node" cx="60"  cy="85" r="3"/>
-                    <circle class="pipe-node" cx="220" cy="85" r="3"/>
-                    <circle class="pipe-node" cx="380" cy="85" r="3"/>
-                    <circle class="pipe-node" cx="540" cy="85" r="3"/>
-                    <path id="pipeOver"  class="pipe-wave"></path>
-                    <path id="pipeGhost" class="pipe-wave"></path>
-                    <path id="pipeMain"  class="pipe-wave"></path>
-                </svg>
+            <figure class="hero-shot">
+                <img src="img/surface.jpg" alt="Anima's control surface: three rows, ENERGY, OBJECT and ROOM, each control a single glyph" width="1200" height="729" loading="eager">
+            </figure>
+        </section>
+
+        <section class="container reveal" aria-label="Anima screenshots">
+            <div class="shots">
+                <img src="img/01_presets.jpg" alt="The presets panel, with the ribbon keyboard below" width="900" height="1200">
+                <img src="img/02_portrait.jpg" alt="The control surface in portrait: ENERGY, OBJECT and ROOM as columns" width="1032" height="1180">
             </div>
+            <p class="shots-hint">Swipe to see more &rarr;</p>
         </section>
 
         <section class="features container reveal">
             <h2 class="section-title">What it is</h2>
             <div class="features-grid">
                 <div class="feature-card">
-                    <span class="card-label">The engine</span>
-                    <h3>No oscillators</h3>
+                    <span class="card-label">The instrument</span>
+                    <h3>Energy &rarr; object &rarr; room</h3>
                     <p>
-                        A breath-like exciter feeds a tuned pipe that resonates and self-oscillates — the
-                        same physics as a reed or a lip on a mouthpiece. Sound is shaped, not synthesised
-                        from waveforms.
+                        No oscillators. A source of energy, a breath or a strike, excites a resonating
+                        object, and the result rings out into a room. That is the whole instrument, read
+                        left to right, cause to effect.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <span class="card-label">The object</span>
+                    <h3>A modal resonator</h3>
+                    <p>
+                        The object is a bank of 24 tuned, coupled resonances: the modes of a string, a bar,
+                        a bell. Their frequencies come straight from the note you play, with no delay lines
+                        and no lookup tables. 32 voices of polyphony.
                     </p>
                 </div>
                 <div class="feature-card">
                     <span class="card-label">Tuning</span>
-                    <h3>Microtonal to the core</h3>
+                    <h3>Every note in tune</h3>
                     <p>
-                        A resonating pipe is naturally continuous-pitch, so every tuning is in tune — any
-                        EDO, an imported Scala scale, Bohlen-Pierce. No oscillator quantises your notes.
+                        Because pitch is computed rather than sampled, every note is exactly in tune,
+                        including any microtonal pitch an MPE controller sends. Plug in Hexatone and its
+                        per-note microtuning just works, with nothing to configure.
                     </p>
                 </div>
                 <div class="feature-card">
-                    <span class="card-label">The pair</span>
-                    <h3>Built to play with Hexatone</h3>
+                    <span class="card-label">The surface</span>
+                    <h3>A panel you can read</h3>
                     <p>
-                        Anima is the voice Hexatone's isomorphic keyboard was missing. Hexatone sends per-note
-                        microtonal pitch over MPE; Anima renders it in tune, expressively, in any tuning.
+                        Every control is a single bold glyph whose shape is its value, so the panel is a
+                        picture of the current sound. Load a preset and the whole surface morphs to its
+                        new shape.
                     </p>
                 </div>
                 <div class="feature-card">
-                    <span class="card-label">Connected</span>
-                    <h3>Standalone &amp; AUv3</h3>
+                    <span class="card-label">The room</span>
+                    <h3>A room to ring into</h3>
                     <p>
-                        A focused standalone instrument and an AUv3 plugin for AUM, Logic, GarageBand,
-                        Cubasis, Loopy Pro, and Drambo — the same engine either way.
+                        A sixteen-line reverb and a colored echo carry every sound, from a tight space to
+                        an endless halo. Freeze holds a moment for as long as you like.
                     </p>
                 </div>
                 <div class="feature-card">
-                    <span class="card-label">Character</span>
-                    <h3>A sound of its own</h3>
+                    <span class="card-label">Everywhere</span>
+                    <h3>Standalone and AUv3</h3>
                     <p>
-                        Breathy flutes, reeds, and pipe organs; struck bells and brass; and tones no acoustic
-                        instrument could ever make — all from one resonating pipe.
+                        A focused standalone instrument and an AUv3 for AUM, GarageBand, Logic and
+                        Cubasis. The same engine either way, with every control automatable by the host.
                     </p>
                 </div>
             </div>
@@ -170,16 +167,18 @@
             <div class="details-card">
                 <h3>A companion instrument, in the same family</h3>
                 <p>
-                    Anima shares Hexatone's soft, glassy pastel look and its microtonal heart, but stands on
-                    its own — a beautiful, deep physical-modeling synth that earns its place next to any iPad
-                    studio. One price, no in-app purchases, no subscription.
+                    Anima shares Hexatone's soft, glassy pastel look and its microtonal heart, but stands
+                    on its own: a deep physical-modeling synth for iPad that earns its place in any studio.
+                    Breathy reeds, struck bells and brass, and tones no acoustic instrument could make, all
+                    from one resonating object. One price, no in-app purchases, no subscription.
                 </p>
                 <div class="tags">
                     <span class="tag">Physical modeling</span>
+                    <span class="tag">Modal</span>
+                    <span class="tag">Microtonal</span>
                     <span class="tag">Standalone</span>
                     <span class="tag">AUv3</span>
                     <span class="tag">MPE</span>
-                    <span class="tag">Microtonal</span>
                 </div>
             </div>
         </section>
@@ -191,7 +190,7 @@
 
         <section class="contact container reveal" id="contact">
             <div class="contact-card">
-                <h3>Want to know when Anima is out?</h3>
+                <h3>Want to know when Anima launches?</h3>
                 <p>Drop me a line and I'll let you know the moment it ships.</p>
                 <a href="mailto:nrrrm@icloud.com" class="contact-email">nrrrm@icloud.com</a>
             </div>
@@ -209,53 +208,5 @@
 
     <script src="../assets/site.js"></script>
     <script src="../assets/news.js"></script>
-    <script>
-    /* Decorative "breathing pipe": a standing wave whose antinodes swing and whose
-       amplitude breathes, like a sustained note self-oscillating in the pipe. */
-    (function () {
-        var svg = document.getElementById('pipeSvg');
-        if (!svg) return;
-        var main = document.getElementById('pipeMain'),
-            ghost = document.getElementById('pipeGhost'),
-            over = document.getElementById('pipeOver');
-        var pad = 60, W = 600, span = W - 2 * pad, mid = 85, N = 72, baseAmp = 48;
-
-        function path(amp, k, ph) {
-            var d = '';
-            for (var i = 0; i <= N; i++) {
-                var x = pad + span * i / N;
-                var y = mid - amp * Math.sin(k * Math.PI * (x - pad) / span) * Math.cos(ph);
-                d += (i ? 'L' : 'M') + x.toFixed(1) + ' ' + y.toFixed(1);
-            }
-            return d;
-        }
-
-        var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if (reduce) {
-            main.setAttribute('d', path(baseAmp * 0.82, 3, 0));
-            ghost.setAttribute('d', path(baseAmp * 0.5, 3, Math.PI / 2));
-            over.setAttribute('d', path(baseAmp * 0.3, 6, 0.4));
-            return;
-        }
-
-        // initial pose, drawn at once (in case rAF is throttled before first paint)
-        main.setAttribute('d', path(baseAmp * 0.7, 3, 0));
-        ghost.setAttribute('d', path(baseAmp * 0.45, 3, Math.PI / 2));
-        over.setAttribute('d', path(baseAmp * 0.28, 6, 0.4));
-
-        var t0 = 0;
-        function frame(ts) {
-            if (!t0) t0 = ts;
-            var t = (ts - t0) / 1000;
-            var breath = 0.6 + 0.4 * Math.sin(t * 0.5);     // slow swell, never fully flat
-            var amp = baseAmp * breath, w = t * 1.7;
-            main.setAttribute('d', path(amp, 3, w));
-            ghost.setAttribute('d', path(amp * 0.62, 3, w + Math.PI / 2));   // fills the flat moment
-            over.setAttribute('d', path(amp * 0.32, 6, w * 1.5 + 0.6));      // faint overtone shimmer
-            requestAnimationFrame(frame);
-        }
-        requestAnimationFrame(frame);
-    })();
-    </script>
 </body>
 </html>

@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Re-deemer — free cassette tape echo · naturarum</title>
-    <meta name="description" content="Re-deemer is a free cassette tape echo plug-in (VST3 / CLAP / AU) — a faithful build of the TE-2 that never shipped. Part of the naturarum apps.">
+    <title>Re-deemer: free cassette tape echo · naturarum</title>
+    <meta name="description" content="Re-deemer is a free cassette tape echo plug-in (VST3 / CLAP / AU), a faithful build of the TE-2 that never shipped. Part of the naturarum apps.">
     <meta name="theme-color" content="#0d0d11" media="(prefers-color-scheme: dark)">
     <meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
     <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Re-deemer — free cassette tape echo">
+    <meta property="og:title" content="Re-deemer: free cassette tape echo">
     <meta property="og:description" content="A faithful build of the TE-2 that never shipped. VST3 / CLAP / AU. Part of the naturarum apps.">
     <meta property="og:url" content="https://naturarum.github.io/apps/re-deemer/">
 
@@ -53,7 +53,7 @@
 
     <div class="rd-stage">
         <iframe id="rd-frame"
-                title="Re-deemer — free cassette tape echo (the live site)"
+                title="Re-deemer: free cassette tape echo (the live site)"
                 src="https://naturarum.github.io/re-deemer/"
                 allow="autoplay; fullscreen; clipboard-write"
                 referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -67,7 +67,7 @@
     <script>
     /* The embedded site is same-origin (both naturarum.github.io), so we can
        make any CROSS-domain links inside the frame (downloads, GitHub releases,
-       etc.) open in a new tab — otherwise they'd try to load in the frame and
+       etc.) open in a new tab, otherwise they'd try to load in the frame and
        break (many sites block framing). Same-origin links stay in the frame.
        Re-runs on every in-frame navigation. No-ops harmlessly off-origin
        (e.g. local dev), where the live remote site still displays fine. */
@@ -84,7 +84,7 @@
                     try { h = new URL(a.href, doc.baseURI).host; } catch (e) { return; }
                     if (h && h !== host) { a.target = '_blank'; a.rel = 'noopener noreferrer'; }
                 });
-            } catch (e) { /* cross-origin (e.g. local dev) — ignore */ }
+            } catch (e) { /* cross-origin (e.g. local dev), ignore */ }
         }
         frame.addEventListener('load', retarget);
     })();

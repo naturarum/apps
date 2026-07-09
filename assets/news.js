@@ -1,5 +1,5 @@
 /* ============================================================================
-   news.js — renders the shared news feed (apps/news/news.json).
+   news.js: renders the shared news feed (apps/news/news.json).
    Drop a <div class="news-feed"></div> on any page:
      • no data-news-app  → the merged feed across all apps (the hub)
      • data-news-app="pond" → only that app's posts (an app page)

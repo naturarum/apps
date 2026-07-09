@@ -1,10 +1,21 @@
 [
   {
+    "date": "2026-07-09",
+    "app": "anima",
+    "tag": "Launching July",
+    "title": "Anima, a modal synth, launching July 2026",
+    "body": "**Anima** is a physical-modeling synthesizer for iPad, and the companion to Hexatone. It is launching this July.\n\nThere are no oscillators: a source of energy, a breath or a strike, excites a resonating object, and the sound rings out into a room. Its heart is a modal resonator of 24 tuned modes per voice, so every note lands exactly in tune, including any microtonal pitch Hexatone sends over MPE. Standalone and AUv3.",
+    "link": {
+      "href": "anima/",
+      "label": "Learn more"
+    }
+  },
+  {
     "date": "2026-06-30",
     "app": "pond",
     "tag": "Update",
-    "title": "Pond 1.1 — a big update to how it plays and feels",
-    "body": "Pond 1.1 is here — the biggest update yet to how the pond plays and feels.\n\n- **Per-emitter rates, and drag to move them.** Each emitter keeps its own drip rate now: tap an emitter to change its rate, drag it to reposition it (even several at once, one per finger), and a few at different rates weave into polyrhythms. Each emitter's marker pulses in time with its own drip, so you can see the rhythm at a glance.\n- **Undo and redo, in the drawer.** Painting, Generate, Clear, Transpose, emitters, scales — it all steps back and forward.\n- **Transpose the whole pond** up or down, right by the scale picker.\n- **Six more scales, fifteen in all** — the full set of modes plus harmonic and melodic minor and the Japanese Hirajoshi.\n- **Velocity for wave interference.** Set the range with Base, Min and Max; the overlapping waves decide where each note lands.\n- **A movable paint bar.** Drag it by the handle to the top or bottom so it never covers the cells you want.\n- **Pond follows your host.** As a plugin in AUM, Logic or Cubasis, it now starts and stops with the host transport, so the emitters sit in time with the rest of your session.",
+    "title": "Pond 1.1, a big update to how it plays and feels",
+    "body": "Pond 1.1 is here, the biggest update yet to how the pond plays and feels.\n\n- **Per-emitter rates, and drag to move them.** Each emitter keeps its own drip rate now: tap an emitter to change its rate, drag it to reposition it (even several at once, one per finger), and a few at different rates weave into polyrhythms. Each emitter's marker pulses in time with its own drip, so you can see the rhythm at a glance.\n- **Undo and redo, in the drawer.** Painting, Generate, Clear, Transpose, emitters, scales: it all steps back and forward.\n- **Transpose the whole pond** up or down, right by the scale picker.\n- **Six more scales, fifteen in all.** The full set of modes plus harmonic and melodic minor and the Japanese Hirajoshi.\n- **Velocity for wave interference.** Set the range with Base, Min and Max; the overlapping waves decide where each note lands.\n- **A movable paint bar.** Drag it by the handle to the top or bottom so it never covers the cells you want.\n- **Pond follows your host.** As a plugin in AUM, Logic or Cubasis, it now starts and stops with the host transport, so the emitters sit in time with the rest of your session.",
     "link": {
       "href": "https://apps.apple.com/app/pond-ripple-sequencer/id6779643312",
       "label": "App Store"
@@ -22,7 +33,7 @@
     "app": "hexatone",
     "tag": "New",
     "title": "Hexatone's manual is now on the web",
-    "body": "The full Hexatone manual is now a page on the site, with a downloadable PDF — covering tunings, the built-in sampler, isomorphic layouts, and MPE. The free in-browser **SFZ Builder** turns a folder of samples into an instrument too.",
+    "body": "The full Hexatone manual is now a page on the site, with a downloadable PDF, covering tunings, the built-in sampler, isomorphic layouts, and MPE. The free in-browser **SFZ Builder** turns a folder of samples into an instrument too.",
     "link": {
       "href": "hexatone/manual/",
       "label": "Read the manual"
@@ -33,21 +44,10 @@
     "app": "pond",
     "tag": "Out now",
     "title": "Pond is out on the App Store",
-    "body": "Pond — a ripple sequencer for iPad — is available now. Drop a stone in the water and let the wave play the notes: tap to send ripples, plant emitters, and watch real wave interference shape the dynamics.",
+    "body": "Pond, a ripple sequencer for iPad, is available now. Drop a stone in the water and let the wave play the notes: tap to send ripples, plant emitters, and watch real wave interference shape the dynamics.",
     "link": {
       "href": "https://apps.apple.com/app/pond-ripple-sequencer/id6779643312",
       "label": "App Store"
-    }
-  },
-  {
-    "date": "2026-06-18",
-    "app": "anima",
-    "tag": "Coming soon",
-    "title": "Anima — a wind synth on the way",
-    "body": "Work has begun on **Anima**, a physical-modeling wind synthesizer for iPad and the companion to Hexatone. No oscillators — air resonating in a pipe — and microtonal to the core.",
-    "link": {
-      "href": "anima/",
-      "label": "Learn more"
     }
   }
 ]

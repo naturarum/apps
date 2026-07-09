@@ -1,5 +1,5 @@
 /* ============================================================================
-   manual.css — long-form "prose" layer for the manual pages, on top of base.css.
+   manual.css: long-form "prose" layer for the manual pages, on top of base.css.
    Reuses the design tokens. The @media print block at the bottom is what
    weasyprint turns into the downloadable PDF (light, branded, print-friendly).
    ========================================================================== */
