@@ -1,6 +1,24 @@
 [
   {
     "date": "2026-07-09",
+    "app": "pond",
+    "tag": "Update",
+    "title": "Pond 1.2: play the emitters over MIDI",
+    "body": "Pond's emitters can now be played over MIDI. Flip the Emitters section from Drip to MIDI and they stop dripping on their own and start firing from incoming notes, one emitter per note up from a base note you choose. Play them from a keyboard in the app, or sequence them from your DAW when Pond is a plugin.\n\n- **New emitter rhythms.** Hold an emitter to open a rate menu and pick straight, dotted, or triplet feels, so you can build shuffles and cross-rhythms. Holding to pick means you land on the rate you want instead of cycling past it.\n- **Undo and redo in the plugin**, not just the standalone app.\n\nThe current build, 1.2.1, also adds a reliability fix: if a saved pond ever got damaged, the app could fail to open, and it now recovers on its own.",
+    "link": {
+      "href": "https://apps.apple.com/app/pond-ripple-sequencer/id6779643312",
+      "label": "App Store"
+    }
+  },
+  {
+    "date": "2026-07-09",
+    "app": "re-deemer",
+    "tag": "News",
+    "title": "Re-deemer is coming to iPad",
+    "body": "Re-deemer is coming to iPad. The cassette tape echo that started as a desktop plug-in is now in development as an AUv3 effect, so it will drop straight into AUM and other iOS hosts. Development is in progress; no date to share yet."
+  },
+  {
+    "date": "2026-07-09",
     "app": "anima",
     "tag": "Launching July",
     "title": "Anima, a modal synth, launching July 2026",
@@ -20,13 +38,6 @@
       "href": "https://apps.apple.com/app/pond-ripple-sequencer/id6779643312",
       "label": "App Store"
     }
-  },
-  {
-    "date": "2026-06-30",
-    "app": "re-deemer",
-    "tag": "News",
-    "title": "Re-deemer is coming to iOS",
-    "body": "Re-deemer is coming to iPhone and iPad. The cassette tape echo that began as a desktop plug-in is now in development for iOS, with a TestFlight beta on the way."
   },
   {
     "date": "2026-06-28",
