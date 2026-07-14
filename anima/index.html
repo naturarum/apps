@@ -4,36 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anima: a physical-modeling synthesizer for iPad</title>
-    <meta name="description" content="Anima is a physical-modeling synthesizer for iPad. No oscillators: energy excites a resonating object that rings into a room. A modal resonator keeps every note in tune. The companion to Hexatone. Standalone and AUv3. Launching July 2026.">
+    <meta name="description" content="Anima is a physical-modeling synthesizer for iPad. No oscillators and no samples: a breath excites a resonating object that rings into a room. A modal resonator keeps every note in tune. The companion to Hexatone. Standalone and AUv3. Launching July 2026.">
     <meta name="theme-color" content="#0d0d11" media="(prefers-color-scheme: dark)">
     <meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
     <link rel="icon" type="image/png" href="img/icon.png">
     <link rel="apple-touch-icon" href="img/icon.png">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Anima: a physical-modeling synthesizer for iPad">
-    <meta property="og:description" content="No oscillators. A modal resonator that keeps every note in tune. The companion to Hexatone. Launching July 2026.">
+    <meta property="og:description" content="No oscillators, no samples. A breath excites an object that rings into a room. A modal resonator keeps every note in tune. Launching July 2026.">
     <meta property="og:image" content="https://naturarum.github.io/apps/anima/img/surface.jpg">
     <meta property="og:url" content="https://naturarum.github.io/apps/anima/">
 
     <link rel="stylesheet" href="../assets/base.css">
     <style>
-        /* Anima theme: lavender primary */
-        :root { --accent: #cfa9ff; --accent-glow: rgba(207, 169, 255, 0.22); }
-        @media (prefers-color-scheme: light) { :root { --accent: #8a3ff0; --accent-glow: rgba(138, 63, 240, 0.2); } }
+        /* Anima theme: the app's warm "dusk" palette (earthy pastels): slate
+           denim, sand, ochre soil, terracotta clay, olive sage. The wordmark
+           gradient echoes the icon: denim sky into sand into ochre. */
+        :root {
+            --accent: #d69a56; --accent-glow: rgba(214, 154, 86, 0.22);
+            --accent2: #8fa6c4; --accent3: #cf8a5c; --accent4: #d9a86a;   /* denim / clay / sand: keep the family earthy */
+            --grad: linear-gradient(100deg, #8fa6c4 0%, #d3bf94 40%, #d99f56 72%, #cc8054 100%);
+        }
+        @media (prefers-color-scheme: light) {
+            :root {
+                --accent: #955320; --accent-glow: rgba(149, 83, 32, 0.2);
+                --accent2: #4a6f9e; --accent3: #a8603a; --accent4: #9a6b32;
+                --grad: linear-gradient(100deg, #476b9c 0%, #a67f3f 46%, #955320 100%);
+            }
+        }
+        .nav-mark { background: linear-gradient(135deg, #8fa6c4, #e0cfa2, #d59a52); }
+        @media (prefers-color-scheme: light) { .nav-mark { background: linear-gradient(135deg, #476b9c, #a67f3f, #955320); } }
 
         .app-icon-placeholder {
             width: 96px; height: 96px; border-radius: 22px; margin: 0 auto 28px; overflow: hidden;
             box-shadow: 0 16px 44px var(--accent-glow), 0 8px 24px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.06) inset;
         }
         .app-icon-placeholder img { width: 100%; height: 100%; object-fit: cover; display: block; }
-
-        /* Wide hero showcase: the whole control surface in one frame */
-        .hero-shot {
-            width: 100%; max-width: 720px; margin: var(--space-xl) auto 0;
-            border-radius: 18px; overflow: hidden;
-            box-shadow: 0 18px 44px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.05);
-        }
-        .hero-shot img { width: 100%; height: auto; display: block; }
 
         /* Screenshot gallery: horizontal, swipeable, App Store style */
         .shots {
@@ -76,32 +82,27 @@
     <main>
         <section class="hero container">
             <div class="app-icon-placeholder">
-                <img src="img/icon.png" alt="Anima app icon">
+                <img src="img/icon.png" alt="Anima app icon: an eye-shaped lens with a dusk gradient and a glowing center">
             </div>
             <p class="eyebrow">Launching July 2026</p>
             <h1><span class="accent">Anima</span></h1>
             <p class="tagline">
-                A physical-modeling synthesizer for iPad. There are no oscillators: a source of energy,
-                a breath or a strike, excites a resonating object, and the sound rings out into a room.
-                Its heart is a modal resonator, so every note lands exactly in tune. Anima is the
-                companion to Hexatone.
+                A physical-modeling synthesizer for iPad. No oscillators and no samples: a breath excites
+                a resonating object, and it rings out into a room. Its heart is a modal resonator, so every
+                note lands exactly in tune. Anima is the companion to Hexatone.
             </p>
             <div class="cta-group">
                 <a href="../#contact" class="btn-primary">Get notified</a>
                 <a href="../" class="btn-secondary">&larr; All apps</a>
             </div>
-
-            <figure class="hero-shot">
-                <img src="img/surface.jpg" alt="Anima's control surface: three rows, ENERGY, OBJECT and ROOM, each control a single glyph" width="1200" height="729" loading="eager">
-            </figure>
         </section>
 
         <section class="container reveal" aria-label="Anima screenshots">
             <div class="shots">
-                <img src="img/01_presets.jpg" alt="The presets panel, with the ribbon keyboard below" width="900" height="1200">
-                <img src="img/02_portrait.jpg" alt="The control surface in portrait: ENERGY, OBJECT and ROOM as columns" width="1032" height="1180">
+                <img src="img/surface.jpg" alt="Anima's control surface in landscape: ENERGY, OBJECT and ROOM as three rows, in the warm dusk palette" width="1200" height="729">
+                <img src="img/portrait.jpg" alt="The same surface in portrait, the three sections stacked as columns" width="900" height="1200">
             </div>
-            <p class="shots-hint">Swipe to see more &rarr;</p>
+            <p class="shots-hint">Landscape rows, or portrait columns &rarr;</p>
         </section>
 
         <section class="features container reveal">
@@ -111,52 +112,52 @@
                     <span class="card-label">The instrument</span>
                     <h3>Energy &rarr; object &rarr; room</h3>
                     <p>
-                        No oscillators. A source of energy, a breath or a strike, excites a resonating
-                        object, and the result rings out into a room. That is the whole instrument, read
-                        left to right, cause to effect.
+                        No oscillators and no samples. A breath excites a resonating object, and the object
+                        rings out into a room. That is the whole interface, read left to right.
                     </p>
                 </div>
                 <div class="feature-card">
                     <span class="card-label">The object</span>
                     <h3>A modal resonator</h3>
                     <p>
-                        The object is a bank of 24 tuned, coupled resonances: the modes of a string, a bar,
-                        a bell. Their frequencies come straight from the note you play, with no delay lines
-                        and no lookup tables. 32 voices of polyphony.
+                        Twenty-four coupled resonances per voice, computed from the note. Make it wood, glass,
+                        or metal, and stretch its partials from strings into bells. Push Inertia far enough and
+                        the note ignites and sings on its own breath.
                     </p>
                 </div>
                 <div class="feature-card">
                     <span class="card-label">Tuning</span>
                     <h3>Every note in tune</h3>
                     <p>
-                        Because pitch is computed rather than sampled, every note is exactly in tune,
-                        including any microtonal pitch an MPE controller sends. Plug in Hexatone and its
-                        per-note microtuning just works, with nothing to configure.
+                        Because pitch is computed, every note is exactly in tune, including any microtonal
+                        pitch an MPE controller sends. Route Hexatone's MPE in and its per-note microtuning
+                        just works, with nothing to configure.
                     </p>
                 </div>
                 <div class="feature-card">
-                    <span class="card-label">The surface</span>
-                    <h3>A panel you can read</h3>
+                    <span class="card-label">The look</span>
+                    <h3>A panel that comes alive</h3>
                     <p>
-                        Every control is a single bold glyph whose shape is its value, so the panel is a
-                        picture of the current sound. Load a preset and the whole surface morphs to its
-                        new shape.
+                        Every control is a glyph whose shape is its value, so the panel is a picture of the
+                        current sound. Touch one and it moves; load a preset and the whole surface morphs.
+                        Dressed in a warm dusk palette of sand, ochre, and sage.
                     </p>
                 </div>
                 <div class="feature-card">
                     <span class="card-label">The room</span>
-                    <h3>A room to ring into</h3>
+                    <h3>A room you can morph</h3>
                     <p>
-                        A sixteen-line reverb and a colored echo carry every sound, from a tight space to
-                        an endless halo. Freeze holds a moment for as long as you like.
+                        One space, from a tight slap to an endless wash. Size sets the echo, Regen runs all
+                        the way into self-oscillation, and Blur melts the repeats into reverb.
                     </p>
                 </div>
                 <div class="feature-card">
-                    <span class="card-label">Everywhere</span>
-                    <h3>Standalone and AUv3</h3>
+                    <span class="card-label">Play it</span>
+                    <h3>Ribbon, keys, and MPE</h3>
                     <p>
-                        A focused standalone instrument and an AUv3 for AUM, GarageBand, Logic and
-                        Cubasis. The same engine either way, with every control automatable by the host.
+                        Play on a continuous-pitch ribbon or a three-octave piano, from a single voice up to
+                        sixty-four. Standalone or as an AUv3 in AUM, Logic, GarageBand, and Cubasis, with MPE
+                        expression and a sustain pedal.
                     </p>
                 </div>
             </div>
@@ -167,18 +168,19 @@
             <div class="details-card">
                 <h3>A companion instrument, in the same family</h3>
                 <p>
-                    Anima shares Hexatone's soft, glassy pastel look and its microtonal heart, but stands
-                    on its own: a deep physical-modeling synth for iPad that earns its place in any studio.
-                    Breathy reeds, struck bells and brass, and tones no acoustic instrument could make, all
-                    from one resonating object. One price, no in-app purchases, no subscription.
+                    Anima shares Hexatone's microtonal heart but stands on its own: a deep physical-modeling
+                    synth for iPad, dressed in a warm dusk palette of sand, clay, ochre, and sage. Breathy
+                    reeds, struck bells and metal, and tones no acoustic instrument could make. Factory presets
+                    arrive in banks, including an artist pack, and you can save your own or copy any sound as
+                    text to send to a friend. One price, no in-app purchases, no subscription.
                 </p>
                 <div class="tags">
                     <span class="tag">Physical modeling</span>
                     <span class="tag">Modal</span>
                     <span class="tag">Microtonal</span>
-                    <span class="tag">Standalone</span>
-                    <span class="tag">AUv3</span>
                     <span class="tag">MPE</span>
+                    <span class="tag">AUv3</span>
+                    <span class="tag">iPad</span>
                 </div>
             </div>
         </section>
