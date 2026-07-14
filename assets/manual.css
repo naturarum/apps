@@ -121,3 +121,6 @@
     .manual figure, .manual img, .manual table, .manual blockquote, .manual pre { break-inside: avoid; }
     .manual figcaption { color: #6a6a72; }
 }
+
+/* Display serif for manual headings, matching the site's display layer. */
+.manual h1, .manual h2, .manual h3, .manual h4 { font-family: var(--font-display); letter-spacing: 0.002em; }
