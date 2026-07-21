@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datum: a native audio tag editor for Mac and iPad</title>
+    <meta name="description" content="Datum is a fast, native tag editor for your music library on Mac and iPad. Edit FLAC, ALAC, MP3, OGG, WAV and AIFF tags and cover art in place. Batch editing, manual save, no accounts, no tracking.">
+    <meta name="theme-color" content="#0d0d11" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
+    <link rel="icon" type="image/png" href="img/icon.png">
+    <link rel="apple-touch-icon" href="img/icon.png">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Datum: a native audio tag editor for Mac and iPad">
+    <meta property="og:description" content="Edit FLAC, ALAC, MP3, OGG, WAV and AIFF tags and cover art in place. Batch editing, manual save, no accounts, no tracking.">
+    <meta property="og:image" content="https://naturarum.github.io/apps/datum/img/icon.png">
+    <meta property="og:url" content="https://naturarum.github.io/apps/datum/">
+
+    <link rel="stylesheet" href="../assets/base.css">
+    <style>
+        /* Datum theme: the app's indigo tag mark on a cool, quiet ground. */
+        :root {
+            --accent: #7d7bf0; --accent-glow: rgba(125, 123, 240, 0.22);
+            --accent2: #9a8fe8; --accent3: #6c8cd8; --accent4: #8f9bec;
+            --grad: linear-gradient(100deg, #9a8fe8 0%, #7d7bf0 55%, #6c8cd8 100%);
+        }
+        @media (prefers-color-scheme: light) {
+            :root {
+                --accent: #4a48c4; --accent-glow: rgba(74, 72, 196, 0.18);
+                --accent2: #5e55b8; --accent3: #3d5aa8; --accent4: #5560c0;
+                --grad: linear-gradient(100deg, #5e55b8 0%, #4a48c4 55%, #3d5aa8 100%);
+            }
+        }
+        .nav-mark { background: linear-gradient(135deg, #9a8fe8, #7d7bf0, #6c8cd8); }
+        @media (prefers-color-scheme: light) { .nav-mark { background: linear-gradient(135deg, #5e55b8, #4a48c4, #3d5aa8); } }
+
+        /* Cool indigo wash for the page background. */
+        body {
+            background-image:
+                radial-gradient(ellipse at 50% 0%, rgba(125, 123, 240, 0.08) 0%, transparent 70%),
+                radial-gradient(ellipse at 20% 46%, rgba(108, 140, 216, 0.05) 0%, transparent 60%),
+                radial-gradient(ellipse at 82% 70%, rgba(154, 143, 232, 0.06) 0%, transparent 62%);
+        }
+
+        .app-icon-placeholder {
+            width: 96px; height: 96px; border-radius: 22px; margin: 0 auto 28px; overflow: hidden;
+            box-shadow: 0 16px 44px var(--accent-glow), 0 8px 24px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+        }
+        .app-icon-placeholder img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    </style>
+</head>
+<body>
+    <div class="bg-shapes" aria-hidden="true">
+        <div class="bg-blob"></div>
+        <div class="bg-blob"></div>
+        <div class="bg-blob"></div>
+        <div class="bg-blob"></div>
+    </div>
+
+    <nav>
+        <div class="nav-inner">
+            <div style="display: flex; align-items: center; gap: 9px; min-width: 0;">
+                <a href="../" class="nav-brand">
+                    <span class="nav-mark" aria-hidden="true"></span>
+                    naturarum
+                </a>
+                <span class="nav-crumb">/&nbsp;<b>Datum</b></span>
+            </div>
+            <a href="#support" class="nav-cta">Support</a>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero container">
+            <div class="app-icon-placeholder">
+                <img src="img/icon.png" alt="Datum app icon: an indigo price-tag mark on a pale gradient">
+            </div>
+            <p class="eyebrow">Coming to the App Store</p>
+            <h1><span class="accent">Datum</span></h1>
+            <p class="tagline">
+                A fast, native tag editor for your music library, on Mac and iPad. Open a folder,
+                edit the metadata across your tracks, and save to disk only when you decide to.
+                No library to import, no database, no cloud account. Your files stay exactly
+                where they are.
+            </p>
+            <div class="cta-group">
+                <a href="#support" class="btn-primary">Support &amp; contact</a>
+                <a href="../" class="btn-secondary">&larr; All apps</a>
+            </div>
+        </section>
+
+        <section class="features container reveal">
+            <h2 class="section-title">What it does</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="card-label">Formats</span>
+                    <h3>Every file you actually have</h3>
+                    <p>
+                        FLAC, Apple Lossless and AAC (M4A / MP4), MP3, OGG Vorbis and Opus, WAV,
+                        and AIFF. Mix them freely: select a FLAC, an MP3, and an M4A together and
+                        edit them in one go.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <span class="card-label">Batch editing</span>
+                    <h3>Multiple tracks, done right</h3>
+                    <p>
+                        Select several tracks and Datum shows what they share. Fields with the same
+                        value are ready to edit; fields that differ are marked so you don't overwrite
+                        them by accident. Change one field and it applies to every selected track on save.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <span class="card-label">Safety</span>
+                    <h3>Safe with your files</h3>
+                    <p>
+                        Datum edits metadata in place. It never re-encodes your audio and never rewrites
+                        a file from a template: tags it doesn't display, like ReplayGain, MusicBrainz IDs,
+                        or lyrics, are preserved exactly as they were.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <span class="card-label">Cover art</span>
+                    <h3>Artwork included</h3>
+                    <p>
+                        View, replace, and extract embedded cover art in every supported format,
+                        including OGG. Drop an image on the editor and it applies to the whole selection.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <span class="card-label">On the Mac</span>
+                    <h3>The full toolkit</h3>
+                    <p>
+                        Look up album details from Discogs and apply them in one step, auto-number
+                        tracks in sequence, search across your loaded files, and undo anything.
+                        Manual save: Datum never touches your files until you hit Save.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <span class="card-label">On the iPad</span>
+                    <h3>Your library, anywhere</h3>
+                    <p>
+                        Open folders straight from the Files app, including iCloud Drive. The same
+                        careful editing model, the same formats, built for touch.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="details container reveal">
+            <h2 class="section-title">In short</h2>
+            <div class="details-card">
+                <h3>A clean, focused tool for people who care about their music files</h3>
+                <p>
+                    Datum is built in Swift, native on both platforms, and private by design: no
+                    accounts, no analytics, no third-party SDKs, no ads. The optional Discogs lookup
+                    on macOS makes a single anonymous web request for the album you choose. One
+                    purchase covers Mac and iPad.
+                </p>
+                <div class="tags">
+                    <span class="tag">Tag editor</span>
+                    <span class="tag">FLAC</span>
+                    <span class="tag">Cover art</span>
+                    <span class="tag">Batch edit</span>
+                    <span class="tag">Mac</span>
+                    <span class="tag">iPad</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="news container reveal" id="news">
+            <h2 class="section-title">Updates</h2>
+            <div class="news-feed" data-news-app="datum" data-news-limit="5"></div>
+        </section>
+
+        <section class="contact container reveal" id="support">
+            <div class="contact-card">
+                <h3>Support</h3>
+                <p>
+                    Need help, found a bug, or want a feature? Email me and I'll get back to you.
+                    See also the <a href="privacy.html">privacy policy</a>.
+                </p>
+                <a href="mailto:nrrrm@icloud.com" class="contact-email">nrrrm@icloud.com</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="container">
+        <div class="footer-links">
+            <a href="../">All apps</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="#support">Support</a>
+        </div>
+        <p>&copy; <span id="current-year">2026</span> naturarum</p>
+    </footer>
+
+    <script src="../assets/site.js"></script>
+    <script src="../assets/news.js"></script>
+</body>
+</html>

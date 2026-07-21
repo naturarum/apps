@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy: Datum</title>
+    <meta name="description" content="Datum's privacy policy. Datum does not collect, store, or transmit any personal data.">
+    <meta name="theme-color" content="#0d0d11" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
+    <link rel="icon" type="image/png" href="img/icon.png">
+    <link rel="apple-touch-icon" href="img/icon.png">
+    <meta name="robots" content="noindex">
+
+    <link rel="stylesheet" href="../assets/base.css">
+    <style>
+        :root {
+            --accent: #7d7bf0; --accent-glow: rgba(125, 123, 240, 0.22);
+            --grad: linear-gradient(100deg, #9a8fe8 0%, #7d7bf0 55%, #6c8cd8 100%);
+        }
+        @media (prefers-color-scheme: light) {
+            :root {
+                --accent: #4a48c4; --accent-glow: rgba(74, 72, 196, 0.18);
+                --grad: linear-gradient(100deg, #5e55b8 0%, #4a48c4 55%, #3d5aa8 100%);
+            }
+        }
+        .nav-mark { background: linear-gradient(135deg, #9a8fe8, #7d7bf0, #6c8cd8); }
+        @media (prefers-color-scheme: light) { .nav-mark { background: linear-gradient(135deg, #5e55b8, #4a48c4, #3d5aa8); } }
+        .policy { max-width: 720px; margin: 0 auto; }
+        .policy h1 { margin-bottom: 6px; }
+        .policy .updated { color: var(--text-dim); font-size: 0.85rem; margin-bottom: var(--space-lg, 32px); }
+        .policy p { margin: 0 0 1em; line-height: 1.65; }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-inner">
+            <div style="display: flex; align-items: center; gap: 9px; min-width: 0;">
+                <a href="../" class="nav-brand">
+                    <span class="nav-mark" aria-hidden="true"></span>
+                    naturarum
+                </a>
+                <span class="nav-crumb">/&nbsp;<a href="./" style="color: inherit;">Datum</a>&nbsp;/&nbsp;<b>Privacy</b></span>
+            </div>
+            <a href="./#support" class="nav-cta">Support</a>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero left container policy">
+            <h1>Privacy Policy — <span class="accent">Datum</span></h1>
+            <p class="updated">Last updated: June 24, 2026</p>
+
+            <p>
+                Datum does not collect, store, or transmit any personal data. It has no
+                analytics, no advertising, and no third-party SDKs. It does not require
+                an account.
+            </p>
+            <p>
+                Datum reads and writes audio metadata only in the files you explicitly
+                open, and only saves when you choose to.
+            </p>
+            <p>
+                On macOS, the optional &ldquo;Discogs&rdquo; feature sends a single anonymous
+                request to <a href="https://www.discogs.com">https://www.discogs.com</a> to fetch
+                public album information (artist, title, tracklist, cover art) for a release
+                you select. This request uses a generic browser user-agent and includes no
+                account, login, or identifying information. Datum stores no Discogs
+                credentials or tokens.
+            </p>
+            <p>
+                If you have questions, contact
+                <a href="mailto:nrrrm@icloud.com">nrrrm@icloud.com</a>.
+            </p>
+        </section>
+    </main>
+
+    <footer class="container">
+        <div class="footer-links">
+            <a href="./">Datum</a>
+            <a href="../">All apps</a>
+            <a href="./#support">Support</a>
+        </div>
+        <p>&copy; <span id="current-year">2026</span> naturarum</p>
+    </footer>
+
+    <script src="../assets/site.js"></script>
+</body>
+</html>
