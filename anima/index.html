@@ -16,7 +16,7 @@
     <meta property="og:image" content="https://naturarum.github.io/apps/anima/img/surface.jpg">
     <meta property="og:url" content="https://naturarum.github.io/apps/anima/">
 
-    <link rel="stylesheet" href="../assets/base.css">
+    <link rel="stylesheet" href="../assets/base.css?v=20260724">
     <style>
         /* Anima theme: the app's warm "dusk" palette (earthy pastels): slate
            denim, sand, ochre soil, terracotta clay, olive sage. The wordmark
@@ -33,9 +33,6 @@
                 --grad: linear-gradient(100deg, #476b9c 0%, #a67f3f 46%, #955320 100%);
             }
         }
-        .nav-mark { background: linear-gradient(135deg, #8fa6c4, #e0cfa2, #d59a52); }
-        @media (prefers-color-scheme: light) { .nav-mark { background: linear-gradient(135deg, #476b9c, #a67f3f, #955320); } }
-
         /* Earthy dusk wash for the page background: denim sky up top, ochre and
            clay glowing from below, echoing the icon (overrides the default
            blue/pink/lavender radials in base.css). */
@@ -70,12 +67,7 @@
     </style>
 </head>
 <body>
-    <div class="bg-shapes" aria-hidden="true">
-        <div class="bg-blob"></div>
-        <div class="bg-blob"></div>
-        <div class="bg-blob"></div>
-        <div class="bg-blob"></div>
-    </div>
+    <canvas id="vignette" data-scene="anima" style="position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none" aria-hidden="true"></canvas>
 
     <nav>
         <div class="nav-inner">
@@ -91,7 +83,7 @@
     </nav>
 
     <main>
-        <section class="hero container">
+        <section class="hero container compact">
             <div class="app-icon-placeholder">
                 <img src="img/icon.png" alt="Anima app icon: an eye-shaped lens with a dusk gradient and a glowing center">
             </div>
@@ -106,6 +98,7 @@
                 <a href="../#contact" class="btn-primary">Get notified</a>
                 <a href="../" class="btn-secondary">&larr; All apps</a>
             </div>
+            <div class="chips"><span class="chip">July 2026</span><span class="chip">iPad</span><span class="chip">MPE</span><span class="chip">AUv3</span></div>
         </section>
 
         <section class="container reveal" aria-label="Anima screenshots">
@@ -211,7 +204,7 @@
             <div class="contact-card">
                 <h3>Want to know when Anima launches?</h3>
                 <p>Drop me a line and I'll let you know the moment it ships.</p>
-                <a href="mailto:nrrrm@icloud.com" class="contact-email">nrrrm@icloud.com</a>
+                <button class="contact-email contact-reveal" type="button" data-u="nrrrm" data-d="icloud.com">Show email address</button>
             </div>
         </section>
     </main>
@@ -225,7 +218,9 @@
         <p>&copy; <span id="current-year">2026</span> naturarum</p>
     </footer>
 
-    <script src="../assets/site.js"></script>
-    <script src="../assets/news.js"></script>
+    <script src="../assets/site.js?v=20260724"></script>
+    <script src="../assets/vignette.js?v=20260724"></script>
+    <script src="../assets/news.js?v=20260724"></script>
+    <script data-goatcounter="https://naturarum.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>

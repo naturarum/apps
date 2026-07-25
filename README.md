@@ -33,6 +33,30 @@ hub just links out to it.
 
 Everything shares `assets/base.css`, so the look stays consistent automatically.
 
+## Before committing
+
+Run the static checker. It is mechanical, fast, and every check exists because
+that bug actually happened:
+
+```bash
+python3 tools/check-site.py
+```
+
+It verifies CSS brace balance (a single stray brace silently kills every rule
+after it, with no console error), the no-em-dash house rule, that no plaintext
+contact address is in the source, that shared assets carry a `?v=` cache-buster,
+that each `#vignette` canvas loads its script and keeps its inline position
+fallback, that no `_*.html` workshop page is left behind, and that local links
+resolve.
+
+### Cache-busting
+
+`base.css`, `site.js`, `vignette.js` and `news.js` are referenced with a `?v=`
+query. **Bump it whenever you change one of them**, otherwise a returning
+visitor can pair the new HTML with an old cached stylesheet and see a
+half-styled page. One find-and-replace across the pages plus
+`tools/manual.template.html` does it.
+
 ## Deploy
 
 Pushing to `main` publishes via GitHub Pages (source: `main` / root).

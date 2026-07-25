@@ -20,3 +20,21 @@
         reveals.forEach(function (el) { obs.observe(el); });
     });
 })();
+
+/* Obfuscated contact: the address exists nowhere in the HTML; it is assembled
+   on demand from the button's two data- parts, then swapped in as a mailto. */
+(function () {
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.contact-reveal').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var addr = btn.dataset.u + '@' + btn.dataset.d;
+                var a = document.createElement('a');
+                a.className = 'contact-email';
+                a.href = 'mailto:' + addr;
+                a.textContent = addr;
+                btn.replaceWith(a);
+                a.focus();
+            }, { once: true });
+        });
+    });
+})();
