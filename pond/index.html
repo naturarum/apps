@@ -15,7 +15,7 @@
     <meta property="og:image" content="https://naturarum.github.io/apps/pond/img/01_hero.jpg">
     <meta property="og:url" content="https://naturarum.github.io/apps/pond/">
 
-    <link rel="stylesheet" href="../assets/base.css">
+    <link rel="stylesheet" href="../assets/base.css?v=20260724">
     <style>
         /* Pond theme: cyan/blue primary. The "Pond" title + brand mark use Pond's
            own gradient, blue -> pastel pink -> yellow, matching the app/screenshots
@@ -30,9 +30,6 @@
                 --grad: linear-gradient(100deg, #3f93e6 0%, #9a5fe0 30%, #e85f97 56%, #ef8a5f 80%, #d99a2e 100%);
             }
         }
-        .nav-mark { background: linear-gradient(135deg, #8fc4f2 0%, #f0a3c6 55%, #f4d089 100%); }
-        @media (prefers-color-scheme: light) { .nav-mark { background: linear-gradient(135deg, #3f93e6, #e85f97, #d99a2e); } }
-
         .app-icon-placeholder {
             width: 96px; height: 96px; border-radius: 22px; margin: 0 auto 28px; overflow: hidden;
             box-shadow: 0 16px 44px rgba(140, 184, 255, 0.2), 0 8px 24px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.06) inset;
@@ -57,12 +54,7 @@
     </style>
 </head>
 <body>
-    <div class="bg-shapes" aria-hidden="true">
-        <div class="bg-blob"></div>
-        <div class="bg-blob"></div>
-        <div class="bg-blob"></div>
-        <div class="bg-blob"></div>
-    </div>
+    <canvas id="vignette" data-scene="pond" style="position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none" aria-hidden="true"></canvas>
 
     <nav>
         <div class="nav-inner">
@@ -78,7 +70,7 @@
     </nav>
 
     <main>
-        <section class="hero container">
+        <section class="hero container compact">
             <div class="app-icon-placeholder">
                 <img src="img/icon.png" alt="Pond app icon">
             </div>
@@ -96,6 +88,7 @@
                 <a href="manual/" class="btn-secondary">Manual</a>
                 <a href="../" class="btn-secondary">&larr; All apps</a>
             </div>
+            <div class="chips"><span class="chip on">Out now</span><span class="chip">iPad</span><span class="chip">App Store</span><span class="chip">AUv3</span></div>
         </section>
 
         <section class="container reveal" aria-label="Pond screenshots">
@@ -198,7 +191,7 @@
             <div class="contact-card">
                 <h3>Get in touch</h3>
                 <p>Questions, feedback, or press: I'd love to hear from you.</p>
-                <a href="mailto:nrrrm@icloud.com" class="contact-email">nrrrm@icloud.com</a>
+                <button class="contact-email contact-reveal" type="button" data-u="nrrrm" data-d="icloud.com">Show email address</button>
             </div>
         </section>
     </main>
@@ -213,7 +206,9 @@
         <p>&copy; <span id="current-year">2026</span> naturarum</p>
     </footer>
 
-    <script src="../assets/site.js"></script>
-    <script src="../assets/news.js"></script>
+    <script src="../assets/site.js?v=20260724"></script>
+    <script src="../assets/vignette.js?v=20260724"></script>
+    <script src="../assets/news.js?v=20260724"></script>
+    <script data-goatcounter="https://naturarum.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>

@@ -21,7 +21,7 @@
     <meta name="twitter:description" content="Any tuning, a built-in sampler, beautiful isomorphic layouts. For iPad.">
     <meta name="twitter:image" content="https://naturarum.github.io/apps/hexatone/img/icon.png">
 
-    <link rel="stylesheet" href="../assets/base.css">
+    <link rel="stylesheet" href="../assets/base.css?v=20260724">
     <style>
         /* ─── Hexatone-specific styling (shared styles come from base.css) ── */
         .hero .app-icon-placeholder {
@@ -68,28 +68,6 @@
             .hero-images img { position: static; width: 75%; transform: none !important; opacity: 1 !important; margin: 0; }
         }
 
-        /* Hexatone's signature hexagon background (overrides base bg-shapes) */
-        .bg-hexagons {
-            position: fixed;
-            pointer-events: none;
-            z-index: 0;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            overflow: hidden;
-        }
-        @keyframes breathe {
-            0%, 100% { transform: rotate(var(--rot)) translateY(0) scale(1); opacity: 0.03; }
-            50% { transform: rotate(var(--rot)) translateY(-15px) scale(1.02); opacity: 0.06; }
-        }
-        .bg-hex {
-            position: absolute;
-            clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
-            animation: breathe 12s ease-in-out infinite;
-        }
-        .bg-hex:nth-child(1) { --rot: 15deg; width: 200px; height: 173.2px; background: var(--accent); top: 8%; left: -4%; }
-        .bg-hex:nth-child(2) { --rot: -10deg; width: 140px; height: 121.2px; background: var(--accent2); top: 55%; right: -3%; animation-delay: -3s; }
-        .bg-hex:nth-child(3) { --rot: 22deg; width: 100px; height: 86.6px; background: var(--accent3); bottom: 15%; left: 10%; animation-delay: -6s; }
-        .bg-hex:nth-child(4) { --rot: 8deg; width: 160px; height: 138.6px; background: var(--accent4); top: 30%; right: 12%; animation-delay: -9s; }
 
         /* feature-card hexagon corner accents */
         .feature-card .card-hex {
@@ -111,7 +89,6 @@
         .feature-card:nth-child(5) .card-hex { background: var(--accent5); }
 
         @media (prefers-reduced-motion: reduce) {
-            .bg-hex { animation: none; }
             .hero-images img, .feature-card .card-hex { transition: none; }
             .feature-card:hover .card-hex { transform: none; }
         }
@@ -293,12 +270,7 @@
     </style>
 </head>
 <body>
-    <div class="bg-hexagons" aria-hidden="true">
-        <div class="bg-hex"></div>
-        <div class="bg-hex"></div>
-        <div class="bg-hex"></div>
-        <div class="bg-hex"></div>
-    </div>
+    <canvas id="vignette" data-scene="hexatone" style="position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none" aria-hidden="true"></canvas>
 
     <nav>
         <div class="nav-inner">
@@ -314,7 +286,7 @@
     </nav>
 
     <main>
-        <section class="hero container">
+        <section class="hero container compact">
             <!-- App icon -->
             <div class="app-icon-placeholder">
                 <img src="img/icon.png" alt="Hexatone app icon">
@@ -335,6 +307,7 @@
                 <a href="https://www.youtube.com/shorts/nB9aX6HUDzI" class="btn-secondary" target="_blank" rel="noopener">Watch Promo</a>
                 <a href="#contact" class="btn-secondary">Get in Touch</a>
             </div>
+            <div class="chips"><span class="chip on">Out now</span><span class="chip">iPad</span><span class="chip">App Store</span><span class="chip">MPE out</span></div>
 
             <!-- Hero Images -->
             <div class="hero-images">
@@ -525,7 +498,7 @@
             <div class="contact-card">
                 <h3>Get in Touch</h3>
                 <p>Questions, feedback, or press inquiries. I'd love to hear from you.</p>
-                <a href="mailto:nrrrm@icloud.com" class="contact-email">nrrrm@icloud.com</a>
+                <button class="contact-email contact-reveal" type="button" data-u="nrrrm" data-d="icloud.com">Show email address</button>
             </div>
         </section>
     </main>
@@ -1082,7 +1055,9 @@
       render();
     })();
     </script>
-    <script src="../assets/site.js"></script>
-    <script src="../assets/news.js"></script>
+    <script src="../assets/site.js?v=20260724"></script>
+    <script src="../assets/vignette.js?v=20260724"></script>
+    <script src="../assets/news.js?v=20260724"></script>
+    <script data-goatcounter="https://naturarum.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>

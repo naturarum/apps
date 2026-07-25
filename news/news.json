@@ -1,5 +1,16 @@
 [
   {
+    "date": "2026-07-24",
+    "app": "re-deemer",
+    "tag": "Free",
+    "title": "Re-deemer is coming to iPad, free",
+    "body": "Re-deemer is coming to iPad, and it will be free, just like the desktop plug-in. The cassette tape echo is in development as an AUv3 effect with a full native faceplate, so it drops straight into AUM, Logic, and other iOS hosts. No date to share yet; it will be announced here.",
+    "link": {
+      "href": "re-deemer/",
+      "label": "About Re-deemer"
+    }
+  },
+  {
     "date": "2026-07-09",
     "app": "pond",
     "tag": "Update",
@@ -9,13 +20,6 @@
       "href": "https://apps.apple.com/app/pond-ripple-sequencer/id6779643312",
       "label": "App Store"
     }
-  },
-  {
-    "date": "2026-07-09",
-    "app": "re-deemer",
-    "tag": "News",
-    "title": "Re-deemer is coming to iPad",
-    "body": "Re-deemer is coming to iPad. The cassette tape echo that started as a desktop plug-in is now in development as an AUv3 effect, so it will drop straight into AUM and other iOS hosts. Development is in progress; no date to share yet."
   },
   {
     "date": "2026-07-09",

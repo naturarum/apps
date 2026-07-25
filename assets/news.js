@@ -8,7 +8,10 @@
    ========================================================================== */
 (function () {
     var script = document.currentScript;
-    var FEED = new URL('../news/news.json', script.src).href;   // apps/news/news.json
+    // Refreshed daily: a cached feed must not hide a post for more than a day,
+    // while still letting the browser cache it within the day.
+    var DAY = new Date().toISOString().slice(0, 10);
+    var FEED = new URL('../news/news.json?d=' + DAY, script.src).href;
     var SITE = new URL('../', script.src).href;                  // apps/  (for resolving internal links)
 
     // App metadata for the hub feed (label + colour dot + page link).
