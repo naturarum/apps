@@ -1,5 +1,16 @@
 [
   {
+    "date": "2026-08-05",
+    "app": "anima",
+    "tag": "Out now",
+    "title": "Anima is out",
+    "body": "**Anima is out on the App Store.** A physical-modeling synthesizer for iPad: no oscillators, just a source of energy exciting a resonating object, ringing out into a room that morphs from delay to reverb.\n\nEvery control is a glyph whose shape is its value, so the panel is a picture of the sound. It plays any tuning an MPE controller can send, which makes it the natural companion to Hexatone. Standalone and AUv3, one price, no in-app purchases.",
+    "link": {
+      "href": "https://apps.apple.com/us/app/anima-synthesizer/id6780281462",
+      "label": "App Store"
+    }
+  },
+  {
     "date": "2026-07-24",
     "app": "re-deemer",
     "tag": "Free",
