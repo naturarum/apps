@@ -524,15 +524,20 @@ In Drambo:</p>
 <ol type="1">
 <li>Add <strong>Hexatone MIDI</strong> to a track's MIDI section (before
 the instrument).</li>
-<li>Put the synth you want to drive after it on the same track, or route
-the track's MIDI out.</li>
+<li>Use an <strong>MPE-capable synth</strong> as the instrument after it
+(Continua, for example), and set its pitch-bend range to match
+Hexatone's (48 by default, in both places).</li>
 <li>Play Hexatone and record; the notes land in Drambo's sequencer like
 any other MIDI.</li>
 </ol>
-<p>One tuning note: Hexatone sends each note on its own MIDI channel
-with its own pitch bend (that is how microtonal pitch travels). For
-non-12-EDO material, make sure the receiving instrument listens on all
-channels and matches the pitch-bend range, as described below.</p>
+<p>The MPE-capable part matters. Hexatone sends each note on its own
+MIDI channel with its own pitch bend, which is how microtonal pitch
+travels, and an MPE synth applies that bend from the very start of the
+note. Drambo's own oscillator modules do not: they take pitch from the
+note number alone and only apply pitch bend once a note is already
+sounding, so through them, notes start on plain semitones. That is a
+property of the receiving module, not of the recording; the full
+microtonal detail is in the MIDI either way.</p>
 <h3 id="recording-and-playing-back-in-a-daw-incoming-midi">Recording and
 playing back in a DAW (incoming MIDI)</h3>
 <p>The Audio Unit now responds to incoming MIDI, so Hexatone fits into a
