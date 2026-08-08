@@ -8,9 +8,13 @@
   <meta name="theme-color" content="#0d0d11" media="(prefers-color-scheme: dark)">
   <meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
   <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
-  <link rel="stylesheet" href="../../assets/base.css">
-  <link rel="stylesheet" href="../../assets/manual.css">
-  <style>:root { --accent: #ffa9c9; --accent-glow: rgba(255,169,201,0.22); }</style>
+  <link rel="stylesheet" href="../../assets/base.css?v=20260724">
+  <link rel="stylesheet" href="../../assets/manual.css?v=20260806">
+  <style>
+    :root { --accent: #ffa9c9; --accent-glow: rgba(255,169,201,0.22); }
+    /* this inline rule outranks base.css's light block, so restate the light accent */
+    @media (prefers-color-scheme: light) { :root { --accent: #e23a78; --accent-glow: rgba(226,58,120,0.20); } }
+  </style>
 </head>
 <body class="manual-body">
   <nav>
@@ -28,7 +32,7 @@
       <a href="manual.pdf" class="btn-secondary" download>Download PDF &darr;</a>
     </div>
 <h1 id="hexatone-user-manual">Hexatone User Manual</h1>
-<p>For version 1.3. Hexatone is an isomorphic hexagonal keyboard and
+<p>For version 1.4.1. Hexatone is an isomorphic hexagonal keyboard and
 microtonal instrument for iPad.</p>
 <hr />
 <h2 id="table-of-contents">Table of Contents</h2>
@@ -43,6 +47,7 @@ minute</a></li>
 <li><a href="#touch-chords-and-sliding">Touch, chords, and
 sliding</a></li>
 <li><a href="#hold-mode">Hold mode</a></li>
+<li><a href="#arpeggiator">Arpeggiator</a></li>
 <li><a href="#velocity">Velocity</a></li>
 </ul></li>
 <li><a href="#6-sound-built-in-voices-and-the-sampler">Sound: built-in
@@ -75,6 +80,9 @@ options</a></li>
 Hexatone with other apps (MIDI and MPE)</a>
 <ul>
 <li><a href="#as-an-auv3-plugin">As an AUv3 plugin</a></li>
+<li><a
+href="#sequencing-hexatone-in-drambo-and-similar-hosts">Sequencing
+Hexatone in Drambo (and similar hosts)</a></li>
 <li><a
 href="#recording-and-playing-back-in-a-daw-incoming-midi">Recording and
 playing back in a DAW (incoming MIDI)</a></li>
@@ -124,15 +132,20 @@ chord. Lift your hands and it keeps ringing.</li>
 sustain.</p>
 <hr />
 <h2 id="3-the-main-screen">3. The main screen</h2>
-<p>The main screen is almost entirely the keyboard, with two floating
+<p>The main screen is almost entirely the keyboard, with three floating
 buttons in the top right corner.</p>
 <figure>
 <img loading="lazy" src="img/02-top-buttons.jpg"
-alt="close-up of the two top-right buttons (Hold and Settings)" />
-<figcaption aria-hidden="true">close-up of the two top-right buttons
-(Hold and Settings)</figcaption>
+alt="close-up of the top-right buttons (Panic, Hold and Settings)" />
+<figcaption aria-hidden="true">close-up of the top-right buttons (Panic,
+Hold and Settings)</figcaption>
 </figure>
 <ul>
+<li><strong>Panic button</strong> (exclamation mark). Silences
+everything at once: notes under your fingers, notes held by Hold, and
+the arpeggiator. It changes no settings, so Hold stays on and you can
+carry straight on playing. Use it if a note ever gets stuck, or to cut
+the sound instantly on stage.</li>
 <li><strong>Hold button</strong> (hand icon). Turns Hold (latch) mode on
 and off. It lights up when on. See <a href="#hold-mode">Hold
 mode</a>.</li>
@@ -190,6 +203,39 @@ synths.</p>
 (it is a struck sound), so to truly hear Hold sustain, use
 <strong>Hexatone Glass</strong> or a sustaining instrument you
 imported.</p>
+<h3 id="arpeggiator">Arpeggiator</h3>
+<p>The arpeggiator plays the keys you are holding one at a time instead
+of all together. Turn it on with <strong>Arpeggiate</strong> in the
+<strong>Arpeggiator</strong> section of the settings.</p>
+<p>It works best with Hold. Turn Hold on, press a chord, lift your
+fingers, and the pattern keeps running on its own. You can then add a
+key to bring another note into the pattern, or tap a held key to take it
+out, all without stopping. The pattern carries on from where it was
+rather than starting over.</p>
+<p>While the arpeggiator is on, pressing a key no longer sounds it
+directly. The keys you press or hold are the notes the pattern draws
+from, and the arpeggiator does the playing. Held keys glow as usual, and
+the note currently sounding shows as a press travelling across them.</p>
+<p>The controls:</p>
+<ul>
+<li><strong>Pattern.</strong> Up, Down, Up-down, As played, or Random.
+Up, Down and Up-down go by pitch. As played follows the order you
+pressed the keys in. Random never plays the same note twice in a
+row.</li>
+<li><strong>Rate.</strong> The note value each step lasts: 1/4, 1/8,
+1/8T, 1/16, 1/16T or 1/32. The ones marked T are triplets.</li>
+<li><strong>Tempo.</strong> 20 to 300 BPM.</li>
+<li><strong>Gate.</strong> How much of each step the note is held for,
+from 5% to 100%. Low values are short and detached, 100% runs the notes
+together.</li>
+<li><strong>Octaves.</strong> 1 to 4. Above 1, the whole shape repeats
+an octave higher before the cycle restarts. It transposes by your
+tuning's own octave, so it stays in tune in any scale.</li>
+</ul>
+<p>In a DAW, the arpeggiator follows the host tempo and locks to its
+bars and beats, so recordings line up with your project. When the host
+transport is stopped it keeps running at its own tempo, so you can still
+play freely. Standalone it always uses the Tempo setting.</p>
 <h3 id="velocity">Velocity</h3>
 <p>Velocity is how hard each note plays. Set how it is decided in
 settings under <strong>Velocity</strong>.</p>
@@ -389,8 +435,15 @@ isomorphic layout:</p>
 <li><strong>Bosanquet</strong></li>
 <li><strong>Wicki-Hayden</strong></li>
 <li><strong>Harmonic Table</strong></li>
-<li><strong>Fourths</strong></li>
+<li><strong>Fourths</strong>, the stacked-fourths layout, which is the
+guitar-like one</li>
 <li><strong>Accordion (B-system)</strong></li>
+<li><strong>Accordion (C-system)</strong>, the mirror image of the
+B-system</li>
+<li><strong>Park</strong>, a relative of Wicki-Hayden where the
+chromatic scale runs vertically</li>
+<li><strong>Gerhard</strong>, which puts the minor and major thirds next
+to each other</li>
 <li><strong>Custom</strong>, where you set the step sizes yourself with
 the <strong>East</strong> and <strong>Up-right</strong> steppers.</li>
 </ul>
@@ -409,6 +462,10 @@ tuning you have chosen.</p>
 <li><strong>Inferno</strong></li>
 <li><strong>Turquoise</strong></li>
 <li><strong>Campfire</strong></li>
+<li><strong>Signal</strong>, a brighter set running from gold through
+greens and cyans to periwinkle. Its colours are all matched in
+lightness, so octaves separate more clearly than in the softer
+palettes.</li>
 </ul>
 <p>In every palette, the hue of a key shows its pitch class and the
 brightness shows its octave, so you can read the keyboard at a glance. A
@@ -436,24 +493,46 @@ palette</figcaption>
 <h2 id="10-using-hexatone-with-other-apps-midi-and-mpe">10. Using
 Hexatone with other apps (MIDI and MPE)</h2>
 <h3 id="as-an-auv3-plugin">As an AUv3 plugin</h3>
-<p>Hexatone is also an Audio Unit (AUv3) instrument, so you can run it
-inside a host app such as AUM, Logic Pro, GarageBand, Cubasis, Loopy
-Pro, or Drambo. As a plugin it makes its own audio and sends MIDI at the
-same time.</p>
+<p>Hexatone ships as two Audio Units (AUv3), and it matters which one
+you load:</p>
 <ul>
-<li>Add Hexatone as an instrument in your host, the same way you add any
-AUv3.</li>
-<li>Open its interface to play and to reach its own settings (the gear
-button), which mirror the app's.</li>
-<li>Scales and instruments you imported in the main Hexatone app appear
-in the plugin automatically.</li>
+<li><strong>Hexatone</strong> (instrument). Makes its own audio with the
+built-in voices and sampler, and sends MIDI at the same time. Load it in
+an instrument slot in AUM, Logic Pro, GarageBand, Cubasis, Loopy Pro, or
+Drambo.</li>
+<li><strong>Hexatone MIDI</strong> (MIDI plugin). Makes no sound of its
+own: it is the same keyboard published as a pure MIDI source, for the
+hosts that only accept MIDI from plugins in their MIDI slots. Load it in
+a MIDI slot (Drambo's MIDI section, AUM's MIDI processing slot, Logic's
+MIDI FX) and route it to any instrument. Its settings hide the
+Instrument section, because there is nothing to hear.</li>
 </ul>
+<p>Everything else is the same in both: layouts, scales, Hold, the
+arpeggiator, and the settings (the gear button). Scales and instruments
+you imported in the main Hexatone app appear in the plugins
+automatically.</p>
 <figure>
 <img loading="lazy" src="img/11-auv3-in-host.jpg"
 alt="Hexatone running as a plugin inside a host like AUM" />
 <figcaption aria-hidden="true">Hexatone running as a plugin inside a
 host like AUM</figcaption>
 </figure>
+<h3 id="sequencing-hexatone-in-drambo-and-similar-hosts">Sequencing
+Hexatone in Drambo (and similar hosts)</h3>
+<p>Some hosts only record MIDI from plugins loaded in their MIDI slots.
+In Drambo:</p>
+<ol type="1">
+<li>Add <strong>Hexatone MIDI</strong> to a track's MIDI section (before
+the instrument).</li>
+<li>Put the synth you want to drive after it on the same track, or route
+the track's MIDI out.</li>
+<li>Play Hexatone and record; the notes land in Drambo's sequencer like
+any other MIDI.</li>
+</ol>
+<p>One tuning note: Hexatone sends each note on its own MIDI channel
+with its own pitch bend (that is how microtonal pitch travels). For
+non-12-EDO material, make sure the receiving instrument listens on all
+channels and matches the pitch-bend range, as described below.</p>
 <h3 id="recording-and-playing-back-in-a-daw-incoming-midi">Recording and
 playing back in a DAW (incoming MIDI)</h3>
 <p>The Audio Unit now responds to incoming MIDI, so Hexatone fits into a
@@ -477,8 +556,12 @@ Expression): each note plays on its own MIDI channel with its own pitch
 bend, which is what places it at its exact microtonal frequency.</p>
 <p>For a synth to play Hexatone in tune:</p>
 <ol type="1">
-<li><strong>Route the MIDI</strong> from Hexatone to the synth (in your
-host, or by enabling Hexatone as a MIDI source).</li>
+<li><strong>Route the MIDI</strong> from Hexatone to the synth. In a
+host, take MIDI from the Hexatone instrument or use the Hexatone MIDI
+plugin. Standalone, the app publishes a virtual MIDI source named
+"Hexatone Out" that other apps can read. (Before 1.4.1 this port was
+named "Microtonal Hex Keyboard Out"; if a saved session lost the
+connection after updating, reselect the port under its new name.)</li>
 <li><strong>Turn on MPE</strong> in the synth. A synth that is not in
 MPE mode cannot voice microtonal chords.</li>
 <li><strong>Match the pitch-bend range.</strong> Hexatone defaults to
@@ -503,6 +586,8 @@ and manage scales.</li>
 (400 to 480 Hz).</li>
 <li><strong>Layout.</strong> Pattern (named layouts or Custom). Custom
 sets the East and Up-right steps.</li>
+<li><strong>Arpeggiator.</strong> Arpeggiate on or off, then Pattern,
+Rate, Tempo, Gate, and Octaves.</li>
 <li><strong>Keys.</strong> Density (26 to 64 pt) and Show note
 labels.</li>
 <li><strong>Appearance.</strong> Palette, with a swatch preview.</li>
@@ -514,7 +599,8 @@ shape).</li>
 <li><strong>Instrument.</strong> Built-in sound, Mute, Voices, import
 single sample, build instrument from folder, import multisample, manage
 instruments, and the Sine preview tone.</li>
-<li><strong>About.</strong> App name and version.</li>
+<li><strong>About.</strong> App name and version, plus the built-in user
+guide.</li>
 </ul>
 <hr />
 <h2 id="12-uninterrupted-playing-ipad-gestures">12. Uninterrupted
@@ -616,6 +702,7 @@ love to hear it.</p>
     <p>&copy; <span id="current-year">2026</span> naturarum</p>
   </footer>
 
-  <script src="../../assets/site.js"></script>
+  <script src="../../assets/site.js?v=20260724"></script>
+    <script data-goatcounter="https://naturarum.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>

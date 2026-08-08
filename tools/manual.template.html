@@ -9,8 +9,14 @@
   <meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
   <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
   <link rel="stylesheet" href="../../assets/base.css?v=20260724">
-  <link rel="stylesheet" href="../../assets/manual.css?v=20260724">
-  <style>:root { --accent: $accent$; --accent-glow: $accentglow$; }</style>
+  <link rel="stylesheet" href="../../assets/manual.css?v=20260806">
+  <style>
+    :root { --accent: $accent$; --accent-glow: $accentglow$; }
+$if(accentlight)$
+    /* this inline rule outranks base.css's light block, so restate the light accent */
+    @media (prefers-color-scheme: light) { :root { --accent: $accentlight$; --accent-glow: $accentglowlight$; } }
+$endif$
+  </style>
 </head>
 <body class="manual-body">
   <nav>

@@ -93,6 +93,21 @@
 .manual img { display: block; width: 100%; height: auto; border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow-card); }
 .manual figcaption { margin-top: var(--space-2xs); font-size: 0.85rem; color: var(--text-dim); text-align: center; }
 
+/* ─── Light mode (screen) ─────────────────────────────────────────────────
+   The heading colors above are dark-theme values; without these overrides the
+   titles render near-white on the light background (shipped that way once). */
+@media (prefers-color-scheme: light) {
+    .manual h1, .manual h2 { color: #111; }
+    .manual h3, .manual h4 { color: #1b1b1f; }
+    .manual h2#table-of-contents + ol,
+    .manual h2#table-of-contents + ul { background: rgba(0, 0, 0, 0.03); }
+    .manual thead th { background: rgba(0, 0, 0, 0.03); }
+    .manual tbody tr:hover td { background: rgba(0, 0, 0, 0.02); }
+    .manual code { background: rgba(0, 0, 0, 0.05); }
+    .manual pre { background: rgba(0, 0, 0, 0.04); }
+    .manual pre code { color: var(--text); }
+}
+
 /* ─── Print → the downloadable PDF (weasyprint) ───────────────────────── */
 @media print {
     @page { size: A4; margin: 18mm 16mm; }
