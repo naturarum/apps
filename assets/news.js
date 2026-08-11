@@ -18,7 +18,7 @@
     var APPS = {
         hexatone:    { name: 'Hexatone',  accent: '#ffa9c9', href: 'hexatone/' },
         pond:        { name: 'Pond',      accent: '#9ee6e6', href: 'pond/' },
-        anima:       { name: 'Anima',     accent: '#cfa9ff', href: 'anima/' },
+        anima:       { name: 'Anima',     accent: '#d69a56', href: 'anima/' },
         're-deemer': { name: 'Re-deemer', accent: '#ffbd82', href: 're-deemer/' }
     };
 

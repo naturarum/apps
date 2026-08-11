@@ -1,5 +1,16 @@
 [
   {
+    "date": "2026-08-11",
+    "app": "anima",
+    "tag": "Update",
+    "title": "Anima 1.1: the ribbon becomes an expression controller",
+    "body": "**Anima 1.1 is the launch-feedback release.** Thank you to everyone who wrote in.\n\n- **The ribbon is an expression controller now.** Slide a finger up or down and route that motion to any mix of the ENERGY and OBJECT controls, each with its own depth, per note. Open SLIDE ROUTING on the ribbon to set it up; routed controls wear a dot and move as you slide. MPE controllers drive the same axis.\n- **Glide**: a portamento control in the top bar, with a time slider. Your saves carry it; factory sounds stay glide-free.\n- **Loose snap** on the ribbon: land in tune, glide freely, settle on the nearest note when you stop.\n- **The plugin grew the full ribbon** (pull the handle at the bottom edge) and the complete MIDI settings, including forcing MPE on.\n- The ribbon is taller on every iPad, and the controls follow host automation and LFOs on screen.\n- Mix and Tone hold their loudness now: Mix sets the space, Tone the color.\n- Hush is Panic: the first press stops every voice, tails included; a second press clears the reverb.\n- Guard screen edges (SETUP) keeps iOS edge swipes from interrupting play.\n- Bug fixes: the Bluetooth MIDI pairing crash, crackling under fast MIDI streams, and heavy DSP load on presets with living detune.\n\nThe [manual](anima/manual/) covers all of it, down to the mathematics.",
+    "link": {
+      "href": "https://apps.apple.com/us/app/anima-synthesizer/id6780281462",
+      "label": "App Store"
+    }
+  },
+  {
     "date": "2026-08-05",
     "app": "anima",
     "tag": "Out now",
