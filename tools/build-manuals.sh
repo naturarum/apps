@@ -19,6 +19,14 @@ build() {
   # cleaner figure captions: drop the "Screenshot: " prefix from image alt text
   sed -i '' -E 's/!\[Screenshot: /![/g' "$md"
 
+  # some manuals open with a vault-facing subtitle (working-reference notes);
+  # when the call passes "stripsubtitle", drop that first italic line after the
+  # title, and the hr under it, from the public page only (the vault keeps both)
+  if [ "${11:-}" = "stripsubtitle" ]; then
+    awk 'NR<=8 && s==0 && /^\*.*\*$/ {s=1; next} NR<=8 && s==1 && /^---$/ {s=2; next} {print}' "$md" > "$md.strip" \
+      && mv "$md.strip" "$md"
+  fi
+
   # vault-only navigation: drop a trailing "Related: [[wikilink]]" footer (the
   # [[...]] links only resolve inside Obsidian), then any hr + blanks left at EOF
   sed -i '' -E '/^\*?Related: \[\[/d' "$md"
@@ -72,6 +80,6 @@ build pond "Pond" "Pond — Manual" \
 build anima "Anima" "Anima Manual" \
   "The full user manual for Anima, the physical-modeling synthesizer for iPad." \
   "#d69a56" "rgba(214,154,86,0.22)" "#955320" "rgba(149,83,32,0.20)" \
-  "$VAULT/Anima/Anima Manual.md" ""
+  "$VAULT/Anima/Anima Manual.md" "" stripsubtitle
 
 echo "done."
