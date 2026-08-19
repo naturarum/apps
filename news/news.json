@@ -1,5 +1,16 @@
 [
   {
+    "date": "2026-08-19",
+    "app": "hexatone",
+    "tag": "Update",
+    "title": "Hexatone 1.3: the sampler grows up",
+    "body": "Hexatone 1.3 is out on the App Store. It is the reliability release: the sampler now builds instruments itself, and the plugin records like an instrument should.\n\n- **Build instruments from a folder of samples.** Hexatone detects each sample's pitch, splits the keyboard between them, and shows you the detected map to confirm before importing. No .sfz file and no web tool needed.\n- **Bigger, more reliable instruments.** Sample libraries load up to what your iPad can actually handle instead of a single fixed limit, and when something cannot load you get a clear reason instead of silence.\n- **Record Hexatone in your DAW.** The Audio Unit responds to incoming MIDI, so hosts like Logic Pro, AUM and Cubasis can record what you play and bounce it to audio, with the microtonal tuning preserved on playback.\n- **Built-in user guide.** The full manual is inside the app, under Settings.",
+    "link": {
+      "href": "hexatone/manual/",
+      "label": "Read the manual"
+    }
+  },
+  {
     "date": "2026-08-18",
     "app": "anima",
     "tag": "Coverage",
