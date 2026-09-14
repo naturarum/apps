@@ -164,6 +164,58 @@
                 ctx.beginPath(); ctx.arc(tx - tw / 2 + 11, ty, 3, 0, 7); ctx.fillStyle = ctx.strokeStyle; ctx.fill();
             });
         },
+        voltage: function (t, a) {
+            /* VoltageControl's panel: eight step plates with a clock light
+               walking across them at 120 BPM, and three patch cables slung
+               between brass jacks above, glowing on each gate. A plate near the
+               pointer lights as if touched. */
+            var gold = light ? '#8a6a12' : '#e6c25a', brass = light ? '#a4842c' : '#b08d3a';
+            var n = 8, pw = Math.min(W * 0.075, 64), gap = pw * 0.32, ph = pw * 1.9;
+            var x0 = W / 2 - (n * pw + (n - 1) * gap) / 2, py0 = H * 0.5;
+            var step = Math.floor(t / 500) % n, gate = 1 - ((t % 500) / 500);      /* 120 BPM, decaying gate */
+            /* jacks + cables */
+            var jy = py0 - ph * 0.55, jr = pw * 0.11;
+            var jacks = [];
+            for (var j = 0; j < n; j++) jacks.push(x0 + j * (pw + gap) + pw / 2);
+            ctx.lineWidth = 1.4;
+            for (var j2 = 0; j2 < n; j2++) {
+                ctx.globalAlpha = a * (light ? 0.35 : 0.3);
+                ctx.strokeStyle = brass; ctx.beginPath(); ctx.arc(jacks[j2], jy, jr, 0, 7); ctx.stroke();
+            }
+            [[7, 0, 0.9], [2, 5, 0.55], [4, 1, 0.7]].forEach(function (c, i) {
+                var ax = jacks[c[0]], bx = jacks[c[1]], sag = ph * c[2] * 0.5;
+                var hot = (step === c[0] || step === c[1]) ? gate : 0;
+                ctx.globalAlpha = a * (0.16 + hot * 0.4);
+                ctx.strokeStyle = gold; ctx.lineWidth = 1.6 + hot;
+                ctx.beginPath(); ctx.moveTo(ax, jy);
+                ctx.quadraticCurveTo((ax + bx) / 2, jy - sag + Math.sin(t * 0.0012 + i) * 3, bx, jy);
+                ctx.stroke();
+            });
+            /* plates */
+            for (var k = 0; k < n; k++) {
+                var x = x0 + k * (pw + gap), on = k === step ? gate : 0;
+                var near = Math.max(0, 1 - Math.hypot(px - (x + pw / 2), py - py0) / (pw * 1.6));
+                var lit = Math.max(on, near);
+                ctx.globalAlpha = a * (0.14 + lit * 0.5);
+                ctx.strokeStyle = lit > 0.3 ? gold : (light ? '#8a877e' : '#565b6e'); ctx.lineWidth = 1.3;
+                ctx.beginPath();
+                ctx.moveTo(x + 8, py0 - ph / 2);
+                ctx.arcTo(x + pw, py0 - ph / 2, x + pw, py0 + ph / 2, 8);
+                ctx.arcTo(x + pw, py0 + ph / 2, x, py0 + ph / 2, 8);
+                ctx.arcTo(x, py0 + ph / 2, x, py0 - ph / 2, 8);
+                ctx.arcTo(x, py0 - ph / 2, x + pw, py0 - ph / 2, 8);
+                ctx.closePath(); ctx.stroke();
+                if (lit > 0.02) {
+                    var g = ctx.createRadialGradient(x + pw / 2, py0, 0, x + pw / 2, py0, ph * 0.6);
+                    g.addColorStop(0, light ? 'rgba(138,106,18,0.18)' : 'rgba(230,194,90,0.16)'); g.addColorStop(1, 'rgba(0,0,0,0)');
+                    ctx.globalAlpha = a * lit; ctx.fillStyle = g; ctx.fillRect(x, py0 - ph / 2, pw, ph);
+                }
+                /* the step light */
+                ctx.globalAlpha = a * (0.25 + lit * 0.75);
+                ctx.fillStyle = lit > 0.3 ? gold : brass;
+                ctx.beginPath(); ctx.arc(x + pw / 2, py0 - ph * 0.3, 2.6 + lit * 1.4, 0, 7); ctx.fill();
+            }
+        },
         tape: function (t, a) {
             var cy = H * 0.42, r1 = Math.min(W, H) * 0.1, x1 = W * 0.34, x2 = W * 0.66, ang = t * 0.0011;
             var wob = Math.max(0, 1 - Math.abs(py - cy) / (H * 0.5));

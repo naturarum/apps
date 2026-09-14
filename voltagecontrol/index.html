@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoltageControl: a Eurorack-style touch sequencer for iPad</title>
+    <meta name="description" content="VoltageControl is a free Eurorack-style touch sequencer for iPad, standalone and as an AUv3. Eight steps, four knob rows, position-sensitive touch plates, and a patch bay where the instrument programs itself. It sends MIDI. No modes.">
+    <meta name="theme-color" content="#0d0d11" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
+    <link rel="icon" type="image/png" href="img/icon.png">
+    <link rel="apple-touch-icon" href="img/icon.png">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="VoltageControl: a Eurorack-style touch sequencer for iPad">
+    <meta property="og:description" content="Eight steps, a patch bay, and no modes: wire the sequencer's own gates back into its inputs and it becomes a different instrument. Free, standalone and AUv3. It sends MIDI.">
+    <meta property="og:image" content="https://naturarum.github.io/apps/voltagecontrol/img/01-ping-pong.jpg">
+    <meta property="og:url" content="https://naturarum.github.io/apps/voltagecontrol/">
+
+    <link rel="stylesheet" href="../assets/base.css?v=20260724">
+    <style>
+        /* VoltageControl theme: the app's black panel with brass jacks and gold
+           cable light. Gold is the accent; brass and a paler gold keep the
+           family warm without turning orange. */
+        :root {
+            --accent: #e6c25a; --accent-glow: rgba(230, 194, 90, 0.22);
+            --accent2: #b08d3a; --accent3: #d4ad4a; --accent4: #f0d98a;
+            --grad: linear-gradient(100deg, #b08d3a 0%, #e6c25a 55%, #f0d98a 100%);
+        }
+        @media (prefers-color-scheme: light) {
+            :root {
+                --accent: #8a6a12; --accent-glow: rgba(138, 106, 18, 0.18);
+                --accent2: #7a5c10; --accent3: #a07b18; --accent4: #8a6a12;
+                --grad: linear-gradient(100deg, #7a5c10 0%, #8a6a12 55%, #a07b18 100%);
+            }
+        }
+        /* A faint gold wash, the glow of a lit panel in a dark room. */
+        body {
+            background-image:
+                radial-gradient(ellipse at 50% 0%, rgba(230, 194, 90, 0.07) 0%, transparent 70%),
+                radial-gradient(ellipse at 24% 50%, rgba(176, 141, 58, 0.05) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 72%, rgba(240, 217, 138, 0.05) 0%, transparent 62%);
+        }
+
+        .app-icon-placeholder {
+            width: 96px; height: 96px; border-radius: 22px; margin: 0 auto 28px; overflow: hidden;
+            box-shadow: 0 16px 44px var(--accent-glow), 0 8px 24px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+        }
+        .app-icon-placeholder img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+        /* Screenshot gallery: horizontal, swipeable, App Store style */
+        .shots {
+            display: flex; gap: 18px;
+            overflow-x: auto; scroll-snap-type: x mandatory;
+            padding: 6px var(--gutter) 14px; margin: var(--space-xl) calc(-1 * var(--gutter)) 0;
+            -webkit-overflow-scrolling: touch; scrollbar-width: thin;
+        }
+        .shots::-webkit-scrollbar { height: 8px; }
+        .shots::-webkit-scrollbar-thumb { background: var(--border-light); border-radius: 8px; }
+        .shots img {
+            height: clamp(320px, 52vh, 540px); width: auto; flex: 0 0 auto;
+            border-radius: 20px; scroll-snap-align: center;
+            box-shadow: 0 18px 44px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.05);
+        }
+        .shots-hint { text-align: center; font-size: 0.8rem; color: var(--text-dim); margin-top: 6px; letter-spacing: 0.01em; }
+    </style>
+</head>
+<body>
+    <canvas id="vignette" data-scene="voltage" style="position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none" aria-hidden="true"></canvas>
+
+    <nav>
+        <div class="nav-inner">
+            <div style="display: flex; align-items: center; gap: 9px; min-width: 0;">
+                <a href="../" class="nav-brand">
+                    <span class="nav-mark" aria-hidden="true"></span>
+                    naturarum
+                </a>
+                <span class="nav-crumb">/&nbsp;<b>VoltageControl</b></span>
+            </div>
+            <a href="#contact" class="nav-cta">Get notified</a>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero container compact">
+            <div class="app-icon-placeholder">
+                <img src="img/icon.png" alt="VoltageControl app icon: three brass jacks joined by two glowing gold cables in a V">
+            </div>
+            <p class="eyebrow">Coming to the App Store</p>
+            <h1><span class="accent">VoltageControl</span></h1>
+            <p class="tagline">
+                A Eurorack-style touch sequencer for iPad, standalone and in your DAW. Eight steps, a
+                patch bay, and no modes: wire the sequencer's own gates back into its inputs and it
+                becomes a different instrument. It makes no sound of its own; it sends MIDI. Free.
+            </p>
+            <div class="cta-group">
+                <a href="#contact" class="btn-primary">Get notified</a>
+                <a href="../" class="btn-secondary">&larr; All apps</a>
+            </div>
+            <div class="chips"><span class="chip">Coming soon</span><span class="chip free">Free</span><span class="chip">iPad</span><span class="chip">AUv3</span></div>
+        </section>
+
+        <section class="container reveal" aria-label="VoltageControl screenshots">
+            <div class="shots">
+                <img src="img/01-ping-pong.jpg" alt="The Ping-Pong patch running: three cables through the Hub, jack lights on, the clock on step 6" width="900" height="1200">
+                <img src="img/02-one-shot.jpg" alt="The One-Shot patch: step 8's gate cabled into Stop, so the phrase plays once and holds" width="900" height="1200">
+                <img src="img/05-presets.jpg" alt="The presets sheet open over the panel, factory patches listed by name" width="900" height="1200">
+            </div>
+            <p class="shots-hint">Patch a cable, watch the lights &rarr;</p>
+        </section>
+
+        <section class="features container reveal">
+            <h2 class="section-title">What it does</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="card-label">The idea</span>
+                    <h3>It thinks in voltages</h3>
+                    <p>
+                        Every output is a control voltage and every input listens for one. The way
+                        you patch them together is the way you program it. There are no modes, no
+                        menus of behaviours: the panel is the whole instrument.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <span class="card-label">The patch bay</span>
+                    <h3>The sequencer programs itself</h3>
+                    <p>
+                        Drag step 8's gate into Stop and the sequence halts at the end of a phrase.
+                        Into Reset, and touching a plate sets where the loop restarts. Touch Gate
+                        into Clock, and every tap advances one step. The Hub stacks gates and mults
+                        signals, six ports on one node.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <span class="card-label">Eight steps, four rows</span>
+                    <h3>Pitch, force, time, glide</h3>
+                    <p>
+                        Force decides velocity, rests, and ties. Time stretches or squeezes each step,
+                        so rhythms sit anywhere on or off the grid. Glide slides the pitch into a
+                        step: portamento with a knob per step.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <span class="card-label">The plates</span>
+                    <h3>Played by touch</h3>
+                    <p>
+                        The step plates are position sensitive: touch low for a low value, high for a
+                        high one, and each plate remembers where you left it. That is a fifth lane,
+                        CV, that you draw with your fingers. Tapping a plate jumps the sequence there.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <span class="card-label">MIDI</span>
+                    <h3>Everything goes out as MIDI</h3>
+                    <p>
+                        Notes with velocity, unquantized pitch that rides the bend (or a chromatic
+                        grid), MIDI clock in and out with Start and Stop, and the step gates as notes
+                        on their own channel, so eight steps can drive eight drums. A virtual source
+                        for other apps, plus direct sends to hardware.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <span class="card-label">AUv3</span>
+                    <h3>In your DAW</h3>
+                    <p>
+                        Loads in hosts such as AUM and Loopy Pro, follows the host tempo and transport,
+                        and saves with your session. In a host the Speed knob becomes a clock ratio:
+                        divide the host tempo by 2, 3 or 4, or multiply it.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="details container reveal">
+            <h2 class="section-title">In short</h2>
+            <div class="details-card">
+                <h3>Patch a cable, watch the lights, listen to what changed</h3>
+                <p>
+                    Presets live in the title bar, and the factory patches cover the classic moves:
+                    one-shot phrases, ping-pong, touch-controlled loop length, ratchet hold, manual
+                    clocking. Your own save as files you can share, and every patching move can be
+                    undone. VoltageControl is free, collects no data, and nothing leaves your iPad.
+                </p>
+                <div class="tags">
+                    <span class="tag">Sequencer</span>
+                    <span class="tag">Patchable</span>
+                    <span class="tag">MIDI</span>
+                    <span class="tag">AUv3</span>
+                    <span class="tag">Free</span>
+                    <span class="tag">iPad</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="news container reveal" id="news">
+            <h2 class="section-title">Updates</h2>
+            <div class="news-feed" data-news-app="voltagecontrol" data-news-limit="5"></div>
+        </section>
+
+        <section class="contact container reveal" id="contact">
+            <div class="contact-card">
+                <h3>Get notified</h3>
+                <p>
+                    VoltageControl is in App Store review. Drop a line to hear when it lands, or with
+                    questions and feedback: always welcome. See also the <a href="privacy.html">privacy policy</a>.
+                </p>
+                <button class="contact-email contact-reveal" type="button" data-u="nrrrm" data-d="icloud.com">Show email address</button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="container">
+        <div class="footer-links">
+            <a href="../">All apps</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <p>&copy; <span id="current-year">2026</span> naturarum</p>
+    </footer>
+
+    <script src="../assets/site.js?v=20260724"></script>
+    <script src="../assets/vignette.js?v=20260914"></script>
+    <script src="../assets/news.js?v=20260914"></script>
+    <script data-goatcounter="https://naturarum.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
