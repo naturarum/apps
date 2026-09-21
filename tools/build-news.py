@@ -2,7 +2,7 @@
 """Compile the vault News.md into apps/news/news.json (the runtime news feed).
 
 Source of truth = the vault file. Edit posts there, then run this script (or just
-ask Claude to "update the news"), then commit the regenerated news.json.
+then run this script), then commit the regenerated news.json.
 
 Post format in News.md — posts separated by a line of three dashes (---); each is a
 block of `key: value` lines, a blank line, then the markdown body. Keys: date, app,

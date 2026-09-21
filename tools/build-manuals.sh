@@ -4,7 +4,7 @@
 # commit the generated files. Requires: pandoc, weasyprint, sips (macOS).
 set -euo pipefail
 
-APPS="/Users/naturarum/Documents/Claude/AppsWebsite/apps"
+APPS="$(cd "$(dirname "$0")/.." && pwd)"
 VAULT="/Users/naturarum/Library/Mobile Documents/iCloud~md~obsidian/Documents/code"
 TPL="$APPS/tools/manual.template.html"
 TMP="$(mktemp -d)"
