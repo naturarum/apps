@@ -20,7 +20,8 @@
         pond:        { name: 'Pond',      accent: '#9ee6e6', href: 'pond/' },
         anima:       { name: 'Anima',     accent: '#d69a56', href: 'anima/' },
         're-deemer': { name: 'Re-deemer', accent: '#ffbd82', href: 're-deemer/' },
-        voltagecontrol: { name: 'VoltageControl', accent: '#e6c25a', href: 'voltagecontrol/' }
+        voltagecontrol: { name: 'VoltageControl', accent: '#e6c25a', href: 'voltagecontrol/' },
+        datum:       { name: 'Datum',     accent: '#7d7bf0', href: 'datum/' }
     };
 
     function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }

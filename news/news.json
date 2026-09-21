@@ -1,5 +1,16 @@
 [
   {
+    "date": "2026-09-17",
+    "app": "datum",
+    "tag": "In beta",
+    "title": "Datum, a free tag editor for Mac and iPad",
+    "body": "Datum is a tag editor for your music library, on the Mac and the iPad, and it is free. It is in beta now, and the App Store is next.\n\nI wrote it because the tagger I had relied on for ten years is Intel only and its days are numbered. Open a folder, fix the metadata across your tracks, and save when you decide to. Nothing is written behind your back.\n\nIt reads and writes FLAC, Apple Lossless and AAC, MP3, OGG Vorbis and Opus, WAV and AIFF, mixed freely in one selection, cover art included. Tags it does not show you (ReplayGain, MusicBrainz IDs, lyrics) come through an edit untouched, and the audio is never re-encoded.\n\nNo account, no analytics, nothing collected. One download covers both platforms.",
+    "link": {
+      "href": "datum/",
+      "label": "What it does"
+    }
+  },
+  {
     "date": "2026-08-19",
     "app": "hexatone",
     "tag": "Update",
