@@ -1,6 +1,17 @@
 [
   {
     "date": "2026-09-25",
+    "app": "hexatone",
+    "tag": "Update",
+    "title": "Hexatone 1.4.1: an arpeggiator, a MIDI plugin, and a reliability pass",
+    "body": "**Hexatone 1.4.1 is out**, bringing everything from 1.4 along with a round of fixes.\n\n- **An arpeggiator.** Hold a chord, lift your hands, and Hexatone plays it one note at a time: five patterns, rates from 1/4 to 1/32 including triplets, gate length, and up to 4 octaves. It transposes by your tuning's own octave, so patterns stay in tune in any scale, and as a plugin it follows the host tempo.\n- **Hexatone MIDI, a second plugin.** The same keyboard as a pure AUv3 MIDI plugin, for hosts that only take MIDI from their MIDI slots (Drambo, AUM, Logic's MIDI FX).\n- **A panic button**, three new layouts (Accordion, Park, Gerhard), and a new palette, Signal.\n- **Better with MPE synths.** Synths that detect MPE automatically, Anima included, now lock onto Hexatone reliably, and Apple Pencil velocity finally works.\n- **1.4.1 fixes:** changing arpeggiator, Hold, or Voices settings mid-chord no longer cuts the sound; audio returns on its own after a call, Siri, or plugging in headphones; plugins reopen saved sessions in their own tuning; no more stuck note when closing the plugin window; imported scales delete properly.",
+    "link": {
+      "href": "https://apps.apple.com/app/id6775283069",
+      "label": "App Store"
+    }
+  },
+  {
+    "date": "2026-09-25",
     "app": "pond",
     "tag": "Update",
     "title": "Pond 1.3.1: patterns you can perform, and rock-solid MIDI",
