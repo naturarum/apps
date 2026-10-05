@@ -1,5 +1,16 @@
 [
   {
+    "date": "2026-10-05",
+    "app": "anima",
+    "tag": "Out now",
+    "title": "Anima 1.2: now on iPhone",
+    "body": "**Anima is on iPhone!** The whole instrument, the same engine and the same sound, now fits in your pocket, and if you already own it on iPad it is yours on iPhone too, on the same purchase. On a phone the surface shows one section at a time: tap ENERGY, OBJECT or ROOM in the header, or just swipe sideways, and the top bar and ribbon stay right where your fingers expect them.\n\n[Watch Anima running on iPhone](https://www.youtube.com/watch?v=pys0AsFg4ro)\n\n1.2 is a big one for controllers, too:\n\n- **Every control is mapped to MIDI out of the box.** A fixed CC map reaches all of ENERGY, OBJECT and ROOM plus Glide, in the app and in the plugin, with no host mapping needed. Grab any controller and play the whole panel; the manual has the table.\n- **A MIDI channel setting.** Leave it on Omni, or pick a channel and Anima hears only that one, so the rest of your rig stays out.\n- **Small windows page instead of shrinking.** Slide Over, Stage Manager and short plugin windows show one section at a time, full size.\n- **A ribbon made for phones.** Held upright, it shows fewer, wider frets, and Keys mode fits as many octaves as the width allows.\n- Plus a tidier SETUP, plugin panels that never hide behind the ribbon drawer, controllers that no longer fight the glyph you are turning, and a dark launch screen.\n\nIf you make something with it, I would love to hear it.",
+    "link": {
+      "href": "https://apps.apple.com/us/app/anima-synthesizer/id6780281462",
+      "label": "App Store"
+    }
+  },
+  {
     "date": "2026-09-25",
     "app": "hexatone",
     "tag": "Update",
