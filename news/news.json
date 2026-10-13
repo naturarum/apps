@@ -1,5 +1,16 @@
 [
   {
+    "date": "2026-10-13",
+    "app": "voltagecontrol",
+    "tag": "Out now",
+    "title": "VoltageControl is out, free",
+    "body": "**VoltageControl is out, and it's free!** A Eurorack-style touch sequencer for iPad that thinks in voltages: eight steps, four knob rows, position-sensitive touch plates, and a patch bay where the instrument programs itself. There are no modes. Wire the sequencer's own gates back into its inputs and it becomes a different instrument.\n\n- **Patch it to program it.** Step 8's gate into Stop plays a phrase once. Into Reset, and touching a plate sets where the loop restarts. Touch Gate into Clock, and every tap advances one step.\n- **Pitch, force, time, glide.** Velocity, rests and ties, steps that stretch off the grid, and portamento with a knob per step.\n- **Played by touch.** Each plate remembers where you touched it, a fifth lane you draw with your fingers.\n- **Everything goes out as MIDI**, with clock in and out and step gates as drum notes, standalone or as an AUv3 in AUM, Loopy Pro and your DAW, locked to the host tempo.\n\nPatch a cable, watch the lights, listen to what changed.",
+    "link": {
+      "href": "https://apps.apple.com/us/app/voltagecontrol/id6792703258",
+      "label": "App Store"
+    }
+  },
+  {
     "date": "2026-10-05",
     "app": "anima",
     "tag": "Out now",
