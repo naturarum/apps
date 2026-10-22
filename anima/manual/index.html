@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Anima Manual</title>
-  <meta name="description" content="The full user manual for Anima, the physical-modeling synthesizer for iPad.">
+  <meta name="description" content="The full user manual for Anima, the physical-modeling synthesizer for iPad and iPhone.">
   <meta name="theme-color" content="#0d0d11" media="(prefers-color-scheme: dark)">
   <meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
   <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
@@ -29,17 +29,22 @@
 
   <main class="container manual">
     <div class="manual-actions">
-      <a href="manual.pdf" class="btn-secondary" download>Download PDF &darr;</a>
-    </div>
+      <a href="manual.pdf" class="btn-secondary" download>Download PDF &darr;</a>      <a href="manual-dark.pdf" class="btn-secondary" download>Dark PDF &darr;</a>    </div>
 <h1 id="anima-manual">Anima Manual</h1>
 <h2 id="what-anima-is">What Anima is</h2>
-<p>Anima is a <strong>physical-modeling synthesizer</strong> for iPad,
-standalone app and AUv3 instrument. There are no oscillators. Sound
-happens the way it happens in the physical world: a source of
-<strong>energy</strong> (breath, a strike) excites an
-<strong>object</strong> (a bank of tuned, decaying resonances, the modes
-of a string, a bar, a bell, a pipe), and the result rings out into a
-<strong>room</strong>.</p>
+<p>Anima is a <strong>physical-modeling synthesizer</strong>, standalone
+app and AUv3 instrument. There are no oscillators. Sound happens the way
+it happens in the physical world: a source of <strong>energy</strong>
+(breath, a strike) excites an <strong>object</strong> (a bank of tuned,
+decaying resonances, the modes of a string, a bar, a bell, a pipe), and
+the result rings out into a <strong>room</strong>.</p>
+<figure>
+<img loading="lazy" src="img/surface_ipad_landscape.jpg"
+alt="The whole surface on a 13-inch iPad in landscape: ENERGY, OBJECT and ROOM as three rows of glyphs, the ribbon below." />
+<figcaption aria-hidden="true">The whole surface on a 13-inch iPad in
+landscape: ENERGY, OBJECT and ROOM as three rows of glyphs, the ribbon
+below.</figcaption>
+</figure>
 <p>That's the whole interface: <strong>ENERGY → OBJECT → ROOM</strong>,
 left to right, cause to effect.</p>
 <p>The OBJECT is a <em>modal resonator</em>: 24 coupled resonant modes
@@ -63,8 +68,12 @@ glyph begins to move, and the label shows its current value. It only
 starts <em>changing</em> once your finger travels a little, so a press
 alone lets you see what a control is set to without nudging it.</li>
 <li><strong>Drag vertically</strong> anywhere on a control's plate to
-change it (up = more). The plate brightens, the label shows the value,
-and a small bubble floats above your finger.</li>
+change it (up = more). The plate brightens and the label under the glyph
+shows the live value in the control's family colour.</li>
+<li><strong>Fine adjustment</strong>: while you drag, move your finger
+out to the side of the control. The farther out, the finer the steps,
+down to a tenth of the normal speed; come back in and the speed
+returns.</li>
 <li><strong>Double-tap</strong> resets a control to its default.</li>
 <li><strong>Loading a preset morphs the whole surface</strong>: every
 glyph glides to its new shape over a quarter second, so you <em>see</em>
@@ -76,28 +85,29 @@ preset loaded over an unsaved sound, is one tap back.</li>
 <li><strong>Panic</strong> (the stop circle at the top right): the first
 tap stops all voices immediately, release tails and held notes included;
 the reverb keeps ringing. A second tap clears the reverb too.</li>
-<li><strong>Glide</strong> (the small time beside Voices): portamento.
-Off, each note starts exactly where it should; raise it and every new
-note slides in from the last one you played, taking that long to arrive.
-Drag it sideways (right = longer), or tap it: a selector opens with an
-off chip and a slider for the time. It works for the ribbon, the keys,
-and anything playing Anima over MIDI, and MPE bends ride on top
-untouched. Glide is part of the sound: your saves carry it, and factory
-sounds, designed glide-free, load with it off.</li>
-<li><strong>Voices</strong> (the numbers beside Glide): the small figure
-is how many voices are sounding right now (ringing tails included), the
-large one is your polyphony ceiling, 1 to 64. Tap it and a selector
-opens right below: arrows step the ceiling, MONO drops to 1, MAX opens
-all 64. Dragging the number sideways still works (right = more). At 1
-the synth is a last-note mono instrument; lowering it mid-chord releases
-the notes above the new limit. It's a setup choice, so presets never
-change it.</li>
+<li><strong>Glide</strong> (the GLIDE readout in the top bar, "off"
+until you raise it): portamento. Off, each note starts exactly where it
+should; raise it and every new note slides in from the last one you
+played, taking that long to arrive. Drag it sideways (right = longer),
+or tap it: a selector opens with an off chip and a slider for the time.
+It works for the ribbon, the keys, and anything playing Anima over MIDI,
+and MPE bends ride on top untouched. Glide is part of the sound: your
+saves carry it, and factory sounds, designed glide-free, load with it
+off.</li>
+<li><strong>Voices</strong> (the VOICES readout, two numbers): the small
+figure is how many voices are sounding right now (ringing tails
+included), the large one is your polyphony ceiling, 1 to 64. Tap it and
+a selector opens right below: arrows step the ceiling, MONO drops to 1,
+MAX opens all 64. Dragging the number sideways still works (right =
+more). At 1 the synth is a last-note mono instrument; lowering it
+mid-chord releases the notes above the new limit. It's a setup choice,
+so presets never change it.</li>
 </ul>
 <h3 id="color--family">Color = family</h3>
 <p>In the <strong>Colored</strong> palette (the default), each control
 is inked in the earthy pastel of its <strong>family</strong> so related
-controls rhyme in hue, and each hue keeps to a section, so a column
-reads as one temperature:</p>
+controls rhyme in hue, and each hue keeps to a section, so a whole
+section reads as one temperature:</p>
 <table>
 <thead>
 <tr>
@@ -147,9 +157,9 @@ Tone</td>
 </table>
 <p>Reading by color: sand is <em>energy over time</em> (breath and its
 envelope), heather is <em>the object</em> (what rings and how its
-partials sit), sage and denim are <em>the room</em>. The rows are
-ordered so the families sit in blocks: each row reads as a gradient of
-what the controls do, left to right.</p>
+partials sit), sage and denim are <em>the room</em>. Within each section
+the controls are ordered so the families sit in blocks: a section reads
+as a gradient of what the controls do, left to right.</p>
 <p>Prefer one ink? <strong>SETUP ▸ LOOK ▸ Monochrome</strong> drops the
 families and inks every glyph in a single colour you pick from a wheel;
 the labels stay neutral for legibility. <strong>Field</strong> there is
@@ -161,13 +171,38 @@ instantly.</p>
 ROOM).</li>
 <li><strong>Portrait:</strong> three columns read left to right,
 controls flowing downward, same controls, same order.</li>
+<li><strong>iPhone, or a small window:</strong> one section at a time
+(two rows of five held upright, one row held sideways). Tap a section
+title, or swipe sideways anywhere on the surface (a sideways swipe pages
+even when it starts on a control; an up-or-down drag sets the control),
+to move between ENERGY, OBJECT and ROOM. The top bar and the ribbon stay
+put.</li>
 </ul>
+<figure>
+<img loading="lazy" src="img/surface_ipad_portrait.jpg"
+alt="Portrait: the three sections as columns, controls flowing downward." />
+<figcaption aria-hidden="true">Portrait: the three sections as columns,
+controls flowing downward.</figcaption>
+</figure>
+<figure>
+<img loading="lazy" src="img/phone_16_portrait.jpg"
+alt="iPhone: one section at a time; tap a title or swipe sideways to move between ENERGY, OBJECT and ROOM." />
+<figcaption aria-hidden="true">iPhone: one section at a time; tap a
+title or swipe sideways to move between ENERGY, OBJECT and
+ROOM.</figcaption>
+</figure>
 <hr />
 <h2 id="energy-how-the-object-is-excited">ENERGY: how the object is
 excited</h2>
 <p>The energy source is a continuous pressure/noise stream shaped by an
 envelope, plus an optional strike. This is "how you play it": blow at
 it, press it, hit it.</p>
+<figure>
+<img loading="lazy" src="img/section_energy.jpg"
+alt="The ENERGY row: Envelope, Curve, Force, Noise, Flutter, Strike, Edge, Peak, Edge Env." />
+<figcaption aria-hidden="true">The ENERGY row: Envelope, Curve, Force,
+Noise, Flutter, Strike, Edge, Peak, Edge Env.</figcaption>
+</figure>
 <p><strong>Envelope</strong>: the wide strip. The solid silhouette is
 the ADSR; drag its <strong>three handles</strong>:</p>
 <ul>
@@ -242,6 +277,13 @@ sentence: <em>how long it rings, what it's made of, how its partials
 sit, how many it has, where it's touched, how it's voiced, whether it's
 one object or two, how it blooms, how it breathes, how loud it
 is.</em></p>
+<figure>
+<img loading="lazy" src="img/section_object.jpg"
+alt="The OBJECT row: Ring Time, Rigidity, Harmonics, Density, Tone, Twin, Bloom, Contact, Inertia, Level." />
+<figcaption aria-hidden="true">The OBJECT row: Ring Time, Rigidity,
+Harmonics, Density, Tone, Twin, Bloom, Contact, Inertia,
+Level.</figcaption>
+</figure>
 <p><strong>Ring Time</strong>: how long the object rings after being
 excited: 50 ms (dead wood) to 25 s (a great bell). This is the object's
 own decay, independent of the room.</p>
@@ -264,8 +306,8 @@ clarinet-like. (The glyph tips like a see-saw: touch at the edge throws
 it off balance.)</p>
 <p><strong>Tone</strong>: the spectral tilt of the partials, −9 to +6 dB
 per octave: dark felt to glassy presence. This is the object's voicing;
-Edge is the <em>exciter's</em> brightness, they're the same orange
-family for a reason.</p>
+Edge is the <em>exciter's</em> brightness. They are companions: while
+you hold Tone, Edge's plate warms.</p>
 <p><strong>Twin</strong>: a second, detuned copy of the object (1.5–21
 cents). Small amounts breathe and chorus; larger amounts beat audibly,
 bell doubles, honky-tonk, unison width.</p>
@@ -294,6 +336,12 @@ tape or old organs.</em></p>
 <p>Not a synthesis stage, the ready-made space that makes everything
 sound finished. A 16-line feedback-delay-network reverb fronted by a
 colored echo.</p>
+<figure>
+<img loading="lazy" src="img/section_room.jpg"
+alt="The ROOM row: Mix, Pre-delay, Size, Regen, Decay, Blur, Diffusion, Dark, Width, Color." />
+<figcaption aria-hidden="true">The ROOM row: Mix, Pre-delay, Size,
+Regen, Decay, Blur, Diffusion, Dark, Width, Color.</figcaption>
+</figure>
 <p><strong>Mix</strong>: the dry/wet balance between the direct sound
 and the ROOM. The crossfade is loudness-compensated (equal-power, wet
 leg level-matched), so moving Mix changes the balance, not the overall
@@ -339,37 +387,64 @@ it still holds the room's contents indefinitely and frosts the ROOM
 glyphs while held.</p>
 <hr />
 <h2 id="presets">Presets</h2>
-<p>Tap the <strong>preset name</strong> (top center) for the library;
-the <strong>gear</strong> (top right) opens SETUP (look, manual,
-about):</p>
+<p>Tap the <strong>preset name</strong> (top center) for the library.
+The <strong>arrows</strong> on either side of the name step to the
+previous or next sound, through Init, the factory banks and your saves,
+wrapping at the ends; a step is undoable like any load. The
+<strong>gear</strong> (top right) opens SETUP: MIDI, LOOK, SCREEN
+(standalone only), and at the bottom the manual and about.</p>
+<figure>
+<img loading="lazy" src="img/card_presets.jpg"
+alt="The preset library: your saves above the factory banks, Save and Copy patch in the header." />
+<figcaption aria-hidden="true">The preset library: your saves above the
+factory banks, Save and Copy patch in the header.</figcaption>
+</figure>
 <ul>
 <li><strong>Init</strong>: the designed default patch, always first in
 the list. A fresh install opens on it.</li>
 <li><strong>Save</strong>: name the current sound, tap Save. Yours
 appear above the factory banks, with delete. If the name already exists,
 Anima asks whether to overwrite that save or keep both.</li>
-<li><strong>Copy patch</strong>: puts the <em>current</em> sound, saved
-or not, on the clipboard as text. Universal Clipboard carries it between
-your devices; paste into Notes/Messages to collect keepers (each copy
-includes a human-readable summary of every setting, and the text loads
-back losslessly). <strong>If you find a sound you love, Copy patch
+<li><strong>Copy patch</strong> (the two-pages icon beside Save; in a
+narrow window, a phone held upright for one, the icon stands alone):
+puts the <em>current</em> sound, saved or not, on the clipboard as text.
+Universal Clipboard carries it between your devices; paste into
+Notes/Messages to collect keepers (each copy includes a human-readable
+summary of every setting; Paste, under your saves, brings it back into
+your library exactly). <strong>If you find a sound you love, Copy patch
 first, tweak second.</strong></li>
-<li><strong>Factory banks</strong>: the built-in sounds, grouped in
-named banks (Stock first; artist packs join as their own sections).</li>
-<li><strong>Export presets</strong>: shares all your saved sounds as one
-JSON file (AirDrop, Files), backup, transfer, and the pipeline for
-turning personal presets into factory ones.</li>
+<li><strong>Factory banks</strong>: the built-in sounds in named banks:
+Stock (19), then the artist banks Red Sky Lullaby (21) and Hoavi (15),
+55 sounds in all.</li>
+<li><strong>Import, Paste, Export</strong> (under your saves):
+<strong>Export</strong> shares all your saved sounds as one JSON file
+(AirDrop, Files), for backup, transfer, and the pipeline for turning
+personal presets into factory ones. <strong>Import</strong> adds the
+sounds from such a file back into your saves, and <strong>Paste</strong>
+adds a sound copied with Copy patch. Importing the same backup twice
+adds nothing; a different sound under a name you already use gets a
+number (Bell 2).</li>
 <li>Presets capture the <strong>sound</strong> (ENERGY/OBJECT/ROOM, plus
 Glide and the ribbon's snap mode), never your tuning, MPE, or Freeze
 state. Factory sounds are glide-free by design, so loading one turns
 Glide off; factory presets leave your snap mode alone.</li>
 <li>Standalone and AUv3 share one preset library.</li>
-<li>In hosts, the stock bank also appears as native <strong>factory
-presets</strong>, and full state saves/restores with the session.</li>
+<li>In hosts, all 55 factory sounds also appear as native
+<strong>factory presets</strong>, in the same order (Init stays in
+Anima's own list), and full state saves and restores with the
+session.</li>
 </ul>
 <hr />
-<h2 id="the-ribbon-standalone">The ribbon (standalone)</h2>
-<p>A continuous pitch surface along the bottom:</p>
+<h2 id="the-ribbon">The ribbon</h2>
+<p>A continuous pitch surface along the bottom of the standalone, and in
+the plugin's drawer:</p>
+<figure>
+<img loading="lazy" src="img/strip_ribbon.jpg"
+alt="The ribbon: pitch along X, the slide axis along Y, fret lines with C labels, octave arrows and the snap switch in the header." />
+<figcaption aria-hidden="true">The ribbon: pitch along X, the slide axis
+along Y, fret lines with C labels, octave arrows and the snap switch in
+the header.</figcaption>
+</figure>
 <ul>
 <li><strong>X = pitch</strong>, continuously, slide for true glide. Fret
 lines with C labels for orientation.</li>
@@ -398,32 +473,88 @@ so held notes land in tune. Your choice is remembered, and saves with
 your presets.</li>
 <li>The ribbon owns the bottom of the screen: the first swipe up from
 the bottom edge plays the ribbon, and only a second, deliberate swipe
-reaches the iOS app switcher. Guard screen edges (SETUP) extends the
-same rule to every edge, Control Center included. One gesture stays out
-of any app's reach: the multi-finger app switch. To lock the screen
-completely while performing, turn on Guided Access once in Settings ▸
-Accessibility, then triple-click the side button in Anima.</li>
+reaches the iOS app switcher. Guard screen edges (SETUP ▸ SCREEN,
+standalone only) extends the same rule to every edge, Control Center
+included. On an iPad one gesture stays out of any app's reach: the
+multi-finger app switch. To lock the screen completely while performing,
+turn on Guided Access once in Settings ▸ Accessibility, then
+triple-click the side button (the Home button on phones that have one)
+in Anima.</li>
 <li><strong>Hold</strong> (hand icon) latches notes: build chords one
 finger at a time; tap a held note to release just it; slide-then-lift
-leaves it where you let go.</li>
-<li><strong>Octave arrows</strong> shift the range.</li>
-<li><strong>Keys</strong> (piano icon) swaps the ribbon for a three
-octave piano keyboard in the same frame: real, wide black keys, the same
-octave arrows and Hold, and sliding across keys still glides
-chromatically. Tap the icon again for the ribbon; your choice is
-remembered.</li>
+leaves it where you let go. <strong>Clear</strong> releases every held
+note at once (it appears while notes are held), and so does turning Hold
+off. Panic clears held notes too.</li>
+<li><strong>Octave arrows</strong> shift the range. On a phone held
+upright the ribbon shows fewer semitones at a time, so the frets stay
+wide enough to play; the arrows reach the rest.</li>
+<li><strong>Keys</strong> (piano icon) swaps the ribbon for a piano
+keyboard in the same frame, as many octaves as the width allows (three
+on a full-screen iPad, one or two on a phone held upright): real, wide
+black keys, the same octave arrows and Hold, and sliding across keys
+still glides chromatically. Tap the icon again for the ribbon; your
+choice is remembered.</li>
 </ul>
+<figure>
+<img loading="lazy" src="img/strip_keys_lit.jpg"
+alt="Keys mode: a piano keyboard in the same frame, two held notes lit." />
+<figcaption aria-hidden="true">Keys mode: a piano keyboard in the same
+frame, two held notes lit.</figcaption>
+</figure>
+<figure>
+<img loading="lazy" src="img/card_slide_routing.jpg"
+alt="SLIDE ROUTING: per-destination depths for the slide axis, set by ear while the ribbon stays playable underneath." />
+<figcaption aria-hidden="true">SLIDE ROUTING: per-destination depths for
+the slide axis, set by ear while the ribbon stays playable
+underneath.</figcaption>
+</figure>
 <hr />
 <h2 id="midi--mpe">MIDI &amp; MPE</h2>
+<figure>
+<img loading="lazy" src="img/card_setup.jpg"
+alt="SETUP: MIDI (inputs, Bluetooth pairing, channel, MPE), LOOK and SCREEN, with the manual and about at the bottom." />
+<figcaption aria-hidden="true">SETUP: MIDI (inputs, Bluetooth pairing,
+channel, MPE), LOOK and SCREEN, with the manual and about at the
+bottom.</figcaption>
+</figure>
 <ul>
-<li><strong>Ordinary MIDI just works</strong>: channel-agnostic note
-on/off, velocity, pitch bend, all-notes-off. Sequencers and keyboards
-need zero setup.</li>
-<li><strong>Program Change selects a factory preset</strong>: program
-number N loads the Nth factory preset, counting across the banks in
-order. Send it from a host's MIDI track or a controller's patch buttons
-to step the banks hands-free (numbers past the last preset are
+<li><strong>Ordinary MIDI just works</strong>: note on/off, velocity,
+pitch bend, all-notes-off, on every channel (Omni) by default.
+Sequencers and keyboards need zero setup.</li>
+<li><strong>Program Change selects a factory preset</strong>: program 0
+(shown as 1 on devices that count from one) loads the first Stock sound,
+and the count runs on through Red Sky Lullaby and Hoavi in order, 55 in
+all. Send it from a host's MIDI track or a controller's patch buttons to
+step the banks hands-free (numbers past the last preset are
 ignored).</li>
+<li><strong>The MIDI CC map.</strong> Every control on the surface, and
+Glide, answers a fixed CC number, in the standalone and in the plugin,
+on any channel Anima listens to (only the picked one if you set a MIDI
+channel in the app; on the master channel only while an MPE controller
+is engaged, since member-channel CCs are per-note expression). CC 0 is
+the control's minimum and 127 its maximum, exactly as a host mapping
+would do it. The table never changes, so a controller you set up once
+stays set up:
+<ul>
+<li><strong>Glide</strong>: CC 70.</li>
+<li><strong>ENERGY</strong>, CC 71 to 83 in panel order, 74 skipped: 71
+Attack, 72 Decay, 73 Sustain, 75 Release, 76 Curve, 77 Force, 78 Noise,
+79 Flutter, 80 Strike, 81 Edge, 82 Peak, 83 Edge Env.</li>
+<li><strong>OBJECT</strong>, CC 85 to 94 in panel order: 85 Ring Time,
+86 Rigidity, 87 Harmonics, 88 Density, 89 Tone, 90 Twin, 91 Bloom, 92
+Contact, 93 Inertia, 94 Level.</li>
+<li><strong>ROOM</strong>, CC 110 to 119 in panel order: 110 Mix, 111
+Pre-delay, 112 Size, 113 Regen, 114 Decay, 115 Blur, 116 Diffusion, 117
+Dark, 118 Width, 119 Color.</li>
+<li>A CC that moves a control edits the sound like a finger would: the
+glyph follows, the preset shows as edited, and in a host the parameter
+change is saved with the session. 74 (the MPE slide axis) and 84
+(Portamento Control) keep their MIDI meanings; so do sustain (64), data
+entry (6 and 38), the RPN and NRPN controllers (98 to 101) and the mode
+messages (120 and up). In a host you can still map any parameter to any
+controller the host's own way; the fixed map is simply there without
+it.</li>
+</ul></li>
 <li><strong>MPE is automatic</strong>: when a controller announces MPE
 (Hexatone, LinnStrument, Seaboard, ROLI Blocks…), Anima switches itself,
 per-note pitch bend becomes true per-note microtonal pitch. In SETUP's
@@ -439,26 +570,39 @@ you route it</strong> (the ribbon's SLIDE ROUTING panel: any mix of the
 ENERGY and OBJECT controls), per note, while its neighbours keep
 theirs.</li>
 <li><strong>Depths are setup, not presets</strong>: the Pressure slider
-lives in SETUP's MIDI section, and the slide axis's depths live in the
-ribbon's SLIDE ROUTING panel; together they set how strongly your
-controller's touch reaches the sound. They are calibration for your
-hands and hardware, so a preset load never changes them and they survive
-relaunches (0 turns an axis off). All of them are also Anima parameters
-a host can automate.</li>
+lives in SETUP's MIDI section (shown, like Bend range, while MPE is on
+Auto or On with the channel on Omni: only MPE notes carry per-note
+pressure), and the slide axis's depths live in the ribbon's SLIDE
+ROUTING panel; together they set how strongly your controller's touch
+reaches the sound. They are calibration for your hands and hardware, so
+a preset load never changes them and they survive relaunches (0 turns an
+axis off). All of them are also Anima parameters a host can
+automate.</li>
 <li><strong>Glide and the bend range</strong>: sliding along an MPE
 surface glides that note's pitch continuously. Anima follows the range
 the controller announces (RPN 0), defaulting to the MPE standard of 48.
 A slide that comes out as tiny vibrato means the controller and synth
 disagree about the range: set the controller to 48 in its editor, or
-match Anima to it (SETUP ▸ MIDI ▸ Bend range). On a plain (non-MPE)
-keyboard the pitch wheel uses the standard 2 semitones, and follows
-whatever range the keyboard announces.</li>
-<li><strong>Bluetooth MIDI</strong>: SETUP ▸ MIDI ▸ Bluetooth MIDI
-devices opens the system pairing screen; pairing is system-wide, and the
+match Anima to it (SETUP ▸ MIDI ▸ Bend range, shown under MPE while MPE
+is on Auto or On, with the channel on Omni). An MPE announcement resets
+the range to the standard 48 until the controller sends its own. On a
+plain (non-MPE) keyboard the pitch wheel uses the standard 2 semitones,
+and follows whatever range the keyboard announces.</li>
+<li><strong>Bluetooth MIDI</strong>: SETUP ▸ MIDI ▸ Bluetooth MIDI ▸
+Pair opens the system pairing screen; pairing is system-wide, and the
 same section lists everything currently connected. Inside a host you
 will not see the input list or the pairing button: the host owns MIDI
 routing there, so route your controller to Anima in the host and
 play.</li>
+<li><strong>MIDI channel (the app)</strong>: SETUP ▸ MIDI ▸ Channel is
+Omni by default, so every channel plays. Pick 1 to 16 and Anima hears
+only that channel, so the other tracks of a sequencer or groovebox on
+the same connection stay out, their CCs and program changes included. A
+picked channel plays as ordinary channel MIDI, so MPE needs Omni (the
+MPE setting waits greyed out until you return to it). Changing the
+channel releases the notes MIDI was holding; the ribbon and the keys
+keep theirs. Inside a host there is no Channel menu: set the channel on
+the host's MIDI route.</li>
 <li><strong>Sustain pedal (CC64)</strong> holds released notes until the
 pedal lifts, exactly as a piano player expects. Panic and all-notes-off
 always win over the pedal.</li>
@@ -471,18 +615,37 @@ another app.</li>
 </ul>
 <h2 id="auv3">AUv3</h2>
 <p>Anima loads as an <code>aumu</code> instrument in AUM, GarageBand,
-Logic, Cubasis, etc. All parameters are host-automatable, and the
-controls on screen follow host automation and LFOs: a modulated control
-moves and shows its live value under the glyph, the same as under a
-finger. Factory presets appear natively; sessions restore exactly. The
-plugin window adapts to any shape the host gives it (row layout when
-wide, column layout when tall, scaling below that). By default the
-plugin shows the surface alone (your host owns the keyboards); pull the
-small handle at the bottom edge, or tap it, and the ribbon slides up so
-the plugin plays exactly like the standalone, keys mode, Snap and all.
-Anima first asks the host for a taller window so nothing is covered (AUM
-says yes); hosts that refuse get the strip floating over the bottom edge
-instead. The choice is remembered.</p>
+Logic, Cubasis, etc., on iPhone and iPad. All parameters are
+host-automatable, and the controls on screen follow host automation and
+LFOs: a modulated control moves and shows its live value under the
+glyph, the same as under a finger. Factory presets appear natively;
+sessions restore exactly. The plugin window adapts to any shape the host
+gives it (row layout when wide, column layout when tall, one section at
+a time in small or short windows). By default the plugin shows the
+surface alone (your host owns the keyboards); pull the small handle at
+the bottom edge, or tap it, and the ribbon slides up so the plugin plays
+exactly like the standalone, keys mode, Snap and all. Anima first asks
+the host for a taller window so nothing is covered (AUM says yes); hosts
+that refuse get the strip floating over the bottom edge instead. The
+choice is remembered. SLIDE ROUTING lives in the drawer's header, so
+open the drawer to route the slide axis. SETUP's MIDI section works
+inside a host too (MPE mode, plus Bend range and Pressure while MPE can
+engage); the input list, Bluetooth pairing and the SCREEN section are
+the standalone's, because the host owns MIDI and the screen there. The
+fixed CC map works in a host as well: route your controller into Anima's
+MIDI input, no mapping needed.</p>
+<figure>
+<img loading="lazy" src="img/au_drawer_closed.jpg"
+alt="The AUv3 in a host with the ribbon drawer closed (left) and open (right)." />
+<figcaption aria-hidden="true">The AUv3 in a host with the ribbon drawer
+closed (left) and open (right).</figcaption>
+</figure>
+<figure>
+<img loading="lazy" src="img/au_drawer_open.jpg"
+alt="The drawer open: the ribbon slides up over the surface, standalone-identical." />
+<figcaption aria-hidden="true">The drawer open: the ribbon slides up
+over the surface, standalone-identical.</figcaption>
+</figure>
 <hr />
 <h2 id="sound-design-recipes">Sound-design recipes</h2>
 <p><strong>Breathy flute</strong>: Noise high (~0.8), Inertia just past
@@ -681,8 +844,9 @@ formula, with one act of mercy: the fundamental is exempt, so no touch
 point can ever silence the note itself.</li>
 <li><strong>Tone</strong> tilts the loudness column: the object's
 voicing, dark felt to glassy presence. (Edge brightens the
-<em>breath</em>; Tone brightens the <em>body</em>. Same orange family,
-different physics.)</li>
+<em>breath</em>; Tone brightens the <em>body</em>. Different physics,
+which is why Edge wears ENERGY's ochre and Tone the object's
+heather.)</li>
 <li><strong>Twin</strong> runs the entire second bank a few cents away:
 two objects, never quite identical, beating against each other the way
 two real bells always do.</li>
@@ -739,9 +903,11 @@ self-levels (a chord of ten is balanced against a solo note by measured
 power, not guesswork), and the output stage protects your ears twice: a
 transparent safety limiter rides <em>sustained</em> extremes down
 (normal playing never touches it), and a soft clip rounds any transient
-that still tries to slam. Every control you touch is applied on the
-audio thread between samples, so nothing ever clicks; every frequency is
-recomputed live, so nothing is ever out of tune.</p>
+that still tries to slam. Every control change is applied on the audio
+thread, and the ones that could click are smoothed: the resonators
+re-tune on a 16-sample grid with interpolation between hops, and levels
+and the room's swept settings glide instead of stepping. Every frequency
+is recomputed live, so nothing is ever out of tune.</p>
 <p>Nothing in Anima replays a stored sound. Every note is a small
 physical event, energy meeting an object in a space, computed while you
 listen. That's the reason patches feel like <em>instruments</em>: what
@@ -1005,6 +1171,87 @@ bleed, so the held wash neither decays nor slowly pumps; it simply
 hangs. <strong>Width</strong> decorrelates the sixteen outputs across
 the stereo field and, at zero, collapses everything (including the
 voices' own pitch-panning) to honest mono.</p>
+<hr />
+<h2 id="version-history">Version history</h2>
+<p>What changed in each release, newest first.</p>
+<h3 id="version-122">Version 1.2.2</h3>
+<p><em>Released 12 October 2026.</em></p>
+<ul>
+<li>Import and Paste in the presets panel: bring an exported preset
+backup, or a sound copied with Copy patch, back into your saves.
+Importing the same backup twice adds nothing, and a sound with a name
+you already use gets a number instead of replacing yours.</li>
+</ul>
+<h3 id="version-12">Version 1.2</h3>
+<p><em>Released 5 October 2026.</em></p>
+<p>Anima 1.2 is the iPhone release.</p>
+<ul>
+<li>Anima runs on iPhone now, on the same purchase. On a phone the
+surface shows one section at a time: tap ENERGY, OBJECT or ROOM in the
+header, or swipe sideways anywhere on the surface, to move between them.
+The top bar and the ribbon stay in place.</li>
+<li>A fixed MIDI CC map: any controller moves every ENERGY, OBJECT and
+ROOM control and Glide, in the standalone and in the plugin, with no
+host mapping. CC 70 is Glide, 71 to 83 ENERGY, 85 to 94 OBJECT, 110 to
+119 ROOM, each in panel order (74 and 84 are skipped). The manual has
+the table.</li>
+<li>A MIDI channel setting for the app (SETUP ▸ MIDI ▸ Channel): Omni,
+the default, plays every channel as before; pick 1 to 16 and Anima hears
+only that channel, so the other tracks on the same connection, their CCs
+and program changes included, stay out. In a host, set the channel on
+the host's MIDI route.</li>
+<li>Small windows page the same way: Slide Over, a short Stage Manager
+window or a short plugin window show one section at a time instead of a
+shrunken surface.</li>
+<li>On a phone held upright the ribbon shows fewer, wider semitone
+frets; the octave arrows reach the rest. Keys mode fits as many octaves
+as the width allows.</li>
+<li>In the plugin, PRESETS, SETUP, SLIDE ROUTING and this card no longer
+sit behind the ribbon drawer when the host refuses the taller
+window.</li>
+<li>Naming a preset no longer resizes the surface when the keyboard
+appears; the keyboard covers the ribbon while you type. The launch frame
+is dark instead of white.</li>
+<li>In a host, a control mapped to a MIDI controller no longer jumps
+back toward its previous value while you turn the controller; the glyph
+follows the controller.</li>
+<li>Smaller improvements: SETUP is shorter, MIDI first, one line per
+setting with More in the manual links; Bend range and Pressure show only
+while MPE can engage.</li>
+</ul>
+<h3 id="version-11">Version 1.1</h3>
+<p><em>Released 17 August 2026.</em></p>
+<p>Anima 1.1 is the launch-feedback release. Thank you to everyone who
+wrote in.</p>
+<ul>
+<li>The ribbon is an expression controller now: slide a finger up or
+down and route that motion to any mix of the ENERGY and OBJECT controls,
+each with its own depth, per note. Open SLIDE ROUTING on the ribbon to
+set it up; routed controls wear a dot and move as you slide. MPE
+controllers drive the same axis.</li>
+<li>Glide: a portamento control in the top bar, with a time slider. Your
+saves carry it; factory sounds stay glide-free.</li>
+<li>Loose snap on the ribbon: land in tune, glide freely, settle on the
+nearest note when you stop.</li>
+<li>The plugin grew the full ribbon (pull the handle at the bottom edge)
+and the complete MIDI settings, including forcing MPE on.</li>
+<li>The ribbon is taller on every iPad, and the controls follow host
+automation and LFOs on screen.</li>
+<li>Mix and Tone hold their loudness now: Mix sets the space, Tone the
+color.</li>
+<li>Hush is Panic: the first press stops every voice, tails included; a
+second press clears the reverb.</li>
+<li>Guard screen edges (SETUP) keeps iOS edge swipes from interrupting
+play.</li>
+<li>Bug fixes: the Bluetooth MIDI pairing crash, crackling under fast
+MIDI streams, and heavy DSP load on presets with living detune.</li>
+</ul>
+<h3 id="version-10">Version 1.0</h3>
+<p><em>Released 1 August 2026.</em></p>
+<p>The first release.</p>
+<p>A breathing instrument: energy, object, room. Play it on the ribbon,
+the piano keys, or any MIDI or MPE controller, alone or as an AUv3 in
+your host. If you make something with it, I would love to hear it.</p>
   </main>
 
   <footer class="container">
