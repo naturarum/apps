@@ -31,7 +31,8 @@ $endif$
 
   <main class="container manual">
     <div class="manual-actions">
-      <a href="$pdf$" class="btn-secondary" download>Download PDF &darr;</a>
+      <a href="$pdf$" class="btn-secondary" download>Download PDF &darr;</a>$if(pdfdark)$
+      <a href="$pdfdark$" class="btn-secondary" download>Dark PDF &darr;</a>$endif$
     </div>
 $body$
   </main>
