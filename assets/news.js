@@ -21,7 +21,8 @@
         anima:       { name: 'Anima',     accent: '#d69a56', href: 'anima/' },
         're-deemer': { name: 'Re-deemer', accent: '#ffbd82', href: 're-deemer/' },
         voltagecontrol: { name: 'VoltageControl', accent: '#e6c25a', href: 'voltagecontrol/' },
-        datum:       { name: 'Datum',     accent: '#7d7bf0', href: 'datum/' }
+        datum:       { name: 'Datum',     accent: '#7d7bf0', href: 'datum/' },
+        'bbd-lab':   { name: 'BBD Lab',   accent: '#ff6a55', href: 'bbd-lab/' }
     };
 
     function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }

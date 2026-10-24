@@ -23,6 +23,7 @@
     addEventListener('pointerleave', function () { px = py = -1e4; });
 
     var drops = [], presses = [], twinkles = [], lastDrip = 0, lastTwinkle = 0, tags = [];
+    var bbd = { packets: [{ pos: 0, amp: 1 }], phase: 0, last: 0, flash: 0, since: 0 };
     for (var i = 0; i < 12; i++) tags.push({ x: Math.random(), y: Math.random(), s: Math.random() * 6.3 });
     addEventListener('pointerdown', function (e) {
         if (active === 'pond') { drops.push({ x: e.clientX, y: e.clientY, t0: performance.now(), big: true }); if (drops.length > 18) drops.shift(); }
@@ -215,6 +216,72 @@
                 ctx.fillStyle = lit > 0.3 ? gold : brass;
                 ctx.beginPath(); ctx.arc(x + pw / 2, py0 - ph * 0.3, 2.6 + lit * 1.4, 0, 7); ctx.fill();
             }
+        },
+        bbd: function (t, a) {
+            /* BBD Lab's chip (the icon): a row of buckets in a DIP package. On
+               every tick of the green CLK lamp the charge moves one bucket on;
+               a packet leaving the last bucket comes back in at the first,
+               fainter, which is the feedback. The pointer near the chip speeds
+               the clock up, because in a bucket brigade the delay is the clock. */
+            var n = 16, cw = Math.min(W * 0.7, 720), ch = cw * 0.26;
+            var cx = W / 2, cy = H * 0.5, x0 = cx - cw / 2, y0 = cy - ch / 2;
+            var near = Math.max(0, 1 - Math.hypot(px - cx, py - cy) / (cw * 0.75));
+            var dt = Math.min(100, t - (bbd.last || t)); bbd.last = t;
+            bbd.phase += dt / (150 - near * 85);
+            bbd.flash *= Math.exp(-dt / 70);
+            while (bbd.phase >= 1) {
+                bbd.phase -= 1; bbd.flash = 1; bbd.since++;
+                var back = [];
+                bbd.packets = bbd.packets.filter(function (p) {
+                    p.pos++;
+                    if (p.pos < n) return true;
+                    if (p.amp > 0.12) back.push({ pos: 0, amp: p.amp * 0.6 });
+                    return false;
+                });
+                bbd.packets = bbd.packets.concat(back);
+                if (bbd.since >= n * 3) { bbd.packets.push({ pos: 0, amp: 1 }); bbd.since = 0; }
+            }
+            var red = light ? '#c8321f' : '#ff4b3a', green = light ? '#16a34a' : '#3ddc84';
+            var line = light ? '#8a877e' : '#565b6e', frame = 0.18 + near * 0.14;
+            /* pins, body, notch, legends */
+            ctx.globalAlpha = a * frame; ctx.strokeStyle = line; ctx.lineWidth = 1.3;
+            for (var k = 0; k < 10; k++) {
+                var pxk = x0 + cw * (0.07 + k * 0.096), pw = cw * 0.036, plen = ch * 0.22;
+                ctx.strokeRect(pxk - pw / 2, y0 - plen, pw, plen);
+                ctx.strokeRect(pxk - pw / 2, y0 + ch, pw, plen);
+            }
+            ctx.beginPath();
+            ctx.moveTo(x0 + 10, y0);
+            ctx.arcTo(x0 + cw, y0, x0 + cw, y0 + ch, 10); ctx.arcTo(x0 + cw, y0 + ch, x0, y0 + ch, 10);
+            ctx.arcTo(x0, y0 + ch, x0, y0, 10); ctx.arcTo(x0, y0, x0 + cw, y0, 10);
+            ctx.closePath();
+            ctx.fillStyle = light ? 'rgba(30,30,36,0.05)' : 'rgba(0,0,0,0.28)'; ctx.fill(); ctx.stroke();
+            ctx.beginPath(); ctx.arc(x0, cy, ch * 0.15, -Math.PI / 2, Math.PI / 2); ctx.stroke();
+            ctx.fillStyle = line; ctx.font = '600 ' + Math.round(ch * 0.15) + 'px ui-monospace, Menlo, monospace';
+            ctx.textBaseline = 'middle';
+            ctx.textAlign = 'left'; ctx.fillText('CHIP 1', x0 + cw * 0.06, y0 + ch * 0.27);
+            ctx.textAlign = 'right'; ctx.fillText('CLK', x0 + cw * 0.95, y0 + ch * 0.27);
+            /* the buckets */
+            var ly = y0 + ch * 0.66, r = ch * 0.065;
+            function lamp(x, b, col) {
+                if (b > 0.04) {
+                    var g = ctx.createRadialGradient(x, ly, 0, x, ly, r * 4.5);
+                    g.addColorStop(0, col); g.addColorStop(1, 'rgba(0,0,0,0)');
+                    ctx.globalAlpha = a * b * (light ? 0.22 : 0.28); ctx.fillStyle = g;
+                    ctx.beginPath(); ctx.arc(x, ly, r * 4.5, 0, 7); ctx.fill();
+                }
+                ctx.globalAlpha = a * (0.1 + b * 0.5); ctx.fillStyle = col;
+                ctx.beginPath(); ctx.arc(x, ly, r, 0, 7); ctx.fill();
+            }
+            for (var i = 0; i < n; i++) {
+                var b = 0.05 * (0.5 + 0.5 * Math.sin(t * 0.003 + i * 1.7));      /* the hiss */
+                bbd.packets.forEach(function (p) {
+                    var d = p.pos - i;
+                    if (d === 0) b += p.amp; else if (d === 1) b += p.amp * 0.55; else if (d === 2) b += p.amp * 0.2;
+                });
+                lamp(x0 + cw * 0.07 + i * (cw * 0.74 / (n - 1)), Math.min(1, b), red);
+            }
+            lamp(x0 + cw * 0.92, 0.2 + bbd.flash * 0.8, green);
         },
         tape: function (t, a) {
             var cy = H * 0.42, r1 = Math.min(W, H) * 0.1, x1 = W * 0.34, x2 = W * 0.66, ang = t * 0.0011;

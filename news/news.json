@@ -1,5 +1,16 @@
 [
   {
+    "date": "2026-10-24",
+    "app": "bbd-lab",
+    "tag": "In the lab",
+    "title": "BBD Lab, a bucket-brigade delay, is in the works",
+    "body": "Something new is on the bench: **BBD Lab**, a delay for iPad that simulates a bucket-brigade chip one transfer at a time, the way the classic analog delays handed sound along. The delay is the clock, so slow it down and the echoes grow long and dark, hiss and all.\n\nIt is in testing now and the details are still moving, so more when it is ready. [Get notified](bbd-lab/#contact) to hear when it lands.",
+    "link": {
+      "href": "bbd-lab/",
+      "label": "Take a look"
+    }
+  },
+  {
     "date": "2026-10-13",
     "app": "voltagecontrol",
     "tag": "Out now",

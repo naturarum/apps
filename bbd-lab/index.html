@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BBD Lab: a bucket-brigade delay for iPad, in the works</title>
+    <meta name="description" content="BBD Lab is a bucket-brigade delay for iPad, simulated chip by chip: the delay is the clock, and the hiss and whine come from the circuit itself. In development, coming as an audio unit and a standalone app.">
+    <meta name="theme-color" content="#0d0d11" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
+    <link rel="icon" type="image/png" href="img/icon.png">
+    <link rel="apple-touch-icon" href="img/icon.png">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="BBD Lab: a bucket-brigade delay for iPad, in the works">
+    <meta property="og:description" content="A bucket-brigade delay simulated chip by chip. The delay is the clock. In development for iPad.">
+    <meta property="og:image" content="https://naturarum.github.io/apps/bbd-lab/img/panel.jpg">
+    <meta property="og:url" content="https://naturarum.github.io/apps/bbd-lab/">
+
+    <link rel="stylesheet" href="../assets/base.css?v=20260724">
+    <style>
+        /* BBD Lab theme: the app's brushed-silver faceplate, black knobs, the
+           red bucket LEDs and the green phosphor readout. Silver carries the
+           wordmark into LED red; red is the accent. */
+        :root {
+            --accent: #ff6a55; --accent-glow: rgba(255, 106, 85, 0.22);
+            --accent2: #c9ccd3; --accent3: #ff8a6e; --accent4: #7fe0a8;
+            --grad: linear-gradient(100deg, #e6e7eb 0%, #b9bdc7 46%, #ff7a63 100%);
+        }
+        @media (prefers-color-scheme: light) {
+            :root {
+                --accent: #c2321f; --accent-glow: rgba(194, 50, 31, 0.18);
+                --accent2: #5a5e68; --accent3: #b0412a; --accent4: #2f8a57;
+                --grad: linear-gradient(100deg, #3d4048 0%, #6a6e78 45%, #c2321f 100%);
+            }
+        }
+        /* A cool silver wash with a faint LED glow below, like the panel under lab light. */
+        body {
+            background-image:
+                radial-gradient(ellipse at 50% 0%, rgba(201, 204, 211, 0.08) 0%, transparent 70%),
+                radial-gradient(ellipse at 22% 50%, rgba(255, 106, 85, 0.04) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 74%, rgba(127, 224, 168, 0.035) 0%, transparent 62%);
+        }
+
+        .app-icon-placeholder {
+            width: 96px; height: 96px; border-radius: 22px; margin: 0 auto 28px; overflow: hidden;
+            box-shadow: 0 16px 44px var(--accent-glow), 0 8px 24px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+        }
+        .app-icon-placeholder img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+        /* The panel, captioned by a readout like the one under the Time knob. */
+        .panel-shot { margin: var(--space-xl) auto 0; max-width: 980px; text-align: center; }
+        .panel-shot img {
+            display: block; width: 100%; height: auto; border-radius: 18px;
+            box-shadow: 0 22px 54px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.06);
+        }
+        .readout {
+            display: inline-flex; align-items: center; gap: 10px; margin-top: 18px; padding: 8px 15px;
+            background: #0b0f0c; border: 1px solid #2a2f2b; border-radius: 8px;
+            box-shadow: inset 0 0 0 3px #141815, inset 0 6px 14px rgba(0, 0, 0, 0.6);
+            font-family: ui-monospace, 'SF Mono', Menlo, monospace; font-size: 0.74rem; letter-spacing: 0.16em;
+            color: #8ff0b4; text-shadow: 0 0 6px rgba(127, 224, 168, 0.55);
+        }
+        .readout .clk { width: 7px; height: 7px; border-radius: 50%; background: #3ddc84; box-shadow: 0 0 8px #3ddc84; animation: clk 1.2s steps(1) infinite; }
+        @keyframes clk { 50% { opacity: 0.15; } }
+        @media (prefers-reduced-motion: reduce) { .readout .clk { animation: none; } }
+        /* three idea cards in a two-column grid: the last one takes the full row */
+        @media (min-width: 600px) { .features-grid > :last-child:nth-child(odd) { grid-column: 1 / -1; } }
+    </style>
+</head>
+<body>
+    <canvas id="vignette" data-scene="bbd" style="position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none" aria-hidden="true"></canvas>
+
+    <nav>
+        <div class="nav-inner">
+            <div style="display: flex; align-items: center; gap: 9px; min-width: 0;">
+                <a href="../" class="nav-brand">
+                    <span class="nav-mark" aria-hidden="true"></span>
+                    naturarum
+                </a>
+                <span class="nav-crumb">/&nbsp;<b>BBD Lab</b></span>
+            </div>
+            <a href="#contact" class="nav-cta">Get notified</a>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero container compact">
+            <div class="app-icon-placeholder">
+                <img src="img/icon.png" alt="BBD Lab app icon: a black chip on brushed silver, a packet of red lights moving along its buckets and a green clock lamp">
+            </div>
+            <p class="eyebrow">In the lab</p>
+            <h1><span class="accent">BBD Lab</span></h1>
+            <p class="tagline">
+                A bucket-brigade delay for iPad, simulated chip by chip. Your sound is handed from
+                bucket to bucket one clock tick at a time, the way the classic analog delays did it,
+                and the delay is the clock. In development now.
+            </p>
+            <div class="cta-group">
+                <a href="#contact" class="btn-primary">Get notified</a>
+                <a href="../" class="btn-secondary">&larr; All apps</a>
+            </div>
+            <div class="chips"><span class="chip">In development</span><span class="chip">iPad</span><span class="chip">AUv3</span></div>
+        </section>
+
+        <section class="container reveal" aria-label="BBD Lab screenshot">
+            <figure class="panel-shot">
+                <img src="img/panel.jpg" alt="The BBD Lab panel: a brushed-silver face with Chips, Time and Feedback knobs, a green readout showing the delay and its clock, and a row of smaller knobs below" width="1200" height="834">
+                <figcaption><span class="readout"><span class="clk" aria-hidden="true"></span>PANEL &middot; WORK IN PROGRESS</span></figcaption>
+            </figure>
+        </section>
+
+        <section class="features container reveal">
+            <h2 class="section-title">The idea</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="card-label">The chip</span>
+                    <h3>A delay, bucket by bucket</h3>
+                    <p>
+                        The classic analog delays passed audio along a chain of tiny capacitors, a bucket
+                        brigade. BBD Lab simulates that chain one transfer at a time, instead of painting
+                        an analog sound on top of a digital delay.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <span class="card-label">The physics</span>
+                    <h3>The delay is the clock</h3>
+                    <p>
+                        Slow the clock and the echoes grow longer and darker, because the filters that keep
+                        the clock out of the audio close along with it. The hiss and the faint whine come
+                        from the circuit, right where the hardware keeps them.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <span class="card-label">The lab</span>
+                    <h3>Be the designer</h3>
+                    <p>
+                        An analog pedal gives you the circuit its designer chose. Here the bench is open:
+                        change the circuit and hear what every part of it does.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="details container reveal">
+            <h2 class="section-title">In short</h2>
+            <div class="details-card">
+                <h3>Coming to iPad</h3>
+                <p>
+                    BBD Lab is in testing now, as an audio unit for your favourite hosts and as a standalone
+                    app. The details are still moving, so this page stays brief until release.
+                </p>
+                <div class="tags">
+                    <span class="tag">Delay</span>
+                    <span class="tag">Bucket brigade</span>
+                    <span class="tag">Analog</span>
+                    <span class="tag">AUv3</span>
+                    <span class="tag">iPad</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="news container reveal" id="news">
+            <h2 class="section-title">Updates</h2>
+            <div class="news-feed" data-news-app="bbd-lab" data-news-limit="5"></div>
+        </section>
+
+        <section class="contact container reveal" id="contact">
+            <div class="contact-card">
+                <h3>Get notified</h3>
+                <p>
+                    BBD Lab is in testing. Drop a line to hear when it lands, or with questions and
+                    feedback: always welcome.
+                </p>
+                <button class="contact-email contact-reveal" type="button" data-u="nrrrm" data-d="icloud.com">Show email address</button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="container">
+        <div class="footer-links">
+            <a href="../">All apps</a>
+            <a href="../re-deemer/">Re-deemer</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <p>&copy; <span id="current-year">2026</span> naturarum</p>
+    </footer>
+
+    <script src="../assets/site.js?v=20260724"></script>
+    <script src="../assets/vignette.js?v=20261024"></script>
+    <script src="../assets/news.js?v=20261024"></script>
+    <script data-goatcounter="https://naturarum.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

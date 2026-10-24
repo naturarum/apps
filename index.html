@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>naturarum: instruments for iPad &amp; tools for your music</title>
-    <meta name="description" content="Music apps by naturarum. Instruments for iPad: Hexatone, Pond, Anima, and VoltageControl, a free Eurorack-style touch sequencer, are out now. Tools: Datum, a tag editor for Mac and iPad, is on its way; Re-deemer, the free tape echo, is coming to iPad.">
+    <meta name="description" content="Music apps by naturarum. Instruments for iPad: Hexatone, Pond, Anima, and VoltageControl, a free Eurorack-style touch sequencer, are out now. Tools: Datum, a tag editor for Mac and iPad, is on its way; Re-deemer, the free tape echo, is coming to iPad; BBD Lab, a bucket-brigade delay, is in development.">
     <meta name="theme-color" content="#0d0d11" media="(prefers-color-scheme: dark)">
     <meta name="theme-color" content="#f0efec" media="(prefers-color-scheme: light)">
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
@@ -12,7 +12,7 @@
 
     <meta property="og:type" content="website">
     <meta property="og:title" content="naturarum: instruments for iPad &amp; tools for your music">
-    <meta property="og:description" content="Instruments for iPad: Hexatone, Pond, Anima, and VoltageControl are out now. Datum is on its way; Re-deemer, the free tape echo, is coming to iPad.">
+    <meta property="og:description" content="Instruments for iPad: Hexatone, Pond, Anima, and VoltageControl are out now. Datum and BBD Lab are on their way; Re-deemer, the free tape echo, is coming to iPad.">
     <meta property="og:url" content="https://naturarum.github.io/apps/">
     <meta name="twitter:card" content="summary">
 
@@ -139,13 +139,13 @@
             <h1>Instruments &amp; <span class="accent">tools</span></h1>
             <p class="tagline">
                 iPad and Mac. Hexatone, Pond, Anima, and VoltageControl are out;
-                Datum and a free iPad Re-deemer are in development.
+                Datum, BBD Lab, and a free iPad Re-deemer are in development.
             </p>
         </section>
 
         <!-- ════════════════════════════════════════════════════════════════
              APP INDEX. To add an app: copy one .index-row, set --row-accent +
-             data-vignette (anima | hexatone | pond | datum | voltage | tape, or omit),
+             data-vignette (anima | hexatone | pond | datum | voltage | tape | bbd, or omit),
              swap icon, name, one-liner, chips. Numbering is by hand.
              ════════════════════════════════════════════════════════════════ -->
         <section class="index container reveal" id="apps">
@@ -211,6 +211,15 @@
                     </span>
                     <span class="index-side"><span class="chips"><span class="chip free">Free</span><span class="chip">VST3 · CLAP · AU</span><span class="chip">iPad coming</span></span><span class="index-arrow">&rarr;</span></span>
                 </a>
+                <a class="index-row" href="bbd-lab/" style="--row-accent: #ff6a55;" data-vignette="bbd">
+                    <span class="index-num">07</span>
+                    <span class="index-icon"><img src="bbd-lab/img/icon.png" alt=""></span>
+                    <span class="index-main">
+                        <span class="index-name">BBD Lab</span>
+                        <span class="index-desc">A bucket-brigade delay, simulated chip by chip. The delay is the clock, and the hiss comes from the circuit.</span>
+                    </span>
+                    <span class="index-side"><span class="chips"><span class="chip">In development</span><span class="chip">iPad · AUv3</span></span><span class="index-arrow">&rarr;</span></span>
+                </a>
             </div>
         </section>
 
@@ -258,14 +267,15 @@
             <a href="voltagecontrol/">VoltageControl</a>
             <a href="datum/">Datum</a>
             <a href="re-deemer/">Re-deemer</a>
+            <a href="bbd-lab/">BBD Lab</a>
             <a href="#contact">Contact</a>
         </div>
         <p>&copy; <span id="current-year">2026</span> naturarum</p>
     </footer>
 
     <script src="assets/site.js?v=20260724"></script>
-    <script src="assets/news.js?v=20260914"></script>
-    <script src="assets/vignette.js?v=20260914"></script>
+    <script src="assets/news.js?v=20261024"></script>
+    <script src="assets/vignette.js?v=20261024"></script>
     <script>
     /* ── Contact form: posts through Web3Forms, so no address lives in the
        page. Falls back to revealing the assembled address if the relay is
