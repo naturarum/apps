@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hexatone — Manual</title>
+  <title>Hexatone Manual</title>
   <meta name="description" content="The full user manual for Hexatone, the isomorphic hexagonal keyboard and microtonal instrument for iPad.">
   <meta name="theme-color" content="#0d0d11" media="(prefers-color-scheme: dark)">
   <meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
@@ -29,8 +29,7 @@
 
   <main class="container manual">
     <div class="manual-actions">
-      <a href="manual.pdf" class="btn-secondary" download>Download PDF &darr;</a>
-    </div>
+      <a href="manual.pdf" class="btn-secondary" download>Download PDF &darr;</a>    </div>
 <h1 id="hexatone-user-manual">Hexatone User Manual</h1>
 <p>For version 1.4. Hexatone is an isomorphic hexagonal keyboard and
 microtonal instrument for iPad.</p>
@@ -236,6 +235,9 @@ tuning's own octave, so it stays in tune in any scale.</li>
 bars and beats, so recordings line up with your project. When the host
 transport is stopped it keeps running at its own tempo, so you can still
 play freely. Standalone it always uses the Tempo setting.</p>
+<p>As a plugin, the arpeggiator runs while its window is open. If you
+close the plugin window, it releases the note it was playing and pauses,
+then picks up on the beat when you open it again.</p>
 <h3 id="velocity">Velocity</h3>
 <p>Velocity is how hard each note plays. Set how it is decided in
 settings under <strong>Velocity</strong>.</p>
@@ -245,8 +247,9 @@ you set with a slider.</li>
 <li><strong>Accelerometer (experimental).</strong> Estimates loudness
 from how hard you tap the iPad. It is a whole-device signal, not per
 finger, so it is rough.</li>
-<li><strong>Pencil / Force.</strong> Uses Apple Pencil or 3D-Touch force
-where available, and falls back to the fixed value otherwise.</li>
+<li><strong>Apple Pencil.</strong> Uses Apple Pencil pressure. Fingers
+play at the fixed value, and so does the Apple Pencil (USB-C), which has
+no pressure sensor.</li>
 </ul>
 <p>For the two sensing modes you also get a <strong>velocity
 curve</strong>: a minimum and maximum velocity, and a curve shape (from
@@ -450,6 +453,12 @@ the <strong>East</strong> and <strong>Up-right</strong> steppers.</li>
 <p>The line under the picker shows the current axis steps. Because the
 layouts are defined in fractions of the period, they adapt to whatever
 tuning you have chosen.</p>
+<p>In some tunings a layout cannot reach every pitch. In 24-EDO, for
+example, Wicki-Hayden, Harmonic Table, Park and Gerhard land only on the
+even steps, which are the familiar twelve notes, and skip the quarter
+tones. That is how those layouts work, not a fault. A note under the
+picker tells you when it happens; Bosanquet, Fourths and the two
+Accordion layouts reach every pitch in 24-EDO.</p>
 <figure>
 <img loading="lazy" src="img/09-layouts.jpg" alt="the Layout picker open" />
 <figcaption aria-hidden="true">the Layout picker open</figcaption>
@@ -596,8 +605,8 @@ Rate, Tempo, Gate, and Octaves.</li>
 <li><strong>Keys.</strong> Density (26 to 64 pt) and Show note
 labels.</li>
 <li><strong>Appearance.</strong> Palette, with a swatch preview.</li>
-<li><strong>Velocity.</strong> Source (Fixed, Accelerometer, Pencil /
-Force) and, for the sensing modes, a velocity curve (min, max,
+<li><strong>Velocity.</strong> Source (Fixed, Accelerometer, Apple
+Pencil) and, for the sensing modes, a velocity curve (min, max,
 shape).</li>
 <li><strong>MPE Output.</strong> Pitch-bend range (plus or minus 48, 24,
 12, or 2).</li>
