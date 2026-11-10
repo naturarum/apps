@@ -31,8 +31,8 @@
     <div class="manual-actions">
       <a href="manual.pdf" class="btn-secondary" download>Download PDF &darr;</a>    </div>
 <h1 id="hexatone-user-manual">Hexatone User Manual</h1>
-<p>For version 1.4. Hexatone is an isomorphic hexagonal keyboard and
-microtonal instrument for iPad.</p>
+<p>For version 2.0. Hexatone is an isomorphic hexagonal keyboard and
+microtonal instrument for iPhone and iPad.</p>
 <hr />
 <h2 id="table-of-contents">Table of Contents</h2>
 <ol type="1">
@@ -89,8 +89,8 @@ playing back in a DAW (incoming MIDI)</a></li>
 synth over MPE</a></li>
 </ul></li>
 <li><a href="#11-settings-reference">Settings reference</a></li>
-<li><a href="#12-uninterrupted-playing-ipad-gestures">Uninterrupted
-playing (iPad gestures)</a></li>
+<li><a href="#12-uninterrupted-playing-system-gestures">Uninterrupted
+playing (system gestures)</a></li>
 <li><a href="#13-troubleshooting">Troubleshooting</a></li>
 <li><a href="#14-faq">FAQ</a></li>
 <li><a href="#15-privacy">Privacy</a></li>
@@ -98,10 +98,10 @@ playing (iPad gestures)</a></li>
 </ol>
 <hr />
 <h2 id="1-welcome">1. Welcome</h2>
-<p>Hexatone turns your iPad into a microtonal instrument you can
-actually play. The keys form a honeycomb where every interval has the
-same shape no matter where your hand sits, so a chord you learn in one
-place works everywhere, and any scale transposes by sliding the same
+<p>Hexatone turns your iPhone or iPad into a microtonal instrument you
+can actually play. The keys form a honeycomb where every interval has
+the same shape no matter where your hand sits, so a chord you learn in
+one place works everywhere, and any scale transposes by sliding the same
 shape around.</p>
 <p>It plays any tuning, from the familiar twelve notes per octave to far
 beyond, and it makes its own sound with built-in voices and a sampler,
@@ -131,8 +131,9 @@ chord. Lift your hands and it keeps ringing.</li>
 sustain.</p>
 <hr />
 <h2 id="3-the-main-screen">3. The main screen</h2>
-<p>The main screen is almost entirely the keyboard, with three floating
-buttons in the top right corner.</p>
+<p>The main screen is almost entirely the keyboard, with four floating
+controls in the top right corner. They follow the device when you turn
+it, in portrait or landscape.</p>
 <figure>
 <img loading="lazy" src="img/02-top-buttons.jpg"
 alt="close-up of the top-right buttons (Panic, Hold and Settings)" />
@@ -140,6 +141,12 @@ alt="close-up of the top-right buttons (Panic, Hold and Settings)" />
 Hold and Settings)</figcaption>
 </figure>
 <ul>
+<li><strong>Octave</strong> (down arrow, number, up arrow). Shifts the
+whole keyboard down or up an octave without opening settings, from minus
+4 to plus 3. On a phone the screen shows only a few octaves at once, and
+fewer still in large tunings like 31 or 53-EDO, so this is how you reach
+the rest. Changing the octave stops any held notes, because every key
+now plays a different pitch.</li>
 <li><strong>Panic button</strong> (exclamation mark). Silences
 everything at once: notes under your fingers, notes held by Hold, and
 the arpeggiator. It changes no settings, so Hold stays on and you can
@@ -245,15 +252,13 @@ settings under <strong>Velocity</strong>.</p>
 <li><strong>Fixed.</strong> Every note plays at the same loudness, which
 you set with a slider.</li>
 <li><strong>Accelerometer (experimental).</strong> Estimates loudness
-from how hard you tap the iPad. It is a whole-device signal, not per
+from how hard you tap the device. It is a whole-device signal, not per
 finger, so it is rough.</li>
-<li><strong>Apple Pencil.</strong> Uses Apple Pencil pressure. Fingers
-play at the fixed value, and so does the Apple Pencil (USB-C), which has
-no pressure sensor.</li>
 </ul>
-<p>For the two sensing modes you also get a <strong>velocity
-curve</strong>: a minimum and maximum velocity, and a curve shape (from
-"eases to loud" through "linear" to "more expressive").</p>
+<p>For Accelerometer you also get a <strong>velocity curve</strong>: a
+minimum and maximum velocity, and a curve shape (from "eases to loud"
+through "linear" to "more expressive"). The plugins always use the fixed
+velocity.</p>
 <figure>
 <img loading="lazy" src="img/04-velocity.jpg"
 alt="Velocity settings with the curve graph visible" />
@@ -355,7 +360,7 @@ above.</p>
 <h3 id="how-much-can-i-load">How much can I load?</h3>
 <p>Sample libraries now load up to what your device can actually handle,
 rather than a single fixed limit, so larger packs work on more capable
-iPads. If an instrument is too big for your device to load, Hexatone
+devices. If an instrument is too big for your device to load, Hexatone
 tells you the reason instead of failing quietly, so you know to choose a
 smaller pack.</p>
 <p>Loading is also clearer about problems. A pack that is missing some
@@ -465,7 +470,36 @@ Accordion layouts reach every pitch in 24-EDO.</p>
 </figure>
 <hr />
 <h2 id="9-appearance-and-key-options">9. Appearance and key options</h2>
-<p><strong>Appearance</strong> sets the colour palette:</p>
+<p><strong>Appearance</strong> sets how the keys are coloured, and can
+highlight a scale.</p>
+<h3 id="note-colours">Note colours</h3>
+<p><strong>Note colours</strong> is the default. A key's colour tells
+you how the note is spelled:</p>
+<ul>
+<li><strong>Naturals</strong> (the white keys of a piano: C D E F G A B)
+are warm white.</li>
+<li><strong>Flats</strong> are warm and get warmer with each flat: one
+flat is orange, two pink, three rose.</li>
+<li><strong>Sharps</strong> are cool and get cooler with each sharp: one
+sharp is cyan, two blue, three periwinkle.</li>
+<li><strong>Notes that are as sharp as they are flat</strong> are
+lavender. In 12-EDO these are the black keys (C sharp is D flat); in
+19-EDO, E sharp and F flat, and B sharp and C flat.</li>
+<li><strong>Notes between those</strong>, which some tunings have (the
+quarter tones of 24-EDO), are an icy blue for a step up and a peach for
+a step down.</li>
+</ul>
+<p>The colours come from the Hexatone Pastel palette, and as in the
+other palettes, higher octaves are brighter. The root (degree 0) keeps
+its bright outline. In a large tuning like 31 or 53-EDO you can see the
+familiar naturals and the rings of sharps and flats around them at a
+glance.</p>
+<p>Note colours work for every EDO. For a Scala scale they need the
+scale to be an equal division of the octave; any other scale shows
+Hexatone Pastel instead.</p>
+<h3 id="pitch-colour-palettes">Pitch colour palettes</h3>
+<p>The other palettes colour by pitch class around a ring, with
+brightness showing the octave:</p>
 <ul>
 <li><strong>Hexatone Pastel</strong></li>
 <li><strong>Inferno</strong></li>
@@ -476,15 +510,28 @@ greens and cyans to periwinkle. Its colours are all matched in
 lightness, so octaves separate more clearly than in the softer
 palettes.</li>
 </ul>
-<p>In every palette, the hue of a key shows its pitch class and the
-brightness shows its octave, so you can read the keyboard at a glance. A
-row of swatches previews the palette.</p>
+<p>A row of swatches previews the palette you pick.</p>
+<h3 id="scale-highlight">Scale highlight</h3>
+<p><strong>Highlight</strong> dims every key outside a scale, so the
+scale stands out on the grid. Pick <strong>Pentatonic</strong>,
+<strong>Diatonic</strong> or <strong>12 notes</strong>, then its
+<strong>Root</strong>. The scales are built by stacking fifths on the
+root, so they work in any tuning: Diatonic is the major scale on that
+root (its relative minor uses the same keys), and 12 notes shows the
+familiar chromatic scale inside a larger tuning such as 19, 24 or
+31-EDO. Dimmed keys still play. The highlight works with every
+palette.</p>
 <p>The <strong>Keys</strong> section has two options:</p>
 <ul>
 <li><strong>Density (key size)</strong> sets how big the keys are, from
 26 to 64 points. Smaller keys mean more of them on screen.</li>
-<li><strong>Show note labels</strong> turns the text on each key on or
-off.</li>
+<li><strong>Labels</strong> sets what is written on each key:
+<strong>Note names</strong> (C, F sharp, B flat, and for quarter tones
+^D for a step up or vE for a step down), <strong>Steps</strong> (the
+step number in an EDO) or <strong>Ratios</strong> (the ratios and cents
+from an imported Scala file), or <strong>Off</strong>. A note that is
+both sharp and flat shows its sharp name; its colour tells you it is
+both. Labels turn white on darker keys so they stay readable.</li>
 </ul>
 <figure>
 <img loading="lazy" src="img/10-palettes.jpg"
@@ -591,7 +638,9 @@ mode. A fuller setup guide and a list of tested synths live on the
 website.</p>
 <hr />
 <h2 id="11-settings-reference">11. Settings reference</h2>
-<p>A quick map of every settings section.</p>
+<p>Settings opens as a list of pages. Each row shows its current value,
+and tapping it opens that page; <strong>Done</strong> closes settings
+from any page. A quick map of every page:</p>
 <ul>
 <li><strong>Scale.</strong> Source (N-EDO or Scala file). For N-EDO:
 divisions (2 to 96) and quick buttons. For Scala: scale picker, import,
@@ -602,12 +651,14 @@ and manage scales.</li>
 sets the East and Up-right steps.</li>
 <li><strong>Arpeggiator.</strong> Arpeggiate on or off, then Pattern,
 Rate, Tempo, Gate, and Octaves.</li>
-<li><strong>Keys.</strong> Density (26 to 64 pt) and Show note
-labels.</li>
-<li><strong>Appearance.</strong> Palette, with a swatch preview.</li>
-<li><strong>Velocity.</strong> Source (Fixed, Accelerometer, Apple
-Pencil) and, for the sensing modes, a velocity curve (min, max,
-shape).</li>
+<li><strong>Keys.</strong> Density (26 to 64 pt) and Labels (Note names,
+Steps or Ratios, Off).</li>
+<li><strong>Appearance.</strong> Palette (Note colours or a pitch colour
+palette), with a swatch preview, and the scale highlight (Off,
+Pentatonic, Diatonic, 12 notes) with its root.</li>
+<li><strong>Velocity.</strong> Source (Fixed or Accelerometer) and, for
+Accelerometer, a velocity curve (min, max, shape). The plugins have the
+fixed velocity only.</li>
 <li><strong>MPE Output.</strong> Pitch-bend range (plus or minus 48, 24,
 12, or 2).</li>
 <li><strong>Instrument.</strong> Built-in sound, Mute, Voices, import
@@ -618,12 +669,14 @@ guide, and the release notes (the same notes appear once after each
 update).</li>
 </ul>
 <hr />
-<h2 id="12-uninterrupted-playing-ipad-gestures">12. Uninterrupted
-playing (iPad gestures)</h2>
-<p>When you play with several fingers, iPad's own system gestures can
-sometimes pull you out of the app. Hexatone reduces this where it can
-(it asks iOS to defer the edge swipes and hides the home indicator), but
-two of iPadOS's gestures cannot be disabled by any app:</p>
+<h2 id="12-uninterrupted-playing-system-gestures">12. Uninterrupted
+playing (system gestures)</h2>
+<p>When you play with several fingers, the system's own gestures can
+sometimes pull you out of the app. Hexatone reduces this where it can:
+it asks iOS to defer the edge swipes, so a swipe from an edge first
+shows a small tab and only a second swipe opens Control Center,
+Notification Center or the Home Screen, and it hides the home indicator.
+On iPad, one kind of gesture cannot be disabled by any app:</p>
 <ul>
 <li>the <strong>four and five finger multitasking gestures</strong>
 (swipe to switch apps, pinch to go home).</li>
@@ -658,13 +711,13 @@ instrument for notes that ring forever under Hold.</p>
 <p><strong>Only some of my notes sound when I play a big chord.</strong>
 You have reached the Voices limit (or, for external synths, the MPE
 channel limit). Raise the Voices slider, or play fewer notes.</p>
-<p><strong>The app keeps switching away while I jam.</strong> That is an
-iPad multitasking gesture, not Hexatone. See <a
-href="#12-uninterrupted-playing-ipad-gestures">Uninterrupted
+<p><strong>The app keeps switching away while I jam.</strong> That is a
+system gesture, not Hexatone. See <a
+href="#12-uninterrupted-playing-system-gestures">Uninterrupted
 playing</a>.</p>
 <p><strong>An imported instrument is too large.</strong> Hexatone loads
-up to what your device can handle, which is more on capable iPads. If a
-pack is too big for your device, Hexatone tells you the reason instead
+up to what your device can handle, which is more on capable devices. If
+a pack is too big for your device, Hexatone tells you the reason instead
 of failing quietly. Use a smaller pack on that device.</p>
 <p><strong>Some keys play the wrong sound or are silent after importing
 a pack.</strong> A pack may be missing some of its samples, or unable to
@@ -684,13 +737,16 @@ best. CAF, M4A, AAC, ALAC, and MP3 usually work. OGG is not
 supported.</p>
 <p><strong>Can I use my own scales?</strong> Yes, import Scala
 <code>.scl</code> files. Imported scales are shared with the plugin.</p>
-<p><strong>Does it work on iPhone?</strong> Hexatone is iPad only for
-now. iPhone support is planned.</p>
+<p><strong>Does it work on iPhone?</strong> Yes, since 2.0. One purchase
+covers both iPhone and iPad. The keys start smaller on iPhone so more of
+the range fits; change their size under <strong>Keys</strong>. A phone
+screen tracks fewer fingers at once than an iPad, so for big chords
+build them up with <strong>Hold</strong>.</p>
 <p><strong>Does it support full MPE expression like a Seaboard?</strong>
 Hexatone sends per-note pitch (the microtonal dimension) plus velocity.
-The continuous timbre and pressure dimensions of touch controllers are
-on the roadmap. A flat screen cannot natively sense those, so they need
-careful design.</p>
+It does not send the continuous timbre and pressure dimensions of touch
+controllers, and that is not planned: a flat glass screen cannot sense
+them well.</p>
 <hr />
 <h2 id="15-privacy">15. Privacy</h2>
 <p>Hexatone collects no data, has no tracking, and requires no account.

@@ -1,5 +1,16 @@
 [
   {
+    "date": "2026-11-10",
+    "app": "hexatone",
+    "tag": "Update",
+    "title": "Hexatone 2.0: now on iPhone, with Note colours",
+    "body": "Hexatone 2.0 is out on the App Store, and it now runs on iPhone as well as iPad. One purchase covers both: if you bought it for iPad, it is already yours on iPhone.\n\n- **Hexatone on iPhone.** Portrait or landscape, with smaller keys to start so more of the range fits, and octave buttons right on the keyboard.\n- **Note colours.** Keys are coloured by how each note is spelled: naturals are warm white, flats get warmer and sharps cooler with every accidental. It works in every EDO, so in 31 or 53-EDO you can read the rings of sharps and flats at a glance.\n- **Scale highlight.** Dim everything outside a pentatonic, diatonic or 12-note scale on any root, in any tuning. The dimmed keys still play.\n- **A new look.** Flat keys that light up and glow as you play, with note names on them.",
+    "link": {
+      "href": "hexatone/manual/",
+      "label": "Read the manual"
+    }
+  },
+  {
     "date": "2026-10-24",
     "app": "bbd-lab",
     "tag": "In the lab",
@@ -29,17 +40,6 @@
     "body": "**Anima is on iPhone!** The whole instrument, the same engine and the same sound, now fits in your pocket, and if you already own it on iPad it is yours on iPhone too, on the same purchase. On a phone the surface shows one section at a time: tap ENERGY, OBJECT or ROOM in the header, or just swipe sideways, and the top bar and ribbon stay right where your fingers expect them.\n\n[Watch Anima running on iPhone](https://www.youtube.com/watch?v=pys0AsFg4ro)\n\n1.2 is a big one for controllers, too:\n\n- **Every control is mapped to MIDI out of the box.** A fixed CC map reaches all of ENERGY, OBJECT and ROOM plus Glide, in the app and in the plugin, with no host mapping needed. Grab any controller and play the whole panel; the manual has the table.\n- **A MIDI channel setting.** Leave it on Omni, or pick a channel and Anima hears only that one, so the rest of your rig stays out.\n- **Small windows page instead of shrinking.** Slide Over, Stage Manager and short plugin windows show one section at a time, full size.\n- **A ribbon made for phones.** Held upright, it shows fewer, wider frets, and Keys mode fits as many octaves as the width allows.\n- Plus a tidier SETUP, plugin panels that never hide behind the ribbon drawer, controllers that no longer fight the glyph you are turning, and a dark launch screen.\n\nIf you make something with it, I would love to hear it.",
     "link": {
       "href": "https://apps.apple.com/us/app/anima-synthesizer/id6780281462",
-      "label": "App Store"
-    }
-  },
-  {
-    "date": "2026-09-25",
-    "app": "hexatone",
-    "tag": "Update",
-    "title": "Hexatone 1.4.1: an arpeggiator, a MIDI plugin, and a reliability pass",
-    "body": "**Hexatone 1.4.1 is out**, bringing everything from 1.4 along with a round of fixes.\n\n- **An arpeggiator.** Hold a chord, lift your hands, and Hexatone plays it one note at a time: five patterns, rates from 1/4 to 1/32 including triplets, gate length, and up to 4 octaves. It transposes by your tuning's own octave, so patterns stay in tune in any scale, and as a plugin it follows the host tempo.\n- **Hexatone MIDI, a second plugin.** The same keyboard as a pure AUv3 MIDI plugin, for hosts that only take MIDI from their MIDI slots (Drambo, AUM, Logic's MIDI FX).\n- **A panic button**, three new layouts (Accordion, Park, Gerhard), and a new palette, Signal.\n- **Better with MPE synths.** Synths that detect MPE automatically, Anima included, now lock onto Hexatone reliably, and Apple Pencil velocity finally works.\n- **1.4.1 fixes:** changing arpeggiator, Hold, or Voices settings mid-chord no longer cuts the sound; audio returns on its own after a call, Siri, or plugging in headphones; plugins reopen saved sessions in their own tuning; no more stuck note when closing the plugin window; imported scales delete properly.",
-    "link": {
-      "href": "https://apps.apple.com/app/id6775283069",
       "label": "App Store"
     }
   },
