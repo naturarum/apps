@@ -17,7 +17,7 @@ trap 'rm -rf "$TMP"' EXIT
 
 build() {
   local slug="$1" appname="$2" title="$3" desc="$4" accent="$5" accentglow="$6" accentlight="$7" accentglowlight="$8" src="$9" imgsrc="${10}" releases="${12:-}"
-  local out="$APPS/$slug/manual"
+  local out="$APPS/public/apps/$slug/manual"
   mkdir -p "$out"
   local md="$TMP/$slug.md"
   cp "$src" "$md"

@@ -1,0 +1,87 @@
+---
+// Contact: one form for everything. It posts through the Web3Forms relay, so no address lives
+// in the page. ?about=<app> preselects the topic (the BBD Lab and Datum buttons use it).
+import Base from '../../layouts/Base.astro';
+import { APPS } from '../../data/apps';
+import { SITE, SHOW_COVERS } from '../../data/site';
+const topics = [
+  { value: 'general', label: 'Something general' },
+  ...APPS.map((a) => ({ value: a.slug, label: a.status === 'dev' ? `${a.name} (in development)` : a.name })),
+  { value: 'press', label: 'Press and promo codes' },
+  ...(SHOW_COVERS ? [{ value: 'cover-request', label: 'A cover request' }] : []),
+];
+---
+<Base title="Contact" description="Questions, bug reports, ideas and press requests for naturarum apps. One form for everything." section="contact" crumbs={[{ label: 'Contact' }]}>
+  <Fragment slot="folio">One form for everything</Fragment>
+  <div class="grid">
+    <div>
+      <h1 class="t-title">Questions, bug reports, ideas and press requests, <em class="s">one form</em> for all of them.</h1>
+      <p class="lede">Press and creators: promo codes, screenshots and clips are available on request. Bug reports help most with the app version and the device.</p>
+    </div>
+    <form class="form" id="contactForm" novalidate>
+      <input type="hidden" name="access_key" value={SITE.web3formsKey} />
+      <input type="hidden" name="subject" value="Message via naturarum" />
+      <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+      <label class="full"><span class="mono">About</span>
+        <select name="topic" id="topic">{topics.map((t) => <option value={t.value}>{t.label}</option>)}</select>
+      </label>
+      <label><span class="mono">Name</span><input type="text" name="name" autocomplete="name" required /></label>
+      <label><span class="mono">Email</span><input type="email" name="email" autocomplete="email" required /></label>
+      <label class="full"><span class="mono">Message</span><textarea name="message" rows="7" required></textarea></label>
+      <div class="full foot">
+        <button type="submit" class="btn send">Send</button>
+        <span class="status" role="status" aria-live="polite" data-u="nrrrm" data-d="icloud.com"></span>
+      </div>
+    </form>
+  </div>
+</Base>
+
+<style>
+  .grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 50px; align-items: start; }
+  .lede { margin-top: 16px; }
+  .form { margin-top: 30px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; padding: 22px; border-radius: 16px; border: 1px solid var(--line-2); background: var(--card); }
+  .full { grid-column: 1 / -1; }
+  label { display: grid; gap: 6px; }
+  input, textarea, select { font: 400 15.5px/1.4 var(--f-sans); color: var(--ink); background: var(--page); border: 1px solid var(--line-2); border-radius: 10px; padding: 10px 12px; width: 100%; }
+  textarea { resize: vertical; min-height: 140px; }
+  input:focus, textarea:focus, select:focus { outline: 2px solid var(--hl); outline-offset: 0; border-color: transparent; }
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+  .foot { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .send[disabled] { opacity: .5; cursor: progress; }
+  .status { font-size: 14px; color: var(--dim); }
+  @media (max-width: 860px) { .grid { grid-template-columns: 1fr; gap: 10px; } }
+  @media (max-width: 520px) { .form { grid-template-columns: 1fr; padding: 16px; } }
+</style>
+
+<script>
+  // Topic from ?about=, a subject that names it, and the Web3Forms post. If the relay is
+  // unreachable the address is assembled here and shown, never written into the page.
+  const form = document.getElementById('contactForm') as HTMLFormElement | null;
+  const topic = document.getElementById('topic') as HTMLSelectElement | null;
+  const about = new URLSearchParams(location.search).get('about');
+  if (topic && about && Array.from(topic.options).some((o) => o.value === about)) topic.value = about;
+  if (form && topic) {
+    const status = form.querySelector('.status') as HTMLElement;
+    const send = form.querySelector('.send') as HTMLButtonElement;
+    const subject = form.querySelector('[name="subject"]') as HTMLInputElement;
+    const fallback = (msg: string) => {
+      const addr = `${status.dataset.u}@${status.dataset.d}`;
+      status.innerHTML = `${msg} You can email <a href="mailto:${addr}">${addr}</a> directly instead.`;
+    };
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!form.reportValidity()) return;
+      subject.value = `Message via naturarum: ${topic.options[topic.selectedIndex].text}`;
+      send.disabled = true;
+      status.textContent = 'Sending…';
+      fetch('https://api.web3forms.com/submit', { method: 'POST', body: new FormData(form) })
+        .then((r) => r.json())
+        .then((res) => {
+          if (res.success) { form.reset(); status.textContent = 'Thanks, your message is on its way.'; }
+          else fallback('That did not go through.');
+        })
+        .catch(() => fallback('That did not go through.'))
+        .finally(() => { send.disabled = false; });
+    });
+  }
+</script>

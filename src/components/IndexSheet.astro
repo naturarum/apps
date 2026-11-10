@@ -1,0 +1,57 @@
+---
+// The index sheet: drops down under the masthead like a catalog insert. Every product and
+// page, numbered, with status lamps. Drawn from the data files, so it never drifts.
+import { APPS } from '../data/apps';
+import { SHOW_COVERS, ALSO } from '../data/site';
+import { COVERS } from '../data/covers';
+import Led from './Led.astro';
+import ThemeSwitch from './ThemeSwitch.astro';
+const here = Astro.url.pathname.replace(/index\.html$/, '');
+const n = (i: number) => String(i + 1).padStart(2, '0');
+const hrefOf = (a: (typeof APPS)[number]) => a.external ?? `/apps/${a.slug}/`;
+---
+<div class="sheet" id="sheet" aria-label="Index">
+  <div class="wrap">
+    <span class="cm tl"></span><span class="cm tr"></span>
+    <div class="ix-cols">
+      <section>
+        <h2>Apps <span>{APPS.length}</span></h2>
+        <ul class="ix">
+          {APPS.map((a, i) => (
+            <li>
+              <a href={hrefOf(a)} aria-current={here === `/apps/${a.slug}/` ? 'page' : undefined} rel={a.external ? 'noopener' : undefined}>
+                <span class="n">{n(i)}</span>
+                <span class="ic">{a.icon ? <img src={a.icon} alt="" width="30" height="30" loading="lazy" /> : <svg viewBox="0 0 30 30" width="30" height="30" aria-hidden="true"><rect x="4" y="8" width="22" height="14" rx="2.5" fill="#7a4a24"/><circle cx="11" cy="15" r="3.4" fill="#f0d9be"/><circle cx="19" cy="15" r="3.4" fill="#f0d9be"/></svg>}</span>
+                <span class="nm">{a.name}<small>{a.kind} · {a.platforms}</small></span>
+                {a.external ? <span class="ext">&nearr;</span> : <Led status={a.status} accent={a.accent} />}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+      {SHOW_COVERS && (
+        <section>
+          <h2>Covers <span>{COVERS.length}</span></h2>
+          <ul class="ix">
+            {COVERS.map((c, i) => (
+              <li><a href={`/covers/${c.slug}/`}><span class="n">{n(i)}</span><span class="ic">{c.thumb && <img src={c.thumb} alt="" width="30" height="30" loading="lazy" />}</span><span class="nm">{c.name}<small>{c.kind}</small></span><span></span></a></li>
+            ))}
+          </ul>
+        </section>
+      )}
+      <section>
+        <h2>Also</h2>
+        <ul class="ix plain">
+          {ALSO.map((p, i) => (
+            <li><a href={p.href}><span class="n">{n(i)}</span><span class="nm">{p.name}<small>{p.kind}</small></span><span></span></a></li>
+          ))}
+        </ul>
+      </section>
+    </div>
+    <div class="sheet-foot">
+      <div class="legend"><span><Led status="out" accent="#c8ff3d" />Out now</span><span><Led status="dev" accent="#c8ff3d" />In development</span><span><Led status="beta" accent="#c8ff3d" />In beta</span></div>
+      <ThemeSwitch />
+      <span>Esc or I closes</span>
+    </div>
+  </div>
+</div>

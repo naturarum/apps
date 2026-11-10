@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Compile the website news feed (apps/news/news.json) from the vault.
+"""Compile the website news feed (src/data/news.json) from the vault.
 
 Two sources, both in the vault:
   1. Release posts: every release file (<App>/Public/releases/<version>.md) that has a
@@ -19,7 +19,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import releases  # noqa: E402
 
 SRC = releases.VAULT / "News.md"
-OUT = Path(__file__).resolve().parent.parent / "news" / "news.json"
+OUT = Path(__file__).resolve().parent.parent / "src" / "data" / "news.json"
 
 
 def parse(text):

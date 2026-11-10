@@ -1,0 +1,43 @@
+---
+// The whole index again, at the foot of every page.
+import { APPS } from '../data/apps';
+import { SHOW_COVERS, SITE, ALSO } from '../data/site';
+import { COVERS } from '../data/covers';
+import Led from './Led.astro';
+import ThemeSwitch from './ThemeSwitch.astro';
+const year = new Date().getFullYear();
+---
+<footer class="colophon">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <h2>Apps</h2>
+        <ul>
+          {APPS.map((a) => (
+            <li><a href={a.external ?? `/apps/${a.slug}/`}>{!a.external && <Led status={a.status} accent={a.accent} />}{a.name}{a.external && ' ↗'}</a></li>
+          ))}
+        </ul>
+      </div>
+      {SHOW_COVERS && (
+        <div>
+          <h2>Covers</h2>
+          <ul>{COVERS.map((c) => <li><a href={`/covers/${c.slug}/`}>{c.name}</a></li>)}</ul>
+        </div>
+      )}
+      <div>
+        <h2>Also</h2>
+        <ul>
+          {ALSO.map((p) => <li><a href={p.href}>{p.name}</a></li>)}
+          <li><a href="/apps/datum/privacy.html">Datum privacy</a></li>
+          <li><a href="/apps/voltagecontrol/privacy.html">VoltageControl privacy</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Edition</h2>
+        <ThemeSwitch />
+      </div>
+    </div>
+    <div class="base"><a class="word" href="/"><i aria-hidden="true"></i>naturarum</a><span>&copy; {year} naturarum</span></div>
+    {SHOW_COVERS && <p class="legal">{SITE.coversLegal}</p>}
+  </div>
+</footer>

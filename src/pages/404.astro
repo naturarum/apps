@@ -1,0 +1,8 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="Not found" section="other" crumbs={[{ label: 'Not found' }]} noindex>
+  <Fragment slot="folio">404</Fragment>
+  <h1 class="t-title">This page isn't here. The <em class="s">index</em> has everything that is.</h1>
+  <div class="btns" style="margin-top: 26px"><a class="btn" href="/">News</a><a class="btn ghost" href="/apps/">Apps</a><a class="btn ghost" href="/contact/">Contact</a></div>
+</Base>

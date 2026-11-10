@@ -1,63 +1,41 @@
-# apps
+# naturarum
 
-A small, static hub for my music apps, served at
-**<https://naturarum.github.io/apps/>**.
+The naturarum site: news, apps, tools and (later) covers. Built with [Astro](https://astro.build),
+deployed by Cloudflare from this repo.
 
-It's plain HTML + CSS + a little vanilla JS — no build step, no dependencies.
-Open `index.html` in a browser to work on it locally.
-
-## Layout
+## Run it
 
 ```
-index.html            hub / landing page (the app grid)
-assets/
-  base.css            shared design system (tokens, components, light/dark)
-  site.js             scroll-reveal + current year
-  favicon.svg         shared favicon / brand mark
-hexatone/             Hexatone (live) — full page + the in-browser SFZ Builder
-pond/                 Pond (coming soon) — teaser
-synth/                Synth (coming soon) — teaser
+npm install
+npm run dev        # http://127.0.0.1:4321
+npm run build      # static output in dist/
+python3 tools/check-site.py   # after a build, before every commit
 ```
 
-Re-deemer lives at its own site (<https://naturarum.github.io/re-deemer>); the
-hub just links out to it.
+## Where things live
 
-## Adding a new app
+| What | Where |
+| --- | --- |
+| Masthead, index sheet, colophon | `src/layouts/Base.astro`, `src/components/` |
+| Every app (copy, specs, panel, questions) | `src/data/apps.ts` |
+| Tabs, tagline, the covers switch | `src/data/site.ts` (`SHOW_COVERS`) |
+| News posts | `src/data/news.json`, **generated**: edit `News.md` and the release files in the vault, then run `python3 tools/build-news.py` |
+| Manuals (web + PDF) | `public/apps/<app>/manual/`, **generated** by `tools/build-manuals.sh` from the vault |
+| Screenshots and icons | `public/apps/<app>/img/` (1200 px long side, JPEG q80; icons 256 px PNG) |
+| SFZ Builder | `src/pages/tools/sfz-builder/index.astro` |
+| Styles | `src/styles/kit.css` (everything in the `kit` layer) |
 
-1. Make a folder, e.g. `myapp/`, and copy a teaser page (`pond/index.html`) into it.
-2. Set its accent in the page's inline `:root { --accent: … }` and swap the hero
-   motif, name, and copy.
-3. Add one `<a class="app-card">…</a>` block to the `APP LIST` in `index.html`
-   (point `href` at `myapp/`, set `--card-accent`, the icon, name, description,
-   and a status badge: `badge-available` / `badge-soon` / `badge-plugin`).
+Old addresses are kept on purpose: `/apps/<app>/`, `/apps/<app>/manual/` and
+`/apps/datum/privacy.html`, `/apps/voltagecontrol/privacy.html` are linked from the App Store.
+`public/_redirects` covers the few that moved.
 
-Everything shares `assets/base.css`, so the look stays consistent automatically.
+## Cloudflare
 
-## Before committing
+Framework preset Astro, build command `npm run build`, output directory `dist`, Node 22
+(`.node-version`). Set `SITE_URL` (for example `https://naturarum.com`) once the domain is
+attached; the RSS feed uses it for absolute links.
 
-Run the static checker. It is mechanical, fast, and every check exists because
-that bug actually happened:
+## House rules
 
-```bash
-python3 tools/check-site.py
-```
-
-It verifies CSS brace balance (a single stray brace silently kills every rule
-after it, with no console error), the no-em-dash house rule, that no plaintext
-contact address is in the source, that shared assets carry a `?v=` cache-buster,
-that each `#vignette` canvas loads its script and keeps its inline position
-fallback, that no `_*.html` workshop page is left behind, and that local links
-resolve.
-
-### Cache-busting
-
-`base.css`, `site.js`, `vignette.js` and `news.js` are referenced with a `?v=`
-query. **Bump it whenever you change one of them**, otherwise a returning
-visitor can pair the new HTML with an old cached stylesheet and see a
-half-styled page. One find-and-replace across the pages plus
-`tools/manual.template.html` does it.
-
-## Deploy
-
-Pushing to `main` publishes via GitHub Pages (source: `main` / root).
-`.nojekyll` tells Pages to serve the files as-is.
+No em-dashes, no prices (the App Store shows them), no plaintext email address, brand voice
+(no first person outside news posts). `tools/check-site.py` enforces the mechanical ones.

@@ -1,0 +1,26 @@
+---
+// A dark lightbox with a product lit on it: a device screenshot, an icon, or tape reels.
+// Stays dark in both editions. Crop marks are optional.
+import type { Visual } from '../data/apps';
+interface Props { visual: Visual; accent?: string; class?: string; marks?: boolean; cap?: string; eager?: boolean; style?: string }
+const { visual, accent, class: cls, marks = false, cap, eager = false, style } = Astro.props;
+const ar = visual.ar ?? 0.75;
+---
+<div class:list={['stage', cls]} style={[accent && `--a: ${accent}`, style].filter(Boolean).join('; ') || undefined}>
+  {marks && <><span class="cm tl"></span><span class="cm tr"></span><span class="cm bl"></span><span class="cm br"></span></>}
+  {visual.kind === 'device' && (
+    <>
+      <div class="floor"></div>
+      <div class="dev" style={`--ar: ${ar}`}><img src={visual.src} alt={visual.alt ?? ''} loading={eager ? 'eager' : 'lazy'} decoding="async" /></div>
+    </>
+  )}
+  {visual.kind === 'icon' && <img class="icon" src={visual.src} alt={visual.alt ?? ''} loading={eager ? 'eager' : 'lazy'} />}
+  {visual.kind === 'reels' && (
+    <svg class="reels" viewBox="0 0 120 80" aria-hidden="true"><rect x="14" y="16" width="92" height="50" rx="8" fill="#7a4a24"/><rect x="34" y="24" width="52" height="22" rx="4" fill="#5b3519"/><circle cx="46" cy="35" r="8" fill="#f0d9be"/><circle cx="74" cy="35" r="8" fill="#f0d9be"/><circle cx="46" cy="35" r="2.4" fill="#5b3519"/><circle cx="74" cy="35" r="2.4" fill="#5b3519"/><rect x="40" y="54" width="40" height="6" rx="2" fill="#5b3519"/></svg>
+  )}
+  {cap && <span class="cap">{cap}</span>}
+  <slot />
+</div>
+<style>
+  .reels { position: absolute; left: 50%; top: 50%; width: 46%; max-width: 150px; transform: translate(-50%, -50%); filter: drop-shadow(0 16px 20px rgb(0 0 0 / .6)); }
+</style>

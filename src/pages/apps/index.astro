@@ -1,0 +1,43 @@
+---
+// Apps: every app as a card on a dark stage, with its status lamp.
+import Base from '../../layouts/Base.astro';
+import Led from '../../components/Led.astro';
+import Stage from '../../components/Stage.astro';
+import { APPS, STATUS_LABEL } from '../../data/apps';
+const out = APPS.filter((a) => a.status === 'out').length;
+---
+<Base title="Apps" description="Instruments and tools for iPad, iPhone and Mac: Hexatone, Pond, Anima, VoltageControl, BBD Lab, Datum and Re-deemer." section="apps" crumbs={[{ label: 'Apps' }]}>
+  <Fragment slot="folio">{APPS.length} apps<span class="sep">·</span>{out} out now</Fragment>
+  <h1 class="t-title">Instruments, sequencers, a delay and a tag editor. Most run standalone and as <em class="s">AUv3</em> in your host.</h1>
+  <ul class="grid">
+    {APPS.map((a, i) => (
+      <li>
+        <a class="card" href={a.external ?? `/apps/${a.slug}/`} rel={a.external ? 'noopener' : undefined} style={`--a: ${a.accent}`}>
+          <Stage visual={a.thumb} accent={a.accent} eager={i < 3} />
+          <div class="hd">
+            <span class="mono n">{String(i + 1).padStart(2, '0')}</span>
+            <span class="mono st">{a.external ? <>Own site ↗</> : <><Led status={a.status} accent={a.accent} />{STATUS_LABEL[a.status]}</>}</span>
+          </div>
+          <h2>{a.name}</h2>
+          <p class="mono kind">{a.kind} · {a.platforms}</p>
+          <p class="line">{a.line}</p>
+        </a>
+      </li>
+    ))}
+  </ul>
+</Base>
+
+<style>
+  .grid { list-style: none; margin: 40px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 34px 22px; }
+  .card { display: flex; flex-direction: column; text-decoration: none; height: 100%; }
+  .card :global(.stage) { height: 250px; }
+  .card :global(.stage .icon) { width: 84px; border-radius: 20px; }
+  .hd { display: flex; justify-content: space-between; align-items: center; margin-top: 14px; padding-top: 10px; border-top: 1px solid var(--line-2); }
+  .st { display: inline-flex; gap: 7px; align-items: center; }
+  h2 { margin: 10px 0 0; font-weight: 500; font-size: 21px; letter-spacing: -0.02em; line-height: 1.2; }
+  .kind { margin: 4px 0 0; }
+  .line { margin: 10px 0 0; color: var(--dim); font-size: 15px; }
+  .card:hover h2 { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; text-decoration-color: var(--a); }
+  @media (max-width: 1000px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 620px) { .grid { grid-template-columns: 1fr; } .card :global(.stage) { height: 230px; } }
+</style>

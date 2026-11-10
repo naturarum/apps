@@ -1,0 +1,58 @@
+---
+// One news post, with its own address so it can be shared.
+import Base from '../../../layouts/Base.astro';
+import Led from '../../../components/Led.astro';
+import Stage from '../../../components/Stage.astro';
+import { allPosts, appOf, fmtDate, type Post } from '../../../lib/news';
+
+export function getStaticPaths() {
+  const posts = allPosts();
+  return posts.map((post, i) => ({ params: { slug: post.slug }, props: { post, newer: posts[i - 1], older: posts[i + 1] } }));
+}
+interface Props { post: Post; newer?: Post; older?: Post }
+const { post, newer, older } = Astro.props;
+const app = appOf(post);
+const visual = app?.film ?? app?.thumb;
+const isStore = post.link?.href.includes('apps.apple.com');
+---
+<Base title={post.title} description={post.excerpt} section="news" crumbs={[{ label: 'News', href: '/' }, ...(app ? [{ label: app.name, href: app.external ?? `/apps/${app.slug}/` }] : [])]} image={app?.icon} accent={app?.accent} accentLight={app?.accentLight}>
+  <Fragment slot="folio">{fmtDate(post.date)}<span class="sep">·</span>{post.tag}</Fragment>
+
+  <article>
+    <header class="head">
+      <p class="mono meta"><span class="k">{post.tag}</span><span class="sep"> · </span><time datetime={post.date}>{fmtDate(post.date)}</time>{app && <><span class="sep"> · </span><span class="app">{!app.external && <Led status={app.status} accent={app.accent} />}{app.name}</span></>}</p>
+      <h1 class="t-title">{post.title}</h1>
+    </header>
+    {app && visual && <Stage visual={visual} accent={app.accent} marks eager class="hero" />}
+    <div class="body">
+      <div class="prose" set:html={post.html}></div>
+      <aside class="side">
+        {post.link && <a class="btn" href={post.link.href} rel={post.link.href.startsWith('http') ? 'noopener' : undefined}>{isStore ? 'App Store' : post.link.label}</a>}
+        {app && !app.external && <a class="btn ghost" href={`/apps/${app.slug}/`}>About {app.name}</a>}
+      </aside>
+    </div>
+  </article>
+
+  <nav class="pager" aria-label="More news">
+    {newer ? <a href={newer.href}><span class="mono">Newer</span><b>{newer.title}</b></a> : <span></span>}
+    {older ? <a class="older" href={older.href}><span class="mono">Older</span><b>{older.title}</b></a> : <span></span>}
+  </nav>
+</Base>
+
+<style>
+  .head { margin-top: 28px; }
+  .meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0; }
+  .meta .sep { margin: 0 6px; }
+  .k { color: var(--hl); }
+  .app { display: inline-flex; gap: 7px; align-items: center; }
+  .head .t-title { margin-top: 12px; max-width: 24em; }
+  article :global(.stage.hero) { height: clamp(260px, 36vw, 440px); margin-top: 30px; }
+  .body { display: grid; grid-template-columns: minmax(0, 1fr) 240px; gap: 40px; margin-top: 36px; align-items: start; }
+  .side { display: grid; gap: 8px; justify-items: start; position: sticky; top: 80px; }
+  .pager { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 80px; border-top: 1px solid var(--line-2); padding-top: 16px; }
+  .pager a { text-decoration: none; display: grid; gap: 4px; }
+  .pager a b { font-weight: 500; letter-spacing: -0.015em; }
+  .pager a:hover b { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--hl); }
+  .pager .older { text-align: right; justify-items: end; }
+  @media (max-width: 800px) { .body { grid-template-columns: 1fr; gap: 24px; } .side { position: static; grid-auto-flow: column; justify-content: start; } .pager { grid-template-columns: 1fr; } .pager .older { text-align: left; justify-items: start; } }
+</style>

@@ -1,0 +1,130 @@
+---
+// Every page: head, masthead with the index sheet, the running head, the page, the colophon.
+import '@fontsource-variable/geist';
+import '@fontsource-variable/geist-mono';
+import '@fontsource/instrument-serif/400-italic.css';
+import '../styles/kit.css';
+import { SITE, TABS } from '../data/site';
+import IndexSheet from '../components/IndexSheet.astro';
+import Colophon from '../components/Colophon.astro';
+
+interface Crumb { label: string; href?: string }
+interface Props {
+  title?: string;
+  description?: string;
+  section: 'news' | 'apps' | 'covers' | 'contact' | 'tools' | 'other';
+  crumbs?: Crumb[];
+  image?: string;
+  accent?: string;
+  accentLight?: string;
+  noindex?: boolean;
+}
+const { title, description = SITE.description, section, crumbs = [], image = '/brand-mark.png', accent, accentLight, noindex = false } = Astro.props;
+const fullTitle = title ? `${title} · ${SITE.name}` : `${SITE.name} · ${SITE.tagline}`;
+const canonical = new URL(Astro.url.pathname.replace(/index\.html$/, ''), Astro.site).href;
+const ogImage = new URL(image, Astro.site).href;
+// A page accent (an app's colour) for links, dots and stages: dark-edition value and a darker
+// one for paper.
+const accentCss = accent ? `:root{--a:${accent};--a-text:${accent}}:root[data-theme="light"]{--a-text:${accentLight ?? accent}}` : '';
+---
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>{fullTitle}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  {noindex && <meta name="robots" content="noindex" />}
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content={SITE.name} />
+  <meta property="og:title" content={title ?? SITE.name} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={ogImage} />
+  <meta name="twitter:card" content="summary" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="alternate" type="application/rss+xml" title="naturarum news" href="/news/feed.xml" />
+  <meta name="theme-color" content="#f7f6f2" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0b0c0e" media="(prefers-color-scheme: dark)" />
+  <script is:inline>
+    // The edition before first paint: a remembered choice, else the system setting.
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem('edition'); } catch (e) {}
+      if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+  {accentCss && <style set:html={accentCss}></style>}
+  <slot name="head" />
+  <script is:inline data-goatcounter={SITE.goatcounter} async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+  <header class="mast">
+    <div class="wrap">
+      <a class="word" href="/"><i aria-hidden="true"></i>naturarum</a>
+      <nav class="tabs" aria-label="Departments">
+        {TABS.map((t) => (
+          <a href={t.href} aria-current={t.match === section ? 'page' : undefined}><small>{t.n}</small>{t.label}</a>
+        ))}
+      </nav>
+      <button class="index-btn" type="button" aria-expanded="false" aria-controls="sheet"><span class="grid9" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>Index<kbd>I</kbd></button>
+    </div>
+    <IndexSheet />
+  </header>
+
+  <main class="wrap" id="main">
+    <div class="folio mono">
+      <span>
+        <a href="/">naturarum</a>
+        {crumbs.map((c) => (<><span class="sep">/</span>{c.href ? <a href={c.href}>{c.label}</a> : <span>{c.label}</span>}</>))}
+      </span>
+      <span><slot name="folio" /></span>
+    </div>
+    <slot />
+  </main>
+
+  <Colophon />
+
+  <script>
+    // Masthead behaviour: the index sheet (button, I key, Escape, click outside), the edition
+    // switches, and the nine lamps on the Index button stepping like a sequencer on hover.
+    const root = document.documentElement;
+    const sync = (t: string) => document.querySelectorAll<HTMLButtonElement>('.theme button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.t === t)));
+    sync(root.getAttribute('data-theme') || 'light');
+    document.addEventListener('click', (e) => {
+      const b = (e.target as Element).closest<HTMLButtonElement>('.theme button');
+      if (!b || !b.dataset.t) return;
+      root.setAttribute('data-theme', b.dataset.t);
+      try { localStorage.setItem('edition', b.dataset.t); } catch (err) {}
+      sync(b.dataset.t);
+    });
+
+    const sheet = document.getElementById('sheet');
+    const btn = document.querySelector<HTMLButtonElement>('.index-btn');
+    const toggle = (on?: boolean) => {
+      if (!sheet || !btn) return;
+      const open = on ?? !sheet.classList.contains('open');
+      sheet.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', String(open));
+      if (open) sheet.querySelector<HTMLAnchorElement>('a')?.focus({ preventScroll: true });
+    };
+    btn?.addEventListener('click', () => toggle());
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && sheet?.classList.contains('open')) { toggle(false); btn?.focus(); }
+      const t = e.target as HTMLElement;
+      if ((e.key === 'i' || e.key === 'I') && !e.metaKey && !e.ctrlKey && !e.altKey && !/^(input|textarea|select)$/i.test(t.tagName) && !t.isContentEditable) toggle();
+    });
+    document.addEventListener('click', (e) => { if (sheet?.classList.contains('open') && !(e.target as Element).closest('.mast')) toggle(false); });
+
+    const lamps = btn ? Array.from(btn.querySelectorAll('.grid9 i')) : [];
+    let step = 0;
+    let timer: number | undefined;
+    const tick = () => { lamps.forEach((l, i) => l.classList.toggle('on', i === step)); step = (step + 1) % lamps.length; };
+    if (btn && lamps.length && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      btn.addEventListener('pointerenter', () => { if (timer === undefined) { tick(); timer = window.setInterval(tick, 125); } });
+      btn.addEventListener('pointerleave', () => { window.clearInterval(timer); timer = undefined; step = 0; lamps.forEach((l, i) => l.classList.toggle('on', i === 0)); });
+    }
+  </script>
+</body>
+</html>

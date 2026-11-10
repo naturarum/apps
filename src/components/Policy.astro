@@ -1,0 +1,16 @@
+---
+// A privacy policy page. The App Store links to these exact addresses, so they never move.
+import Base from '../layouts/Base.astro';
+import { appBySlug } from '../data/apps';
+interface Props { slug: string; updated: string }
+const { slug, updated } = Astro.props;
+const app = appBySlug(slug)!;
+---
+<Base title={`${app.name} privacy policy`} description={`How ${app.name} handles your data.`} section="apps" crumbs={[{ label: 'Apps', href: '/apps/' }, { label: app.name, href: `/apps/${slug}/` }, { label: 'Privacy' }]} accent={app.accent} accentLight={app.accentLight}>
+  <Fragment slot="folio">Last updated {updated}</Fragment>
+  <h1 class="t-title">{app.name} privacy policy</h1>
+  <div class="prose policy"><slot /></div>
+</Base>
+<style>
+  .policy { margin-top: 26px; }
+</style>

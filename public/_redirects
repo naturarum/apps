@@ -1,0 +1,6 @@
+# Cloudflare redirects. Old addresses from the GitHub Pages site keep working here too.
+/news                 /                                       301
+/news/                /                                       301
+/apps/re-deemer       https://naturarum.github.io/re-deemer/  302
+/apps/re-deemer/      https://naturarum.github.io/re-deemer/  302
+/apps/news/news.json  /news/feed.xml                          301

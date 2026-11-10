@@ -1,0 +1,8 @@
+---
+// A status lamp: a lit dot in a dark bezel. Steady when out, blinking in development, a ring in beta.
+import type { Status } from '../data/apps';
+import { STATUS_LABEL } from '../data/apps';
+interface Props { status?: Status; accent?: string; title?: string }
+const { status = 'out', accent, title } = Astro.props;
+---
+<span class:list={['led', status !== 'out' && status]} style={accent ? `--a: ${accent}` : undefined} title={title ?? STATUS_LABEL[status]} role="img" aria-label={title ?? STATUS_LABEL[status]}></span>
