@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hexatone: Isomorphic Hexagonal Keyboard and Microtonal Instrument for iPad</title>
-    <meta name="description" content="Hexatone is an isomorphic hexagonal keyboard and microtonal instrument for iPad. Play any tuning, use the built-in sampler, and explore beautiful isomorphic layouts.">
+    <title>Hexatone: Isomorphic Hexagonal Keyboard and Microtonal Instrument for iPhone and iPad</title>
+    <meta name="description" content="Hexatone is an isomorphic hexagonal keyboard and microtonal instrument for iPhone and iPad. Play any tuning, use the built-in sampler, and explore beautiful isomorphic layouts.">
     <meta name="theme-color" content="#0d0d11" media="(prefers-color-scheme: dark)">
     <meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
     <link rel="icon" type="image/png" href="img/icon.png">
@@ -12,13 +12,13 @@
 
     <!-- Social sharing -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Hexatone: Microtonal Hexagonal Instrument for iPad">
-    <meta property="og:description" content="An isomorphic hexagonal keyboard and microtonal instrument for iPad. Any tuning, a built-in sampler, beautiful layouts.">
+    <meta property="og:title" content="Hexatone: Microtonal Hexagonal Instrument for iPhone and iPad">
+    <meta property="og:description" content="An isomorphic hexagonal keyboard and microtonal instrument for iPhone and iPad. Any tuning, a built-in sampler, beautiful layouts.">
     <meta property="og:image" content="https://naturarum.github.io/apps/hexatone/img/icon.png">
     <meta property="og:url" content="https://naturarum.github.io/apps/hexatone/">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Hexatone: Microtonal Hexagonal Instrument for iPad">
-    <meta name="twitter:description" content="Any tuning, a built-in sampler, beautiful isomorphic layouts. For iPad.">
+    <meta name="twitter:title" content="Hexatone: Microtonal Hexagonal Instrument for iPhone and iPad">
+    <meta name="twitter:description" content="Any tuning, a built-in sampler, beautiful isomorphic layouts. For iPhone and iPad.">
     <meta name="twitter:image" content="https://naturarum.github.io/apps/hexatone/img/icon.png">
 
     <link rel="stylesheet" href="../assets/base.css?v=20260724">
@@ -294,7 +294,7 @@
 
             <h1><span class="accent">Hexatone</span></h1>
             <p class="tagline">
-                An isomorphic hexagonal keyboard and microtonal instrument for iPad.
+                An isomorphic hexagonal keyboard and microtonal instrument for iPhone and iPad.
                 Every interval keeps the same shape anywhere on the grid, so scales and chords
                 are easy to learn and transpose, in any tuning. It makes its own sound, in tune,
                 with built-in voices and a sampler, and no extra apps required.
@@ -307,13 +307,13 @@
                 <a href="https://www.youtube.com/shorts/nB9aX6HUDzI" class="btn-secondary" target="_blank" rel="noopener">Watch Promo</a>
                 <a href="#contact" class="btn-secondary">Get in Touch</a>
             </div>
-            <div class="chips"><span class="chip on">Out now</span><span class="chip">iPad</span><span class="chip">App Store</span><span class="chip">MPE out</span></div>
+            <div class="chips"><span class="chip on">Out now</span><span class="chip">iPad + iPhone</span><span class="chip">App Store</span><span class="chip">MPE out</span></div>
 
             <!-- Hero Images -->
             <div class="hero-images">
-                <img src="img/v12-01-microtonal.jpg" alt="Hexatone Microtonal Interface">
-                <img src="img/v12-02-sampler.jpg" alt="Hexatone Built-in Sampler">
-                <img src="img/v12-03-midi.jpg" alt="Hexatone MIDI MPE Output">
+                <img src="img/v20-02-colours.jpg" alt="Hexatone Note colours in 19-EDO">
+                <img src="img/v20-01-microtonal.jpg" alt="Hexatone, an isomorphic keyboard in 24-EDO">
+                <img src="img/v20-03-sound.jpg" alt="Hexatone built-in sounds and sampler">
             </div>
         </section>
 
@@ -369,11 +369,14 @@
                 <div class="feature-card">
                     <div class="card-hex" aria-hidden="true"></div>
                     <span class="card-label">Design</span>
-                    <h3>Beautiful, Readable Keys</h3>
+                    <h3>Keys You Can Read</h3>
                     <p>
-                        Glassy, glowing keys that light up as you play. Five colour palettes
-                        (Pastel, Inferno, Turquoise, Campfire, Signal). Hue shows pitch class,
-                        brightness shows octave, so you can read the keyboard at a glance.
+                        Note colours show how each note is spelled: naturals are warm white, flats
+                        get warmer and sharps cooler with every accidental, in any EDO. A scale
+                        highlight dims every key outside a pentatonic, diatonic or 12-note scale.
+                        Or pick one of five pitch palettes (Pastel, Inferno, Turquoise, Campfire,
+                        Signal), where hue shows pitch class and brightness shows octave. Flat keys
+                        light up and glow as you play.
                     </p>
                 </div>
             </div>
@@ -393,7 +396,7 @@
                     <span class="tag">AUv3</span>
                     <span class="tag">Standalone</span>
                     <span class="tag">AUv3 MIDI</span>
-                    <span class="tag">iPad</span>
+                    <span class="tag">iPad + iPhone</span>
                 </div>
             </div>
             <div class="details-card">
@@ -407,8 +410,7 @@
                 <p style="margin-top: 10px; color: var(--text-dim); font-size: 0.85rem;">
                     A note on MPE: Hexatone sends the per-note pitch (X) dimension. The continuous
                     Y (timbre / CC74) and Z (pressure) expression of touch controllers like the
-                    Seaboard isn't sent yet, because a flat screen can't natively sense those. Richer touch
-                    expression is on the roadmap.
+                    Seaboard isn't sent, because a flat glass screen can't sense those well.
                 </p>
                 <div class="tags">
                     <span class="tag">MPE Pitch</span>
